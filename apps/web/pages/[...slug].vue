@@ -5,27 +5,22 @@
     class="relative"
     :class="{ 'pointer-events-none opacity-50': loading }"
   >
-    <SfLoaderCircular
-      v-if="loading || checkingPermission"
-      class="fixed top-[50%] right-0 left-0 m-auto z-[99999]"
-      size="2xl"
-    />
-    <template v-else>
-      <CategoryPageContent
-        v-if="productsCatalog?.products"
-        :title="categoryGetters.getCategoryName(productsCatalog.category)"
-        :total-products="productsCatalog.pagination.totals"
-        :products="productsCatalog.products"
-        :items-per-page="Number(productsPerPage)"
-      >
-        <template #sidebar>
-          <CategoryTree :category="productsCatalog.category" />
-          <CategorySorting />
-          <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
-          <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
-        </template>
-      </CategoryPageContent>
-    </template>
+    <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-[99999]" size="2xl" />
+    <KelloggsCategoryHeader :categoryName="categoryName"></KelloggsCategoryHeader> 
+    <CategoryPageContent
+      v-if="productsCatalog?.products"
+      :title="categoryGetters.getCategoryName(productsCatalog.category)"
+      :total-products="productsCatalog.pagination.totals"
+      :products="productsCatalog.products"
+      :items-per-page="Number(productsPerPage)"
+    >
+      <template #sidebar>
+        <CategoryTree :category="productsCatalog.category" />
+        <CategorySorting />
+        <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
+        <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
+      </template>
+    </CategoryPageContent>
   </NuxtLayout>
 </template>
 
@@ -54,6 +49,10 @@ const breadcrumbs = computed(() => {
   }
 
   return [];
+});
+
+const categoryName = computed(() => {
+  return productsCatalog.value.category.details?.[0]?.name;
 });
 
 watch(
@@ -97,3 +96,9 @@ useHead({
   ],
 });
 </script>
+
+<style lang="scss"scoped>
+  nav[testid="breadcrumbs"] {
+    display: none;
+  }
+</style>

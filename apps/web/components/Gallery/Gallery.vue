@@ -1,9 +1,8 @@
 <template>
-  <div class="flex-col md:flex-row h-full flex relative scroll-smooth md:gap-4 relative" data-testid="gallery">
+  <div class="flex-col md:flex-row flex relative scroll-smooth md:gap-4 relative" data-testid="gallery">
     <div
-      class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[600px]"
-      data-testid="gallery-images"
-    >
+         class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[600px]"
+         data-testid="gallery-images">
       <SfScrollable
         class="flex items-center snap-x snap-mandatory scrollbar-hidden w-full h-full"
         wrapper-class="!absolute top-0 left-0 w-full h-full"
@@ -27,23 +26,21 @@
 
     <div class="md:-order-1 overflow-hidden flex-shrink-0 basis-auto">
       <SfScrollable
-        ref="thumbsReference"
-        wrapper-class="hidden md:inline-flex"
-        direction="vertical"
-        class="flex-row w-full items-center md:flex-col md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto scrollbar-hidden"
-        :active-index="activeIndex"
-        :prev-disabled="activeIndex === 0"
-        :next-disabled="activeIndex === images.length - 1"
-      >
+                    ref="thumbsReference"
+                    wrapper-class="hidden md:inline-flex"
+                    direction="vertical"
+                    class="flex-row w-full items-center md:flex-col md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto scrollbar-hidden"
+                    :active-index="activeIndex"
+                    :prev-disabled="activeIndex === 0"
+                    :next-disabled="activeIndex === images.length - 1">
         <template #previousButton>
           <UiButton
-            variant="secondary"
-            size="sm"
-            square
-            class="absolute !rounded-full bg-white z-10 top-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
-            :class="{ hidden: firstVisibleThumbnailIntersected }"
-            :aria-label="$t('gallery.prev')"
-          >
+                    variant="secondary"
+                    size="sm"
+                    square
+                    class="absolute !rounded-full bg-white z-10 top-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
+                    :class="{ hidden: firstVisibleThumbnailIntersected }"
+                    :aria-label="$t('gallery.prev')">
             <template #prefix>
               <SfIconChevronLeft />
             </template>
@@ -75,13 +72,12 @@
 
         <template #nextButton>
           <UiButton
-            variant="secondary"
-            size="sm"
-            square
-            class="absolute !rounded-full bg-white z-10 bottom-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
-            :class="{ hidden: lastVisibleThumbnailIntersected }"
-            :aria-label="$t('gallery.next')"
-          >
+                    variant="secondary"
+                    size="sm"
+                    square
+                    class="absolute !rounded-full bg-white z-10 bottom-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
+                    :class="{ hidden: lastVisibleThumbnailIntersected }"
+                    :aria-label="$t('gallery.next')">
             <template #prefix>
               <SfIconChevronRight />
             </template>
@@ -113,7 +109,7 @@ import type { ImagesData } from '@plentymarkets/shop-api';
 
 const props = defineProps<{ images: ImagesData[] }>();
 
-const { isPending, start, stop } = useTimeoutFn(() => {}, 50);
+const { isPending, start, stop } = useTimeoutFn(() => { }, 50);
 
 const thumbsReference = ref<HTMLElement>();
 const firstThumbReference = ref<HTMLButtonElement>();
@@ -169,5 +165,13 @@ const assignReference = (element: Element | ComponentPublicInstance | null, inde
   }
 
   if (index === 0) firstThumbReference.value = element as HTMLButtonElement;
+};
+
+// Add navigation function
+const navigate = (direction: number) => {
+  const newIndex = activeIndex.value + direction;
+  if (newIndex >= 0 && newIndex < props.images.length) {
+    onChangeIndex(newIndex);
+  }
 };
 </script>
