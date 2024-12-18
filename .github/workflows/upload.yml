@@ -75,7 +75,7 @@ jobs:
         uses: JantHsueh/upload-file-action@1.0
         with:
           url: 'https://pwapublish.plentysystems.com'
-          forms: '{ "token": "${{ secrets.URL_ENDPOINT_TOKEN }}" }'
+          forms: '{ "token": "NjI3MDBfSWtYYThrWEhzVWlIRk5UeUZYS1N0ZUNOcmJwODZGdk43V3YzUDc2aE13TjBXYUlZaHk=" }'
           fileForms: '{ "file": "pwa.tar.gz" }'
 
       - name: Upload build to staging
