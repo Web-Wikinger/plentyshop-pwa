@@ -2,6 +2,7 @@
   <MegaMenu :categories="categoryTree">
     <template v-if="viewport.isGreaterOrEquals('md')">
       <nav class="hidden md:flex md:flex-row md:flex-nowrap ml-auto">
+
         <UiButton
                   variant="tertiary"
                   class="relative !text-black hover:bg-transparent"
@@ -91,6 +92,8 @@
         <SfIconSearch />
       </UiButton>
     </div>
+
+    <LanguageSelector />
   </MegaMenu>
   <UiModal v-if="viewport.isGreaterOrEquals('md') && isAuthenticationOpen" v-model="isAuthenticationOpen" tag="section"
            class="h-full md:w-[500px] md:h-fit m-0 p-0 overflow-y-auto">
