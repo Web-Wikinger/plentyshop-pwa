@@ -1,7 +1,7 @@
 <template>
   <div>
     <UiHeader />
-    <NarrowContainer v-if="breadcrumbs?.length" class="p-4 md:px-0">
+    <NarrowContainer v-if="breadcrumbs?.length" class="p-4 md:px-0" :class="{'absolute w-full' : isCategoryPage}">
       <LazyUiBreadcrumbs :breadcrumbs="breadcrumbs" />
     </NarrowContainer>
     <main>
@@ -24,5 +24,21 @@ defineProps<DefaultLayoutProps>();
 const { setLogoMeta } = useStructuredData();
 const { isOpen, product } = useQuickCheckout();
 const viewport = useViewport();
+const route = useRoute();
+
 setLogoMeta();
+const isPreview = ref(false);
+onMounted(() => {
+  const config = useRuntimeConfig().public;
+  const showConfigurationDrawer = config.showConfigurationDrawer;
+
+  const cookieExists = document.cookie.split('; ').some((cookie) => cookie.trim().startsWith('pwa='));
+  isPreview.value = cookieExists || (showConfigurationDrawer as boolean);
+});
+
+const isCategoryPage = computed(() => {
+  console.log('route.name', route.name);
+  
+  return route.name == 'slug___de___default'
+});
 </script>

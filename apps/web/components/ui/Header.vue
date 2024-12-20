@@ -11,15 +11,11 @@
                   :aria-label="t('openSearchModalButtonLabel')">
           <SfIconSearch />
         </UiButton>
-        <UiButton
-          class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 mr-1 -ml-0.5 rounded-md"
-          :tag="NuxtLink"
-          :to="localePath(paths.wishlist)"
-          :aria-label="t('numberInWishlist', { count: wishlistItemIds.length })"
-          variant="tertiary"
-          square
-          data-testid="wishlist-page-navigation"
-        >
+        <!-- <UiButton
+                  class="group relative !text-black hover:bg-transparent"
+                  :tag="NuxtLink" :to="localePath(paths.wishlist)"
+                  :aria-label="t('numberInWishlist', { count: wishlistItemIds.length })" variant="tertiary" square
+                  data-testid="wishlist-page-navigation">
           <template #prefix>
             <SfIconFavorite />
             <SfBadge
@@ -29,7 +25,7 @@
                      placement="top-right"
                      :max="99" />
           </template>
-        </UiButton>
+        </UiButton> -->
         <UiButton class="group relative !text-black hover:bg-transparent" :tag="NuxtLink" :to="localePath(paths.cart)"
                   :aria-label="t('numberInCart', { count: cartItemsCount })" variant="tertiary" square>
           <template #prefix>
@@ -45,12 +41,11 @@
         <SfDropdown v-if="isAuthorized" v-model="isAccountDropdownOpen" placement="bottom-end" class="z-50">
           <template #trigger>
             <UiButton
-              variant="tertiary"
-              class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 rounded-md"
-              :class="{ 'bg-primary-700': isAccountDropdownOpen }"
-              data-testid="account-dropdown-button"
-              @click="accountDropdownToggle()"
-            >
+                      variant="tertiary"
+                      class="relative !text-black hover:text-white active:text-white hover:bg-gray-100 active:bg-gray-200 rounded-md"
+                      :class="{ 'bg-gray-200': isAccountDropdownOpen }"
+                      @click="accountDropdownToggle()"
+                      data-testid="account-dropdown-button">
               <template #prefix>
                 <SfIconPerson />
               </template>
@@ -87,7 +82,7 @@
 
     <div v-if="viewport.isLessThan('lg')">
       <UiButton variant="tertiary"
-                class="relative !text-black hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 rounded-md md:hidden"
+                class="relative !text-black hover:text-white active:text-white hover:bg-gray-800 active:bg-gray-700 rounded-md md:hidden"
                 square @click="searchModalOpen" :aria-label="t('openSearchModalButtonLabel')">
         <SfIconSearch />
       </UiButton>
