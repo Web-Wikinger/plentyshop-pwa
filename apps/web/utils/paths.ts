@@ -26,4 +26,5 @@ export const paths = {
   privacyPolicy: '/privacy-policy',
   shipping: '/shipping',
   cancellationForm: '/cancellation-form',
+  pringles: '/snacks/pringles'
 };
