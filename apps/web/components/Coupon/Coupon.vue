@@ -8,7 +8,7 @@
             :class="['text-neutral-500', { 'rotate-90': openedCoupon, '-rotate-90': !openedCoupon }]"
           />
         </div>
-      </template>
+      </template> -->
       <div class="flex mb-4">
         <div class="flex-grow mr-2" data-testid="couponCode">
           <SfInput

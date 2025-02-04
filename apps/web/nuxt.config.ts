@@ -220,4 +220,7 @@ export default defineNuxtConfig({
 
     registerWebManifestInRouteRules: true,
   },
+
+  // For debugging this can be helpfull
+  ssr: false
 });

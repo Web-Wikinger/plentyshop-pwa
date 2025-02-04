@@ -1,14 +1,7 @@
 export default {
-  fallbackLocale: process.env.DEFAULTLANGUAGE ?? 'en',
+  fallbackLocale: 'de',
   detectBrowserLanguage: false,
   numberFormats: {
-    en: {
-      currency: {
-        style: 'currency',
-        currency: 'GBP',
-        currencyDisplay: 'symbol',
-      },
-    },
     de: {
       currency: {
         style: 'currency',

@@ -12,21 +12,20 @@ const { index } = defineProps<DriftProps>();
 let drift: Drift | null = null;
 
 onMounted(() => {
-  const demoTrigger = document.querySelector(`.demo-trigger-${index}`) as HTMLElement;
-  const paneContainer = document.querySelector('.drift-zoom-image') as HTMLElement;
+  // WebWikinger: Commented out because image zoom is not needed
 
-  if (!demoTrigger || !paneContainer) {
-    return;
-  }
+  // let demoTrigger = document.querySelector(`.demo-trigger-${index}`) as HTMLElement;
+  // let paneContainer = document.querySelector('.drift-zoom-image') as HTMLElement;
 
-  drift = new Drift(demoTrigger, {
-    paneContainer: paneContainer,
-    containInline: true,
-    zoomFactor: 2,
-    hoverBoundingBox: true,
-    handleTouch: false,
-    injectBaseStyles: true,
-  });
+  // new Drift(demoTrigger, {
+  //   paneContainer: paneContainer,
+  //   containInline: true,
+  //   zoomFactor: 2,
+  //   hoverBoundingBox: true,
+  //   handleTouch: true,
+  //   touchDelay: 300,
+  //   injectBaseStyles: true,
+  // });
 });
 
 const destroyDrift = () => {

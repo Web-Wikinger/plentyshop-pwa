@@ -28,6 +28,7 @@ export const useCategoryTree: UseCategoryTreeMethodsReturn = () => {
     try {
       const data = await useSdk().plentysystems.getCategoryTree();
       state.value.data = data?.data ?? state.value.data;
+      
       return state.value.data;
     } catch (error) {
       throw new Error(error as string);

@@ -206,6 +206,8 @@
   "addToCartShort": "Hinzufügen",
   "addToWishlist": "Zur Wunschliste hinzufügen",
   "addedToCart": "Artikel zum Warenkorb hinzugefügt",
+  "removedFromCart": "Artikel aus dem Warenkorb entfernt",
+  "changedCartQuantity": "Menge im Warenkorb angepasst",
   "address": "Adressen",
   "addressContainer": {
     "sameAsShippingAddress": "Entspricht der Lieferadresse"
@@ -331,6 +333,22 @@
         "sameDayDelivery": "Lieferung am selben Tag",
         "shippingDelivery": "Versand & Lieferung",
         "storeLocator": "Filialfinder"
+      }
+    },
+    "content": {
+      "label": "Inhalt",
+      "subcategories": {
+        "kelloggsHistory": "Die Kellogg’s Geschichte",
+        "betterDays": "Better Days - Versprechen",
+        "pringles": "Pringles",
+        "breakfast": "Frühstück"
+      }
+    },
+    "service": {
+      "label": "Service",
+      "subcategories": {
+        "paymentAndShipping": "Zahlung & Versand",
+        "faq": "FAQ"
       }
     }
   },
@@ -564,7 +582,7 @@
     "prev": "Vorherige",
     "thumb": "Zu Bild {index}"
   },
-  "goToCheckout": "Zur Kasse",
+  "goToCheckout": "Weiter zur Kasse",
   "goToHomepage": "Zur Startseite gehen",
   "goToPage": "Zur Seite navigieren {page}",
   "googlePay": {
@@ -681,7 +699,7 @@
   "min": "Min.",
   "minimumOrderQuantity": "Minimale Bestellmenge: {count}",
   "moreItemsOfThisCategory": "Weitere Artikel in dieser Kategorie",
-  "myCart": "Mein Warenkorb",
+  "myCart": "Warenkorb",
   "newBillingAddress": "Neue Rechnungsadresse",
   "newShippingAddress": "Neue Lieferadresse",
   "newsletter": {
@@ -700,7 +718,7 @@
   "noneExisting": "Keine vorhanden",
   "numberInCart": "{count} Produkte im Warenkorb",
   "numberInWishlist": "{count} Produkte in der Wunschliste",
-  "numberOfProducts": "{count} Produkte von {total} Produkten",
+  "numberOfProducts": "{count} Produkte",
   "offerForm": {
     "acceptOffer": "Angebot annehmen",
     "cancel": "Abbrechen",
