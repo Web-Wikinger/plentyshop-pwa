@@ -142,6 +142,7 @@ const NuxtLink = resolveComponent('NuxtLink');
 const { t, localeCodes } = useI18n();
 const route = useRoute();
 const localePath = useLocalePath();
+const open = ref(false); 
 const { isOpen: isAccountDropdownOpen, toggle: accountDropdownToggle } = useDisclosure();
 const { isOpen: isAuthenticationOpen, open: openAuthentication, close: closeAuthentication } = useDisclosure();
 const { open: searchModalOpen, isOpen: isSearchModalOpen, close: searchModalClose } = useDisclosure();

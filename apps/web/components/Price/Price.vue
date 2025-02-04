@@ -14,6 +14,6 @@
 import type { PriceProps } from '~/components/Price/types';
 
 defineProps<PriceProps>();
-
+const { showNetPrices } = useCustomer();
 const { t, n } = useI18n();
 </script>

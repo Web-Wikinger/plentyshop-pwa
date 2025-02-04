@@ -77,6 +77,7 @@ import { SfIconTune, useDisclosure } from '@storefront-ui/vue';
 import { type CategoryPageContentProps } from '~/components/CategoryPageContent/types';
 import { ref, computed } from 'vue';
 import { Product } from '@plentymarkets/shop-api';
+import { paths } from '~/utils/paths';
 
 const { title, totalProducts, itemsPerPage = 24, products = [] } = defineProps<CategoryPageContentProps>();
 
