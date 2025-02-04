@@ -1,6 +1,12 @@
-import { UseReadCookieBarState, type UseReadCookieBarReturn } from './types';
-import { Cookie, CookieGroup, CookieGroupFromNuxtConfig, type JsonCookie } from '~/configuration/cookie.config';
-import { type ChangeVisibilityState, type SetAllCookiesState, type SetConsent, type InitializeCookies } from './types';
+import type {
+  UseReadCookieBarState,
+  UseReadCookieBarReturn,
+  ChangeVisibilityState,
+  SetAllCookiesState,
+  SetConsent,
+  InitializeCookies,
+} from './types';
+import type { Cookie, CookieGroup, CookieGroupFromNuxtConfig, JsonCookie } from '~/configuration/cookie.config';
 import cookieScripts from '~/cookie-scripts.config';
 
 const checkIfScriptIsExternal = (scriptName: string): boolean => {
@@ -74,15 +80,19 @@ export const useReadCookieBar: UseReadCookieBarReturn = () => {
    */
   const initializeCookies: InitializeCookies = () => {
     const cookies = JSON.parse(JSON.stringify(initialCookies));
-
     const browserCookies = useCookie('consent-cookie') as Ref<JsonCookie | null | undefined>;
 
-    cookies.groups.slice(1).forEach((group: CookieGroup) => {
+    cookies.groups.forEach((group: CookieGroup) => {
       group.cookies.forEach((cookie: Cookie) => {
-        cookie.accepted = !!browserCookies.value?.[group.name]?.[cookie.name] || false;
+        const isAccepted =
+          group.name === 'CookieBar.essentials.label' || !!browserCookies.value?.[group.name]?.[cookie.name] || false;
+
+        if (browserCookies.value?.[group.name]?.[cookie.name] !== undefined) {
+          cookie.accepted = isAccepted;
+        }
 
         const { consent } = useCookieConsent(cookie.name);
-        consent.value = cookie.accepted || false;
+        consent.value = isAccepted;
       });
 
       group.accepted = group.cookies.some((cookie: Cookie) => cookie.accepted);
@@ -122,6 +132,7 @@ export const useReadCookieBar: UseReadCookieBarReturn = () => {
 
         if (currentStatus && !consent.value) {
           cookieRevoke = true;
+          removeCookies(cookie);
         }
 
         return childAccumulator;
@@ -161,6 +172,30 @@ export const useReadCookieBar: UseReadCookieBarReturn = () => {
     });
 
     setConsent();
+  };
+
+  /**
+   * @description Function for removing cookies.
+   * @example
+   * ``` ts
+   * removeCookies(cookie);
+   * ```
+   */
+  const removeCookies = (cookie: Cookie) => {
+    if (cookie.cookieNames) {
+      cookie.cookieNames.forEach((cookieName: string) => {
+        const browserCookie = document.cookie.split(';');
+
+        browserCookie.forEach((cookie: string) => {
+          const cookiePair = cookie.split('=');
+          const name = cookiePair[0].trim();
+
+          if (new RegExp(cookieName).test(name)) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+          }
+        });
+      });
+    }
   };
 
   return {

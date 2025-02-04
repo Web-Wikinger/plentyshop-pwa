@@ -6,6 +6,7 @@ export interface Cookie {
   Provider: string;
   Status: string;
   PrivacyPolicy: string;
+  cookieNames?: string[];
 }
 export interface CookieGroup {
   id?: number;
@@ -38,6 +39,14 @@ export default {
       showMore: false,
       description: 'CookieBar.essentials.description',
       cookies: [
+        {
+          name: 'CookieBar.essentials.cookies.payPal.name',
+          Provider: 'CookieBar.essentials.cookies.payPal.provider',
+          Status: 'CookieBar.essentials.cookies.payPal.status',
+          PrivacyPolicy: '/PrivacyPolicy',
+          Lifespan: 'Session',
+          accepted: true,
+        },
         {
           name: 'CookieBar.essentials.cookies.plentyId.name',
           Provider: 'CookieBar.essentials.cookies.plentyId.provider',
@@ -93,13 +102,6 @@ export default {
           PrivacyPolicy: '/PrivacyPolicy',
           Lifespan: 'Session',
           script: ['https://cdn02.plentymarkets.com/mevofvd5omld/frontend/test-cookie-external-script.js'],
-        },
-        {
-          name: 'CookieBar.functional.cookies.payPal.name',
-          Provider: 'CookieBar.functional.cookies.payPal.provider',
-          Status: 'CookieBar.functional.cookies.payPal.status',
-          PrivacyPolicy: '/PrivacyPolicy',
-          Lifespan: 'Session',
         },
       ],
     },

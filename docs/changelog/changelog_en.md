@@ -1,10 +1,94 @@
 # Changelog PlentyONE Shop
 
-## v1.x.x (2025-xx-xx)
+# v1.x.x (2025-xx-xx)
+
+### New
+
+- Added robots for static pages.
+- Adding saving functionality for site settings.
+- You can now add blocks on homepage from the blocks side nav!
+- Added the option to opt-out cookies in the cookie bar when the cookie is not in the "Necessary" group.
+- Added the logic to remove cookies after revoking consent.
+- Added a new placeholder block component to showcase to the user where his block will go
+- You can now add blocks on homepage from the blocks side nav
+
+### 👷 Changed
 
 ### 🩹 Fixed
 
-- Fix for max visible pages on mobile pagination.
+- Fixed an issue where page elements changed during navigation.
+- Fixed accessibility erros in edit mode.
+- Fixed an issue where the site settings view was only displayed on the second click.
+- Fixed an issue where the new block placeholder got displayed when editing the site settings.
+
+## v1.9.1 (2025-01-29) <a href="https://github.com/plentymarkets/plentyshop-pwa/compare/v1.9.0...v1.9.1" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### 📙 Todo
+
+- We moved our packages `shop-api` and `tailwind-colors` from GitHub's registry to npm's registry.
+  We no longer require a GitHub token to access these packages.
+  - Run `yarn setup:unix` or `yarn setup:windows` and press y to remove the `.yarnrc.yml`.
+  - Remove `NPM_AUTH_TOKEN` from your `apps/web/.env` file.
+
+### New
+
+- Added ability to change primary and secondary colors from Site Configuration Drawer.
+- Added site configuration drawer.
+- Added blocks drawer.
+- Added multiselect component that allows searching through the options.
+- Added preview functionality for block sizes.
+- If there are unsaved changes in the editor and the user tries to close or reload the page, the browser will now display a warning and ask for confirmation.
+- Adding saving functionality for site settings.
+
+### 👷 Changed
+
+- Changed footer background for automatic coloring.
+- Changed editor save button disable logic to account for changes in the settings.
+
+### 🩹 Fixed
+
+- Fixed a hydration error when fetching recommended products on the homepage.
+- Fixed an issue that disabled the save button even though the user has edited the homepage template.
+- Removed the `nuxt-security` module for now due to issues with PayPal.
+- Fixed an issue with PayPal Express Checkout where it would require you to reauthorize the payment.
+- Fixed an accesibility issue on banner.
+
+## v1.9.0 (2025-01-23) <a href="https://github.com/plentymarkets/plentyshop-pwa/compare/v1.8.0...v1.9.0" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
+
+### New
+
+- The [Nuxt security module](https://nuxt-security.vercel.app/) has been added to the web app.
+- The web app is now equipped to [render components from a module](https://pwa-docs.plentymarkets.com/guide/how-to/module/inject-components) in designated areas of the shop.
+- The shop now has a dedicated legal information page for shipping information. You can link a category inside the Online Store Section of the Shops Configuration. The template configured on that category is used for the pages content. The URL for the page is /shipping.
+- In the checkout, shipping providers now include expected delivery dates.
+- The configured robots value on a category in the Terra back end, is now used for the robots meta tag of that category in the front end.
+- Product pages now contain canonical URLs.
+- The recommended products block now optionally includes a pretitle, title, subtitle, and description.
+
+### 👷 Changed
+
+- The `UiHeroCarousel` template now displays the provided image as a banner across the width of the page. The component now also contains additional settings.
+  - _Experimental_: The carousel can now use [Blaze Slider](https://blaze-slider.dev/) instead of [SwiperJS](https://swiperjs.com/). This may have an impact on performance and Core Web Vitals. We're still evaluation which library to prefer. At the moment, it's possible to toggle between them with a runtime configuration.
+- The `UiMediaCard` component has been renamed to `UiImageText`. The template has been updated to always reserve space for an image. The text-only variation has been extracted to `UiTextCard`.
+- The Newsletter now uses the template JSON for configuration instead of the runtime configuration.
+- The save button in the editor is now disabled if no changes have been made to the template or if the template is invalid.
+- Updated cookie handling for PayPal: PayPal functionality now relies on an essential cookie, removing the need for user consent to enable it.
+
+### 🩹 Fixed
+
+- Prices now always displays an asterisk to refer to additional VAT and shipping information
+- Fixed the direction of accordion arrows on product pages.
+- Fixed an issue where the required attributes notification blocked the cart.
+- Fixed a visual inconsistency in the category filters sidebar.
+- Fixed an accesibility error caused by missing label on clear filters.
+- Fixed a warning about using the same text in alt and title on the category page.
+- Fixed the number of max visible pages on mobile pagination.
+- Fixed the product gallery thumbnail image alternate text.
+- The homepage now displays recommended products on initial load.
+- Fixed an issue where only the first template block selected in the editor is editable.
+- Fixed an issue where the editor's language selector displayed an inverted data template.
+- When the multilingualism configuration of the remote shop doesn't include English or German, the corresponding language file is now removed at build time. As a result, the language isn't displayed in the language selector.
+- Fixed an issue where calling `useRoute` within middleware could lead to misleading results.
 
 ## v1.8.0 (2024-12-13) <a href="https://github.com/plentymarkets/plentyshop-pwa/compare/v1.7.0...v1.8.0" target="_blank" rel="noopener"><b>Overview of all changes</b></a>
 
@@ -23,6 +107,8 @@
 - When navigating between pages, an animation now indicates the loading progress.
 - New styles for toolbar
 - New styles for blocks actions
+- Users can now move a block up or down in the block list.
+- Added a new placeholder block component to showcase to the user where his block will go
 
 ### 👷 Changed
 
@@ -67,6 +153,7 @@ NPM_AUTH_TOKEN="<TOKEN>"
 
 ### 🩹 Fixed
 
+- Redirect on hidden category after user was logged in.
 - Fixed an unhandled scenario where a blocked payment method remained available during the checkout process
 - Fixed the styling of HTML entered in a PlentyONE system's editor by adding a `no-preflight` CSS class that accounts for Tailwind's preflight configuration.
 - Fixed the checkout layout for tablet screen sizes.
@@ -191,8 +278,8 @@ NPM_AUTH_TOKEN="<TOKEN>"
 
 #### Configuration
 
-- The app can now fetch the Favicon from the plentysystems system.
-- The app can now fetch the logo from the plentysystems system.
+- The app can now fetch the Favicon from the PlentyONE system.
+- The app can now fetch the logo from the PlentyONE system.
 - The app now reads which Google Fonts to use from the environment.
 - The app can now generate a complete Tailwind color palette from a single main color. To use this functionality, enable the `build:before` hook's `generateScssVariables` method and set the environment variables `PRIMARY` and `SECONDARY`. These variables represent the center color of the Tailwind palette, weight `500`. As part of this update, all instances of `SfButton` have been replaced with a new `UiButton` component. Functionally, `UiButton` is identical to `SfButton`, but some color weights were adjusted to work with the generated palettes. ESLint now reports an `error` for `SfButton`. You can disable this rule in `apps/web/eslintrc.cjs`.
 - The app now reads the internationalisation configuration from the environment. This includes the available languages and the default language.
@@ -238,7 +325,7 @@ NPM_AUTH_TOKEN="<TOKEN>"
 - Fixed editing author name on reviews and replies with added e2e.
 - Fixed the issue with the plentyID-cookie in the PWA live preview.
 - Fixed that the PayPal Express button on the product page is only displayed if the item is available for purchase.
-- Fixed that when fetching configurations from plentysystems, the build would only apply updates on the second run.
+- Fixed that when fetching configurations from PlentyONE, the build would only apply updates on the second run.
 - Fixed orphaned form label on product page attributes.
 - Fixed cookie bar privacy link not working properly.
 - Fixed minor styling issues in the credit card form in the checkout and the rating form on the product page.
@@ -410,7 +497,7 @@ NPM_AUTH_TOKEN="<TOKEN>"
 ### Migration guide
 
 - The upload action was changed [.github/workflows/upload.yml](https://github.com/plentymarkets/plentyshop-pwa/compare/v1.3.0...v1.4.0#diff-8cf0b5fae548aab9bd49f5020da9c0e35d281984b82b8a5358ffb1c1ae5bec13L5) update the file to make use of the [config feature](https://pwa-docs.plentymarkets.com/guide/setup/deployment#config)
-- We now require an API Security Token to make requests to the plentysystems API. [setup guide](https://pwa-docs.plentymarkets.com/guide/how-to/middleware#api-security-token)
+- We now require an API Security Token to make requests to the PlentyONE API. [setup guide](https://pwa-docs.plentymarkets.com/guide/how-to/middleware#api-security-token)
 - Category routing has been updated, and the /c prefix has been removed. Please verify that no static URLs in your application still include /c.
   - To accommodate the /c routing change, the [category page](https://github.com/plentymarkets/plentyshop-pwa/compare/v1.3.0...v1.4.0#diff-2f61484eb978aa090fc50dcba90bc44813b45081f25dbff295434cdf6bf219a4) was moved from apps/web/pages/category/[slug].vue to apps/web/pages/[...slug].vue.
 
@@ -572,6 +659,8 @@ NPM_AUTH_TOKEN="<TOKEN>"
 - Added composable that sets canonical url metadata for static pages.
 - Added more default notifications for a variaty of interactions in the PWA
 - Added loading animations where applicable
+- Added empty block component for when there is no data in the json
+- Added a new text component for the homepage
 
 ### Changed
 

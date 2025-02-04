@@ -1,14 +1,14 @@
 <template>
   <UiModal
-    @mousemove="endTimer()"
     v-if="isOpen"
     v-model="isOpen"
     tag="section"
     class="h-full md:h-fit m-0 p-0 lg:w-[1000px] overflow-y-auto"
     aria-label="quick-checkout-modal"
+    @mousemove="endTimer()"
   >
     <header>
-      <h2 class="font-bold font-headings text-lg leading-6 md:text-2xl">
+      <h2 class="font-bold text-lg leading-6 md:text-2xl">
         <span>{{ t('quickCheckout.heading') }}</span>
       </h2>
       <div class="absolute right-2 top-2 flex items-center">
@@ -56,7 +56,17 @@
           <span>{{ t('asterisk') }}</span>
           <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
           <span v-else>{{ t('itemInclVAT') }}</span>
-          <span>{{ t('excludedShipping') }}</span>
+          <i18n-t keypath="excludedShipping" scope="global">
+            <template #shipping>
+              <SfLink
+                :href="localePath(paths.shipping)"
+                target="_blank"
+                class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
+              >
+                {{ $t('delivery') }}
+              </SfLink>
+            </template>
+          </i18n-t>
         </div>
 
         <VariationProperties :product="lastUpdatedProduct" />
@@ -72,23 +82,23 @@
 
         <UiButton
           data-testid="quick-checkout-cart-button"
-          @click="goToPage(paths.cart)"
           size="lg"
           class="w-full mb-3"
           variant="secondary"
+          @click="goToPage(paths.cart)"
         >
           {{ t('quickCheckout.checkYourCart') }}
         </UiButton>
 
         <UiButton
           data-testid="quick-checkout-checkout-button"
-          @click="goToPage(paths.checkout)"
           size="lg"
           class="w-full mb-4 md:mb-0"
+          @click="goToPage(paths.checkout)"
         >
           {{ t('goToCheckout') }}
         </UiButton>
-        <OrDivider class="my-4" v-if="isPaypalAvailable" />
+        <OrDivider v-if="isPaypalAvailable" class="my-4" />
         <PayPalExpressButton class="w-full text-center" type="CartPreview" @on-approved="isOpen = false" />
         <PayPalPayLaterBanner placement="payment" :amount="totals.total" />
       </div>
@@ -97,9 +107,10 @@
 </template>
 
 <script setup lang="ts">
-import { SfIconClose } from '@storefront-ui/vue';
+import { SfIconClose, SfLink } from '@storefront-ui/vue';
 import type { QuickCheckoutProps } from './types';
-import { cartGetters, Product, productGetters } from '@plentymarkets/shop-api';
+import type { Product } from '@plentymarkets/shop-api';
+import { cartGetters, productGetters } from '@plentymarkets/shop-api';
 import ProductPrice from '~/components/ProductPrice/ProductPrice.vue';
 import { paths } from '~/utils/paths';
 

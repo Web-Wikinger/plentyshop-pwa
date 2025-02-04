@@ -11,8 +11,8 @@
             variant="tertiary"
             square
             data-testid="open-languageselect-button"
-            @click="toggleLanguageSelect()"
             :disabled="(showConfigurationDrawer && isEditing) || (showConfigurationDrawer && disableActions)"
+            @click="toggleLanguageSelect()"
           >
             <template #prefix>
               <SfIconLanguage class="relative" />
@@ -76,8 +76,8 @@
               variant="tertiary"
               class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 rounded-md"
               :class="{ 'bg-primary-700': isAccountDropdownOpen }"
-              @click="accountDropdownToggle()"
               data-testid="account-dropdown-button"
+              @click="accountDropdownToggle()"
             >
               <template #prefix>
                 <SfIconPerson />
@@ -107,23 +107,13 @@
         </SfDropdown>
         <UiButton
           v-else
-          @click="openAuthentication"
           class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 mr-1 -ml-0.5 rounded-md"
           variant="tertiary"
           :aria-label="t('auth.login.openLoginForm')"
           square
+          @click="navigateToLogin"
         >
           <SfIconPerson />
-        </UiButton>
-        <UiButton
-          v-if="showConfigurationDrawer"
-          @click="open = true"
-          class="group relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 mr-1 -ml-0.5 rounded-md"
-          variant="tertiary"
-          :aria-label="t('openConfigurationDrawer')"
-          square
-        >
-          <SfIconTune />
         </UiButton>
       </nav>
     </template>
@@ -135,8 +125,8 @@
         square
         data-testid="open-languageselect-button"
         :aria-label="t('languageSelector')"
-        @click="toggleLanguageSelect()"
         :disabled="(showConfigurationDrawer && isEditing) || (showConfigurationDrawer && disableActions)"
+        @click="toggleLanguageSelect()"
       >
         <SfIconLanguage />
       </UiButton>
@@ -144,8 +134,8 @@
         variant="tertiary"
         class="relative text-white hover:text-white active:text-white hover:bg-primary-800 active:bg-primary-700 rounded-md md:hidden"
         square
-        @click="searchModalOpen"
         :aria-label="t('openSearchModalButtonLabel')"
+        @click="searchModalOpen"
       >
         <SfIconSearch />
       </UiButton>
@@ -169,8 +159,8 @@
         <SfIconClose />
       </UiButton>
     </header>
-    <LoginComponent v-if="isLogin" @change-view="isLogin = false" @logged-in="closeAuthentication" :is-modal="true" />
-    <Register v-else @change-view="isLogin = true" @registered="closeAuthentication" :is-modal="true" />
+    <LoginComponent v-if="isLogin" :is-modal="true" @change-view="isLogin = false" @logged-in="closeAuthentication" />
+    <Register v-else :is-modal="true" @change-view="isLogin = true" @registered="closeAuthentication" />
   </UiModal>
 
   <NuxtLazyHydrate v-if="viewport.isLessThan('lg')" when-idle>
@@ -192,7 +182,6 @@
       <UiSearch :close="searchModalClose" />
     </SfModal>
   </NuxtLazyHydrate>
-  <LazyConfigurationDrawer v-if="showConfigurationDrawer" />
 </template>
 
 <script setup lang="ts">
@@ -204,7 +193,6 @@ import {
   SfIconPerson,
   SfIconSearch,
   SfIconShoppingCart,
-  SfIconTune,
   SfListItem,
   SfModal,
   SfIconFavorite,
@@ -225,7 +213,6 @@ const localePath = useLocalePath();
 const { isOpen: isAccountDropdownOpen, toggle: accountDropdownToggle } = useDisclosure();
 const { isOpen: isAuthenticationOpen, open: openAuthentication, close: closeAuthentication } = useDisclosure();
 const { open: searchModalOpen, isOpen: isSearchModalOpen, close: searchModalClose } = useDisclosure();
-const { open } = useConfigurationDrawer();
 const { toggle: toggleLanguageSelect, isOpen: isLanguageSelectOpen } = useLocalization();
 const { data: categoryTree } = useCategoryTree();
 const { data: user, isAuthorized, logout } = useCustomer();
@@ -275,4 +262,9 @@ const accountDropdown = computed(() => [
     label: t('account.logout'),
   },
 ]);
+const navigateToLogin = () => {
+  if (route.path !== localePath(paths.authLogin)) {
+    openAuthentication();
+  }
+};
 </script>

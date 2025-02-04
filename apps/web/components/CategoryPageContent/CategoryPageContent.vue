@@ -9,7 +9,7 @@
       </CategorySidebar>
       <div class="flex-1">
         <div class="flex justify-between items-center mb-6">
-          <span class="font-bold font-headings md:text-lg">
+          <span class="font-bold md:text-lg">
             {{
               $t('numberOfProducts', {
                 count: products?.length ?? 0,
@@ -17,7 +17,7 @@
               })
             }}
           </span>
-          <UiButton @click="open" variant="tertiary" class="md:hidden whitespace-nowrap">
+          <UiButton variant="tertiary" class="md:hidden whitespace-nowrap" @click="open">
             <template #prefix>
               <SfIconTune />
             </template>
@@ -30,9 +30,9 @@
           data-testid="category-grid"
         >
           <NuxtLazyHydrate
-            when-visible
             v-for="(product, index) in products"
             :key="productGetters.getVariationId(product)"
+            when-visible
           >
             <UiProductCard
               :product="product"
@@ -41,7 +41,7 @@
               :rating="productGetters.getAverageRating(product, 'half')"
               :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
               :image-alt="
-                productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                'alt-' + productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
                 productGetters.getName(product) ||
                 ''
               "
@@ -62,11 +62,21 @@
           </NuxtLazyHydrate>
         </section>
         <LazyCategoryEmptyState v-else />
-        <div class="mt-4 mb-4 typography-text-xs flex gap-1" v-if="totalProducts > 0">
+        <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
           <span>{{ $t('asterisk') }}</span>
           <span v-if="showNetPrices">{{ $t('itemExclVAT') }}</span>
           <span v-else>{{ $t('itemInclVAT') }}</span>
-          <span>{{ $t('excludedShipping') }}</span>
+          <i18n-t keypath="excludedShipping" scope="global">
+            <template #shipping>
+              <SfLink
+                :href="localePath(paths.shipping)"
+                target="_blank"
+                class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
+              >
+                {{ $t('delivery') }}
+              </SfLink>
+            </template>
+          </i18n-t>
         </div>
         <UiPagination
           v-if="totalProducts > 0"
@@ -83,11 +93,13 @@
 
 <script setup lang="ts">
 import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
-import { SfIconTune, useDisclosure } from '@storefront-ui/vue';
-import { type CategoryPageContentProps } from '~/components/CategoryPageContent/types';
+import { SfIconTune, useDisclosure, SfLink } from '@storefront-ui/vue';
+import type { CategoryPageContentProps } from '~/components/CategoryPageContent/types';
+import { paths } from '~/utils/paths';
 
 const { title, totalProducts, itemsPerPage = 24, products = [] } = defineProps<CategoryPageContentProps>();
 
+const localePath = useLocalePath();
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();
 

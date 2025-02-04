@@ -1,8 +1,6 @@
-import { categoryGetters, FacetSearchCriteria, Product } from '@plentymarkets/shop-api';
-import { Facet } from '@plentymarkets/shop-api';
+import type { FacetSearchCriteria, Product, Facet } from '@plentymarkets/shop-api';
 import { defaults, type SetCurrentProduct } from '~/composables';
-import { type FetchProducts, type UseProductsReturn, UseProductsState } from '~/composables/useProducts/types';
-import { paths } from '~/utils/paths';
+import type { UseProductsState, FetchProducts, UseProductsReturn } from '~/composables/useProducts/types';
 
 /**
  * @description Composable for managing products.
@@ -16,6 +14,7 @@ export const useProducts: UseProductsReturn = (category = '') => {
   const state = useState<UseProductsState>(`useProducts${category}`, () => ({
     data: {} as Facet,
     loading: false,
+    checkingPermission: false,
     productsPerPage: defaults.DEFAULT_ITEMS_PER_PAGE,
     currentProduct: {} as Product,
   }));
@@ -37,8 +36,6 @@ export const useProducts: UseProductsReturn = (category = '') => {
    */
   const fetchProducts: FetchProducts = async (params: FacetSearchCriteria) => {
     state.value.loading = true;
-    const localePath = useLocalePath();
-    const { isAuthorized } = useCustomer();
 
     if (params.categoryUrlPath?.endsWith('.js')) return state.value.data;
 
@@ -47,12 +44,6 @@ export const useProducts: UseProductsReturn = (category = '') => {
     state.value.productsPerPage = params.itemsPerPage || defaults.DEFAULT_ITEMS_PER_PAGE;
 
     if (data.value?.data) {
-      if (categoryGetters.hasCustomerRight(data.value?.data.category) && !isAuthorized.value) {
-        state.value.data = {} as Facet;
-        await navigateTo(localePath(paths.authLogin));
-        return state.value.data;
-      }
-
       data.value.data.pagination.perPageOptions = defaults.PER_PAGE_STEPS;
       state.value.data = data.value.data;
     }

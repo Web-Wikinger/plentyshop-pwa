@@ -1,5 +1,6 @@
 <template>
-  <RecommendedProducts :products="recommendedProducts"></RecommendedProducts>
+  <TextContent class="pb-4" :text="props.text" />
+  <ProductSlider v-if="recommendedProducts?.length" :items="recommendedProducts" />
 </template>
 
 <script setup lang="ts">
