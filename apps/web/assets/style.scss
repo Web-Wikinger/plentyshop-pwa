@@ -1,3 +1,6 @@
+@use 'custom';
+@use 'variables';
+
 .scrollbar-hidden {
   -ms-overflow-style: none;
   scrollbar-width: none;

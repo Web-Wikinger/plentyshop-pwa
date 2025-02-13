@@ -1,7 +1,7 @@
-@import 'components/fonts';
-@import 'components/search';
-@import 'components/image';
-@import 'components/nav';
+@use 'components/fonts';
+@use 'components/search';
+@use 'components/image';
+@use 'components/nav';
 
 body * {
   font-family: "Gilroy", sans-serif !important;
