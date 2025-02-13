@@ -72,11 +72,11 @@
                   :aria-label="t('auth.login.openLoginForm')" square>
           <SfIconPerson />
         </UiButton>
-        <UiButton v-if="showConfigurationDrawer" @click="open = true"
+        <!-- <UiButton v-if="showConfigurationDrawer" @click="open = true"
                   class="group relative !text-black hover:bg-transparent"
                   variant="tertiary" :aria-label="t('openConfigurationDrawer')" square>
           <SfIconTune />
-        </UiButton>
+        </UiButton> -->
       </nav>
     </template>
 
