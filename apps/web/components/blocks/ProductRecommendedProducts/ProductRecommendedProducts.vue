@@ -1,5 +1,6 @@
 <template>
-  <TextContent class="pb-4" :text="props.text" />
+  Hello there..
+  <TextContent data-testid="recommended-block" class="pb-4" :text="props.text" />
   <ProductSlider v-if="recommendedProducts?.length" :items="recommendedProducts" />
 </template>
 
@@ -7,6 +8,7 @@
 import type { ProductRecommendedProductsProps } from './types';
 import { watchDebounced } from '@vueuse/core';
 
+console.log("RP 1")
 const props = defineProps<ProductRecommendedProductsProps>();
 const { data: recommendedProducts, fetchProductRecommended } = useProductRecommended(props.categoryId + props.cacheKey);
 if (props.categoryId) {
@@ -16,6 +18,7 @@ watchDebounced(
   () => props.categoryId,
   () => {
     if (props.categoryId) {
+      console.log("RP", props.categoryId, recommendedProducts)
       fetchProductRecommended(props.categoryId);
     }
   },

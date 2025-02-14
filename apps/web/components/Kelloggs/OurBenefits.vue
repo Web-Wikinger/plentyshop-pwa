@@ -111,7 +111,7 @@
   margin: 40px 0 10px 0;
   line-height: 1;
 
-  @media only screen and (min-width: 1050px) {
+  @media only screen and (max-width: 1800px) {
     max-width: 300px;
   }
 }
