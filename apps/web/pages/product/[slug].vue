@@ -30,7 +30,9 @@
         <p class="g-16 lg:g-18 mt-2">Weitere Produkte</p>
         <p class="g-40 lg:g-56 mb-6">Das könnte dir auch gefallen</p>
         <NuxtLazyHydrate when-visible>
-          <ProductRecommendedProducts :category-id="productGetters.getCategoryIds(product)[0]"></ProductRecommendedProducts>
+          <BlocksProductRecommendedProducts
+                                            :category-id="productGetters.getCategoryIds(product)[0]"
+                                            :text="{ title: '' }" />
         </NuxtLazyHydrate>
       </section>
     </NarrowContainer>
