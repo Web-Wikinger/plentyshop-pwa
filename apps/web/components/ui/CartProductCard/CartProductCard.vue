@@ -75,10 +75,10 @@
                       :to="localePath(productBundleGetters.getBundleItemUrl(item))"
                       variant="secondary"
                       class="no-underline typography-text-sm">
-                <p>
+                <!-- <p>
                   {{ productBundleGetters.getBundleItemQuantity(item) }}x
                   <span class="underline px-1 h-">{{ productBundleGetters.getBundleItemName(item) }}</span>
-                </p>
+                </p> -->
               </SfLink>
               <p class="text-sm" v-else>
                 {{ productBundleGetters.getBundleItemQuantity(item) }}x
