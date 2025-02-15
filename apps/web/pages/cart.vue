@@ -7,6 +7,7 @@
               :heading="t('myCart')">
     <div v-if="!cartIsEmpty" class="md:grid md:grid-cols-12 md:gap-x-6" data-testid="cart-page-content">
       <div class="col-span-7 mb-2 md:mb-0">
+        <KelloggsFreeShippingCalculator :cart="cart"></KelloggsFreeShippingCalculator>
         <div class="hidden lg:grid grid-cols-5 items-center mb-3">
           <div class="col-span-3 g-16">Artikel</div>
           <div class="g-16">Menge</div>

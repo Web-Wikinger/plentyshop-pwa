@@ -38,7 +38,7 @@
              tabindex="0"
              role="region">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/Plant@2x.png" alt="Vielfalt">
+            <img src="/images/kelloggs/home/icon-delivery.png" alt="Kostenlose Lieferung" style="max-width: 260px; aspect-ratio: none;">
           </div>
           <p class="kl-card-title">Kostenlose Lieferung & flexible Zahlungsmöglichkeiten</p>
           <p class="kl-card-description">Spare nicht nur bei den Produkten, sondern auch bei der Lieferung: Ab einem

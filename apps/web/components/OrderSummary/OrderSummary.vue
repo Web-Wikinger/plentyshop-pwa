@@ -26,23 +26,23 @@
       <div class="flex justify-between typography-text-base pb-4 pt-2">
         <div class="flex flex-col gap-2 grow pr-2">
           <p class="g-12-m lg:g-16-m" data-testid="subtotal-label">{{ t('itemsSubtotal') }}</p>
-          <p class="g-12-m lg:g-16-m" data-testid="shipping-label">{{ t('delivery') }}</p>
-          <p class="g-12-m lg:g-16-m" v-if="cartGetters.getCouponDiscount(props.cart)" data-testid="coupon-label">{{
-            t('coupon.name') }}</p>
           <p class="g-12-m lg:g-16-m" v-for="(vat, index) in totals.vats" :key="index" data-testid="vat-label">
             {{ t('estimatedTax') }} {{ cartGetters.getTotalVatValue(vat) }}%
           </p>
+          <p class="g-12-m lg:g-16-m" data-testid="shipping-label">{{ t('delivery') }}</p>
+          <p class="g-12-m lg:g-16-m" v-if="cartGetters.getCouponDiscount(props.cart)" data-testid="coupon-label">{{
+            t('coupon.name') }}</p>
         </div>
         <div class="flex flex-col gap-2 text-right">
           <p data-testid="subtotal" class="g-12-m lg:g-16-m">{{ n(totals.subTotal, 'currency') }}</p>
+          <p v-for="(vat, index) in totals.vats" :key="index" data-testid="vat" class="g-12-m lg:g-16-m">
+            {{ n(cartGetters.getTotalVatAmount(vat), 'currency') }}
+          </p>
           <p data-testid="shipping" class="g-12-m lg:g-16-m">
             {{ getShippingAmount(cartGetters.getShippingPrice(props.cart)) }}
           </p>
           <p v-if="cartGetters.getCouponDiscount(props.cart)" class="g-12-m lg:g-16-m" data-testid="coupon-value">
             {{ n(cartGetters.getCouponDiscount(props.cart), 'currency') }}
-          </p>
-          <p v-for="(vat, index) in totals.vats" :key="index" data-testid="vat" class="g-12-m lg:g-16-m">
-            {{ n(cartGetters.getTotalVatAmount(vat), 'currency') }}
           </p>
         </div>
       </div>
