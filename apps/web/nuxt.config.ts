@@ -226,5 +226,5 @@ export default defineNuxtConfig({
   },
 
   // For debugging this can be helpfull
-  ssr: false
+  // ssr: false
 });
