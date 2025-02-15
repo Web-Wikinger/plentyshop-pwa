@@ -26,5 +26,9 @@ export const paths = {
   privacyPolicy: '/privacy-policy',
   shipping: '/shipping',
   cancellationForm: '/cancellation-form',
-  pringles: '/snacks/pringles'
+  pringles: '/snacks/pringles',
+  betterDays: '/kelloggs/better-days',
+  fruehstueck: '/kelloggs/fruehstueck',
+  faq: '/kelloggs/faq',
+  geschichte: '/kelloggs/geschichte',
 };

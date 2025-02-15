@@ -38,9 +38,9 @@
              tabindex="0"
              role="region">
           <div class="kl-img-wrapper">
-            <img src="/images/kelloggs/home/icon-delivery.png" alt="Kostenlose Lieferung" style="max-width: 260px; aspect-ratio: none;">
+            <img src="/images/kelloggs/home/icon-delivery.png" alt="Kostenlose Lieferung">
           </div>
-          <p class="kl-card-title">Kostenlose Lieferung & flexible Zahlungsmöglichkeiten</p>
+          <p class="kl-card-title kl-title-long">Kostenlose Lieferung & flexible Zahlungsmöglichkeiten</p>
           <p class="kl-card-description">Spare nicht nur bei den Produkten, sondern auch bei der Lieferung: Ab einem
             Bestellwert von 100 € ist der Versand kostenlos. Zudem bieten wir flexible Zahlungsmöglichkeiten an, damit
             du deine Einkäufe so einfach und bequem wie möglich abwickeln kannst.</p>
@@ -111,8 +111,14 @@
   margin: 40px 0 10px 0;
   line-height: 1;
 
-  @media only screen and (max-width: 1800px) {
-    max-width: 300px;
+  @media only screen and (max-width: 1930px) {
+      max-width: 380px;
+  }
+
+  &.kl-title-long {
+    @media only screen and (max-width: 1930px) {
+      max-width: 300px;
+    }
   }
 }
 

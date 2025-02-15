@@ -4,19 +4,19 @@ export const categories = [
     subcategories: [
       {
         key: 'kelloggsHistory',
-        link: paths.home, // No matching path, so using home
+        link: paths.geschichte,
       },
       {
         key: 'betterDays',
-        link: paths.home, // No matching path, so using home
+        link: paths.betterDays,
       },
       {
         key: 'pringles',
-        link: paths.pringles, // No matching path, so using home
+        link: paths.pringles,
       },
       {
         key: 'breakfast',
-        link: paths.home, // No matching path, so using home
+        link: paths.fruehstueck,
       },
     ],
   },
@@ -25,11 +25,11 @@ export const categories = [
     subcategories: [
       {
         key: 'paymentAndShipping',
-        link: paths.home, // No matching path, so using home
+        link: paths.home,
       },
       {
         key: 'faq',
-        link: paths.home, // No matching path, so using home
+        link: paths.faq,
       },
     ],
   },
