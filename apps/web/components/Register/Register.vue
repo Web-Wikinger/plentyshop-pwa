@@ -1,9 +1,9 @@
 <template>
-  <div class="font-medium ml-8" :class="{ 'flex flex-col items-center': !isModal }">
-    <div class="text-lg">{{ t('auth.signup.heading') }}</div>
+  <div class="font-medium" :class="{ 'flex flex-col items-center': !isModal }">
+    <div class="text-lg g-24">{{ t('auth.signup.heading') }}</div>
     <div class="text-base">{{ t('auth.signup.subheading') }}</div>
 
-    <div class="mt-5 font-normal flex flex-col gap-2">
+    <div class="mt-5 font-normal flex flex-col gap-2" v-if="showBenefits">
       <div class="flex items-center gap-2">
         <SfIconPerson class="text-primary-500" />
         <div>{{ t('auth.signup.benefits.saveAddresses') }}</div>
@@ -166,7 +166,7 @@ const viewport = useViewport();
 const runtimeConfig = useRuntimeConfig();
 
 const emits = defineEmits(['registered', 'change-view']);
-const { emailAddress, order, isModal = false, changeableView = true } = defineProps<RegisterFormParams>();
+const { emailAddress, order, isModal = false, changeableView = true, showBenefits = true } = defineProps<RegisterFormParams>();
 
 const turnstileSiteKey = runtimeConfig.public?.turnstileSiteKey ?? '';
 const turnstileElement = ref();

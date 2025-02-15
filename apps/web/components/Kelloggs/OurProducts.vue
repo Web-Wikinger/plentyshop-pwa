@@ -14,7 +14,7 @@
              aria-labelledby="pringles-title"
              aria-describedby="pringles-description">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/img-pringles@2x.png" alt="Pringles">
+            <img src="/images/kelloggs/img-pringles@2x.png" alt="Pringles">
           </div>
           <p id="pringles-title" class="text-white kl-card-title">Pringles</p>
           <p id="pringles-description" class="text-white kl-card-description">
@@ -36,7 +36,7 @@
              aria-labelledby="cereal-title"
              aria-describedby="cereal-description">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/img-cerealien@2x.png" alt="Cerealien">
+            <img src="/images/kelloggs/img-cerealien@2x.png" alt="Cerealien">
           </div>
           <p id="cereal-title" class="text-white kl-card-title">Cerealien</p>
           <p id="cereal-description" class="text-white kl-card-description">
@@ -57,7 +57,7 @@
              aria-labelledby="muesli-title"
              aria-describedby="muesli-description">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/img-muesli@2x.png" alt="Müsli">
+            <img src="/images/kelloggs/img-muesli@2x.png" alt="Müsli">
           </div>
           <p id="muesli-title" class="kl-card-title">Müsli</p>
           <p id="muesli-description" class="kl-card-description">

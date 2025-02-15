@@ -1,5 +1,6 @@
 <template>
-  <div class="text-lg font-medium ml-8" :class="{ 'text-center !ml-0': !isModal }">{{ t('auth.login.heading') }}</div>
+  <div class="g-24 text-lg font-medium ml-8" :class="{ 'text-center !ml-0': !isModal }">{{ t('auth.login.heading') }}
+  </div>
   <div class="flex flex-col items-center justify-center my-1">
     <form class="flex flex-col gap-4 p-2 md:p-6 rounded-md w-full md:w-[400px]" @submit.prevent="loginUser">
       <label>
@@ -20,9 +21,9 @@
       </UiButton>
       <div v-if="!isSoftLogin" class="text-center">
         <div class="my-5 font-bold">{{ t('auth.login.createAccount') }}</div>
-        <SfLink variant="primary" class="cursor-pointer" @click="$emit('change-view')">
+        <NuxtLink to="/kelloggs/register" class="text-primary hover:underline" @click="closeModal">
           {{ t('auth.login.createAccountLinkLabel') }}
-        </SfLink>
+        </NuxtLink>
       </div>
     </form>
   </div>
@@ -49,4 +50,8 @@ const loginUser = async () => {
     emits('loggedIn', skipReload);
   }
 };
+
+const closeModal = () => {
+  emits('loggedIn')
+}
 </script>

@@ -1,0 +1,10 @@
+<svg id="icn--tiktok" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42" height="42" viewBox="0 0 42 42">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rechteck_4081" data-name="Rechteck 4081" width="42" height="42" fill="#f60b45"/>
+    </clipPath>
+  </defs>
+  <g id="Gruppe_2614" data-name="Gruppe 2614" clip-path="url(#clip-path)">
+    <path id="Pfad_1775" data-name="Pfad 1775" d="M20.836,0A20.836,20.836,0,1,0,41.671,20.836,20.836,20.836,0,0,0,20.836,0M32.881,18.364a11.31,11.31,0,0,1-6.6-2.108v9.653a8.747,8.747,0,1,1-7.55-8.661v4.836a4,4,0,1,0,2.789,3.823V7.014h4.761v.609a6.605,6.605,0,0,0,6.6,6.01Z" fill="#f60b45"/>
+  </g>
+</svg>

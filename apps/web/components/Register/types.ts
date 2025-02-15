@@ -5,4 +5,5 @@ export type RegisterFormParams = {
   emailAddress?: string;
   order?: Order;
   changeableView?: boolean;
+  showBenefits?: boolean;
 };

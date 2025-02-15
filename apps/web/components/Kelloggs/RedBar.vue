@@ -2,15 +2,15 @@
   <section class="kl-red-bar">
     <div class="kl-red-bar-wrapper">
       <div class="kl-red-bar__item">
-        <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn-circled-white.svg" alt="Gratisversand ab 100 €">
+        <img src="/images/kelloggs/icn-circled-white.svg" alt="Gratisversand ab 100 €">
         <p class="kl-red-bar__content">Gratisversand ab 100 €</p>
       </div>
       <div class="kl-red-bar__item">
-        <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn-circled-white.svg" alt="Schnelle Lieferung">
+        <img src="/images/kelloggs/icn-circled-white.svg" alt="Schnelle Lieferung">
         <p class="kl-red-bar__content">Schnelle Lieferung</p>
       </div>
       <div class="kl-red-bar__item">
-        <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn-circled-white.svg"
+        <img src="/images/kelloggs/icn-circled-white.svg"
              alt="Flexible Zahlungsmöglichkeiten">
         <p class="kl-red-bar__content">Flexible Zahlungsmöglichkeiten</p>
       </div>

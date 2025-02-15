@@ -10,25 +10,25 @@
            alt="Kelloggs"
            width="150"
            height="150"
-           src="https://kelloggs-shop.de/cdn/shop/t/26/assets/kelloggs-logo.svg">
+           src="/images/kelloggs/kelloggs-logo.svg">
       <nav>
         <a href="https://www.facebook.com/kelloggs.deutschland/">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--facebook.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--facebook.svg"
                alt="Facebook - Kelloggs Deutschland">
         </a>
         <a href="https://www.instagram.com/kelloggs_de">
           <img
                width="20"
                height="20"
-               src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--instagram.svg"
+               src="/images/kelloggs/icn--instagram.svg"
                alt="Instagram - Kelloggs Deutschland">
         </a>
         <a href="https://www.youtube.com/user/KELLOGGDeutschland">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--youtube.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--youtube.svg"
                alt="Youtube - Kelloggs Deutschland">
         </a>
         <a href="https://www.tiktok.com/@kelloggs_de">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--tiktok.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--tiktok.svg"
                alt="TikTok - Kelloggs Deutschland">
         </a>
       </nav>
@@ -39,25 +39,25 @@
            alt="Pringles"
            width="150"
            height="150"
-           src="https://kelloggs-shop.de/cdn/shop/t/26/assets/pringles-logo.png">
+           src="/images/kelloggs/pringles-logo.png">
       <nav>
         <a href="https://www.facebook.com/PringlesDeutschland/">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--facebook.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--facebook.svg"
                alt="Facebook - Pringles Deutschland">
         </a>
         <a href="https://www.instagram.com/pringles_de/">
           <img
                width="20"
                height="20"
-               src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--instagram.svg"
+               src="/images/kelloggs/icn--instagram.svg"
                alt="Instagram - Pringles Deutschland">
         </a>
         <a href="https://www.youtube.com/channel/UCzwrjVlnMRynB80igUyAioQ">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--youtube.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--youtube.svg"
                alt="Youtube - Pringles Deutschland">
         </a>
         <a href="https://www.tiktok.com/@pringles_de">
-          <img width="20" height="20" src="https://kelloggs-shop.de/cdn/shop/t/26/assets/icn--tiktok.svg"
+          <img width="20" height="20" src="/images/kelloggs/icn--tiktok.svg"
                alt="TikTok - Pringles Deutschland">
         </a>
       </nav>

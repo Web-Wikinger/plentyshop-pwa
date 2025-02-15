@@ -11,7 +11,7 @@
     </div>
 
     <video autoplay muted loop id="kl-hero-section__video">
-      <source src="https://kelloggs-shop.de/cdn/shop/t/26/assets/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548"
+      <source src="/images/kelloggs/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548"
               type="video/mp4">
     </video>
   </section>
@@ -23,7 +23,7 @@
 <style scoped>
 .kl-hero-section {
   position: relative;
-  background-image: url("https://kelloggs-shop.de/cdn/shop/t/26/assets/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548");
+  background-image: url("/kelloggs/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548");
   background-size: cover;
   background-position: center;
   color: white;

@@ -12,7 +12,7 @@
              tabindex="0"
              role="region">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/World@2x.png" alt="Shop">
+            <img src="/images/kelloggs/World@2x.png" alt="Shop">
           </div>
           <p class="kl-card-title">Preisvorteil im Vergleich zum Großhandel</p>
           <p class="kl-card-description">Unsere Preise sind darauf ausgelegt, dir einen klaren Vorteil gegenüber den
@@ -25,7 +25,7 @@
              tabindex="0"
              role="region">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/Cereal Bowl@2x.png" alt="Familie">
+            <img src="/images/kelloggs/Cereal Bowl@2x.png" alt="Familie">
           </div>
           <p class="kl-card-title">Topaktuelles Portfolio</p>
           <p class="kl-card-description">Unser Sortiment wird laufend aktualisiert, um stets die neuesten Trends und
@@ -51,7 +51,7 @@
              tabindex="0"
              role="region">
           <div class="kl-img-wrapper">
-            <img src="https://kelloggs-shop.de/cdn/shop/t/26/assets/Person Kopie@2x.png" alt="Zufriendenheit">
+            <img src="/images/kelloggs/Person Kopie@2x.png" alt="Zufriendenheit">
           </div>
           <p class="kl-card-title">Unser Ziel: Deine Zufriedenheit</p>
           <p class="kl-card-description">Deine Zufriedenheit steht für uns an erster Stelle. Mit unserem
