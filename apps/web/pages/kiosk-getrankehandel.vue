@@ -75,20 +75,7 @@
 </template>
 <script lang="ts" setup>
 const {
-  currentBlock,
-  currentBlockIndex,
-  isClicked,
-  clickedBlockIndex,
-  isTablet,
-  isPreview,
-  blockHasData,
-  tabletEdit,
-  handleEdit,
-  deleteBlock,
-  updateBlock,
-  changeBlockPosition,
-  isLastBlock,
-  togglePlaceholder,
+  togglePlaceholder
 } = useBlockManager();
 
 const runtimeConfig = useRuntimeConfig();
