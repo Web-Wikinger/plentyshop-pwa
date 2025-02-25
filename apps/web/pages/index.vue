@@ -62,8 +62,8 @@ fetchPageTemplate();
 
 watchDebounced(
   () => data.value.blocks,
-  (newData) => {
-    isEditingEnabled.value = !deepEqual(initialBlocks.value, newData);
+  () => {
+    isEditingEnabled.value = !deepEqual(initialBlocks.value, data.value.blocks);
   },
   { debounce: 100, deep: true },
 );
