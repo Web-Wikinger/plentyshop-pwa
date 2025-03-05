@@ -8,7 +8,17 @@
 </template>
 
 <script setup lang="ts">
+const runtimeConfig = useRuntimeConfig();
+const storeName = runtimeConfig.public.storeName;
 const imageExtension = useRuntimeConfig().public.headerLogo.split('.').pop();
-
 const imagePath = '/images/kelloggs-logo.' + imageExtension;
+const logo = ref<HTMLImageElement | null>(null);
+const imgWidth = ref<string>('');
+const imgHeight = ref<string>('');
+onMounted(() => {
+  if (logo.value) {
+    imgWidth.value = logo.value.clientWidth + '';
+    imgHeight.value = logo.value.clientHeight + '';
+  }
+});
 </script>
