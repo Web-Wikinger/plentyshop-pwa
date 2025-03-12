@@ -39,9 +39,12 @@ definePageMeta({ layout: false, middleware: ['category-guard'] });
 const { t, locale } = useI18n();
 const route = useRoute();
 const router = useRouter();
-const { data: productsCatalog, productsPerPage, loading, checkingPermission, fetchProducts } = useProducts();
+const { data: productsCatalog, productsPerPage, loading, fetchProducts } = useProducts();
 const { data: categoryTree } = useCategoryTree();
 const { buildCategoryLanguagePath } = useLocalization();
+const { setCategoriesPageMeta } = useCanonical();
+const { getFacetsFromURL, checkFiltersInURL } = useCategoryFilter();
+
 
 const breadcrumbs = computed(() => {
   if (productsCatalog.value.category) {
@@ -60,6 +63,19 @@ const breadcrumbs = computed(() => {
 const categoryName = computed(() => {
   return productsCatalog.value.category.details?.[0]?.name;
 });
+
+const handleQueryUpdate = async () => {
+  await fetchProducts(getFacetsFromURL()).then(() => checkFiltersInURL());
+
+  if (!productsCatalog.value.category) {
+    throw new Response(null, {
+      status: 404,
+      statusText: 'Not found',
+    });
+  }
+};
+
+await handleQueryUpdate().then(() => setCategoriesPageMeta(productsCatalog.value, getFacetsFromURL()));
 
 watch(
   () => locale.value,
@@ -91,6 +107,13 @@ const keywordsContent = computed((): string =>
 
 const robotsContent = computed((): string =>
   productsCatalog.value?.category ? categoryGetters.getCategoryRobots(productsCatalog.value.category) : '',
+);
+
+watch(
+  () => route.query,
+  async () => {
+    await handleQueryUpdate().then(() => setCategoriesPageMeta(productsCatalog.value, getFacetsFromURL()));
+  },
 );
 
 useHead({
