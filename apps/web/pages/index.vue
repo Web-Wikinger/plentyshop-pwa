@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { watchDebounced } from '@vueuse/core';
-
+const { t } = useI18n();
 const {
   isClicked,
   clickedBlockIndex,
@@ -30,6 +30,10 @@ const { data, fetchPageTemplate, dataIsEmpty, initialBlocks } = useHomepage();
 const { isEditingEnabled, disableActions } = useEditor();
 const { getRobots, setRobotForStaticPage } = useRobots();
 
+const { setPageMeta } = usePageMeta();
+
+const icon = 'home';
+setPageMeta(t('homepage.title'), icon);
 const openBlockList = (index: number, position: number) => {
   const insertIndex = (position === -1 ? index : index + 1) || 0;
   togglePlaceholder(index, position === -1 ? 'top' : 'bottom');

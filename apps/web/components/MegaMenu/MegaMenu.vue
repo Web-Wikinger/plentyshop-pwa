@@ -329,6 +329,7 @@ const { t } = useI18n();
 const viewport = useViewport();
 const localePath = useLocalePath();
 const { buildCategoryMenuLink } = useLocalization();
+const { setDrawerOpen } = useDrawerState();
 const NuxtLink = resolveComponent('NuxtLink');
 const props = defineProps<MegaMenuProps>();
 const { close, open, isOpen, activeNode, category, setCategory } = useMegaMenu();
@@ -403,6 +404,7 @@ useTrapFocus(drawerReference, trapFocusOptions);
 const openMenu = (menuType: number[]) => {
   activeNode.value = menuType;
   open();
+  setDrawerOpen(true);
 };
 
 const goBack = () => {
