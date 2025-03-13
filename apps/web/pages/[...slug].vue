@@ -77,6 +77,10 @@ const handleQueryUpdate = async () => {
 
 await handleQueryUpdate().then(() => setCategoriesPageMeta(productsCatalog.value, getFacetsFromURL()));
 
+const { setPageMeta } = usePageMeta();
+const icon = 'sell';
+setPageMeta(categoryName.value, icon);
+
 watch(
   () => locale.value,
   (changedLocale: string) => {
