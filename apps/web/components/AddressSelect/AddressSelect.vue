@@ -33,7 +33,6 @@
       @on-delete="handleDeleteAddress(address)"
       @make-default="handleSetDefaultAddress(address)"
       @on-edit="emitEditAddressEvent(address)"
-      class="group hover:bg-gray-100 cursor-pointer"
     >
       <UiDivider class="col-span-3 mx-4 !w-auto md:mx-0 group-hover:opacity-0" />
     </Address>
