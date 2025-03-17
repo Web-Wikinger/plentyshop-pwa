@@ -20,4 +20,5 @@ export type ProductCardProps = {
   showBasePrice?: boolean;
   isFromWishlist?: boolean;
   isFromSlider?: boolean;
+  productId?: Number;
 };

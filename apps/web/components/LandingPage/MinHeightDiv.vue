@@ -9,11 +9,11 @@
       </div>
       <!-- Text Section -->
       <div class="flex-1">
-        <p class="text-xs leading-[22px] uppercase text-[17px]">{{topTitle}}</p>
-        <h2 class="font-bold mt-2 text-[33px] leading-[30px]">
+        <p class="text-xs leading-[22px] uppercase text-[17px] text-white">{{topTitle}}</p>
+        <h2 class="font-bold mt-2 text-[33px] leading-[30px] text-white">
           {{title}}
         </h2>
-        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular" v-html="description">
+        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular text-white" v-html="description">
         </p>
       </div>
 

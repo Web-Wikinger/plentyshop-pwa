@@ -1,35 +1,55 @@
 <template>
   <KelloggsOurBrands></KelloggsOurBrands>
-  <footer class="pt-10 lg:px-8 bg-neutral-100 md:mb-0" data-testid="footer" :class="simplifiedFooter ? 'mb-0' : 'mb-[58px]'">
-    <div
-      class="grid justify-center grid-cols-[1fr_1fr] md:grid-cols-[repeat(4,1fr)] px-4 md:px-6 pb-10 max-w-screen-3xl mx-auto"
+  <footer 
+    class="bg-white pt-10 pb-6" 
+    data-testid="footer" 
+  >
+    <div 
+      class="grid justify-center grid-cols-1 md:grid-cols-3 px-4 md:px-6 pb-10 max-w-screen-xl mx-auto text-center md:text-left"
       data-testid="section-top"
     >
-      <div v-for="{ key, subcategories } in categories" :key="key" class="min-w-[25%] xs:min-w-[50%] flex flex-col mb-8 lg:mb-0">
-        <div class="ml-4 text-black g-16 lg:g-24 lg:mb-2">
+      <div 
+        v-for="{ key, subcategories } in categories" 
+        :key="key" 
+        class="min-w-[25%] xs:min-w-[50%] flex flex-col mb-8 lg:mb-0 items-center"
+      >
+        <!-- Category Title -->
+        <div class="text-lg font-semibold text-gray-900 mb-3">
           {{ $t(`categories.${key}.label`) }}
         </div>
-        <ul>
-          <SfListItem
+
+        <!-- Subcategory Links -->
+        <ul class="text-gray-600 space-y-2 text-sm">
+          <li
             v-for="{ key: subcategoryKey, link } in subcategories"
             :key="subcategoryKey"
-            class="py-2 !bg-transparent typography-text-sm"
+            class="inline-flex items-center gap-2 w-full hover:bg-neutral-100 active:bg-neutral-200 cursor-pointer focus-visible:outline focus-visible:outline-offset focus-visible:relative focus-visible:z-10 px-4 py-2 py-1 !bg-transparent"
           >
-            <SfLink
-              :tag="NuxtLink"
-              class="router-link-active router-link-exact-active g-14-m lg:g-16-m no-underline hover:underline hover:text-gray-800"
-              variant="secondary"
-              :to="localePath(link)"
-            >
-              {{ $t(`categories.${key}.subcategories.${subcategoryKey}`) }}
-            </SfLink>
-          </SfListItem>
+            <span class="flex flex-col w-full min-w-0 items-center">
+              <SfLink
+                :tag="NuxtLink"
+                class="no-underline hover:underline hover:text-gray-800"
+                variant="secondary"
+                :to="localePath(link)"
+              >
+                {{ $t(`categories.${key}.subcategories.${subcategoryKey}`) }}
+              </SfLink>
+            </span>
+          </li>
         </ul>
       </div>
     </div>
-    <hr />
-
   </footer>
+
+  <component 
+    class="!bg-red-color text-white"
+    :is="getComponent && getComponent('NewsletterSubscribe')" 
+    :text="text"  
+    :belowInput="belowInput"
+  />
+
+  <LandingPageUnderFooter />
+
 </template>
 
 <script setup lang="ts">
@@ -37,6 +57,14 @@ import { SfLink, SfListItem } from '@storefront-ui/vue';
 import { categories } from '~/mocks';
 import type { FooterProps } from './types';
 
+let text = {
+  title: "Jetzt zum Newsletter anmelden und von exklusiven Vorteilen profitieren",
+  htmlDescription: ""
+}
+
+let belowInput = {
+  textHtml: "<span class='font-bold'>WICHTIG:</span> Im Arschluss erhältst du ein E-Mail (Bitte schaue auch unbedingt im SPAM nach) mit einem Link. Um deine Anmeldung zum Newsletter zu bestätigen. Mit der Anmeldung zum Newsletter akzeptierst du die Datenschutzbestimmungen."
+}
 const storename: string = useRuntimeConfig().public.storename;
 
 const companyName: string = `© ${storename} ${new Date().getFullYear()}`;
@@ -45,4 +73,8 @@ const { simplifiedFooter = false } = defineProps<FooterProps>();
 
 const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink');
+
+const getComponent = (name: string) => {
+  if (name === 'NewsletterSubscribe') return resolveComponent('NewsletterSubscribe');
+};
 </script>

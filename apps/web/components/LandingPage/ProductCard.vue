@@ -46,15 +46,20 @@
         </div>
       </div>
       <div class="flex items-center justify-between">
-        <select class="w-3/5 h-[45px] bg-gray-200 border border-gray-300 text-sm px-2">
-          <option><span class="text-bold">1</span> Paket</option>
+        <select 
+          v-model="selectedQuantity" 
+          class="w-3/5 h-[45px] bg-gray-200 border border-gray-300 text-sm px-2"
+          @change="debouncedAddToCart"
+        >
+          <option v-for="n in 10" :key="n" :value="n">
+            {{ n }} Paket
+          </option>
         </select>
-        <a
-          :href="productPath"
+        <button @click.stop="addItemToCart" 
           class="w-full bg-[#2C2C2C] text-white font-bold rounded-none h-[45px] hover:bg-gray-800 text-[14px] flex items-center justify-center no-underline"
         >
           IN DEN WARENKORB
-        </a>
+      </button>
       </div>
     </div>
   </div>
@@ -64,11 +69,10 @@
 
 import type { ProductProps } from '~/components/LandingPage/Product/type';
 import { productGetters } from '@plentymarkets/shop-api';
-import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter } from '@storefront-ui/vue';
-import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 import { defaults } from '~/composables';
 import { Product } from '@plentymarkets/shop-api';
 import { computed, ref } from 'vue';
+import _ from 'lodash';
 
 const {
   product,
@@ -90,10 +94,14 @@ const {
   isFromSlider = false
 } = defineProps<ProductProps>();
 
+let available =productGetters.canBeAddedToCartFromCategoryPage(product);
+let selectedQuantity = 1;
 const { cartIsEmpty } = useCart();
 
 const localePath = useLocalePath();
 const { t, n } = useI18n();
+const { addToCart, setCartItemQuantity, deleteCartItem } = useCart();
+
 
 const { data: categoryTree } = useCategoryTree();
 const { price, crossedPrice } = useProductPrice(product);
@@ -135,6 +143,62 @@ const getKgPrice = (product: Product) => {
   let kgPrice = (price.value / weight) * 1000;
 
   return kgPrice;
+}
+
+const updateCart = async () => {
+  let productId = Number(productGetters.getId(product));
+  const cartItem = getCartItem(productId);
+  const isItemInCart = cartItem?.quantity;
+
+  if (!isItemInCart) {
+    await addToCart({ productId, quantity: quantity.value });
+    send({ message: t('addedToCart'), type: 'positive' });
+  } else {
+    if (quantity.value === 0) {
+      await deleteCartItem({ cartItemId: cartItem.id });
+      send({ message: t('removedFromCart'), type: 'positive' });
+    } else {
+      await setCartItemQuantity({
+        productId,
+        quantity: quantity.value,
+        cartItemId: cartItem.id,
+      });
+      send({ message: t('changedCartQuantity'), type: 'positive' });
+    }
+  }
+}
+
+const debouncedAddToCart = _.debounce(async () => {
+  if (loading.value || !available) return;
+  loading.value = true;
+
+  try {
+    await updateCart();
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    send({ message: t('errorAddingToCart'), type: 'negative' });
+  } finally {
+    loading.value = false;
+  }
+}, 800);
+
+const addItemToCart = async () => {
+  if (loading.value || !available) return;
+  quantity.value = 1;
+
+};
+
+const quantity = ref(0);
+onMounted(() => {
+  available =productGetters.canBeAddedToCartFromCategoryPage(product);
+  quantity.value = getCartItem(Number(productGetters.getId(product)))?.quantity ?? 0;
+})
+
+const getCartItem = (productId: Number) => {
+  const { data: cart } = useCart();
+  const cartItem = cart.value?.items?.find((item) => item.variationId === productId);
+
+  return cartItem ?? null;
 }
 
 const NuxtLink = resolveComponent('NuxtLink');
