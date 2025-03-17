@@ -17,7 +17,10 @@
         Additional="" 
         ButtonText="Zu den Präsentationsmöglichkeiten"/>
     
-    <LandingPageProductDisplay />
+    <LandingPageProductDisplay
+      v-if="cerealienProducts.products"
+      :products="cerealienProducts.products"
+    />
       
     <LandingPageComparison />    
 
@@ -33,7 +36,12 @@
       Description="Wenn der Platz für eine Breakfast Corner nicht reicht oder nur eine Bowl-Idee, z. B. für die Meeting-Pause angeboten werden kann, empfiehlt sich der Cup des Tages Aufsteller mit einer tollen Bowl-Idee. Insgesamt stehen 6 alternative Varianten im Set zur Verfügung. "
       ButtonText="Jetzt Set downloaden!"/>
   
-    <LandingPageMinHeightDiv imageSrc="/images/image-01.png" />
+    <LandingPageMinHeightDiv 
+      title="Hygienischer Kippdeckel und visueller Mehrwert"
+      top-title="Foodserver-Klassiker"
+      description="Praxis bewährt, ansprechend und formschön
+präsentiert sich der Kellogg’s® Foodserver aus hochwertigem Acryl. Für bis zu 750 g Cerealien oder Müsli. Der praktische Kippdeckel sorgt für den hygienesicheren Verschluss nach jeder Portionierung."
+      imageSrc="/images/image-01.png" />
 
     <LandingPageDispenser />
 
@@ -44,10 +52,17 @@
       Description="Wenn der Platz für eine Breakfast Corner nicht reicht oder nur eine Bowl-Idee, z. B. für die Meeting-Pause angeboten werden kann, empfiehlt sich der Cup des Tages Aufsteller mit einer tollen Bowl-Idee. Insgesamt stehen 6 alternative Varianten im Set zur Verfügung. "
       noButton/>
 
-    <LandingPageMinHeightDiv imageSrc="/images/3D Pringles 40g Composing.png" imageLeft />
+    <LandingPageMinHeightDiv 
+      topTitle="Small Cans"
+      title="Praktisch und aromaversiegelt in der 40 g Dose"
+      description="Gönn deinen Gästen und Kunden mit Pringles® eine Auszeit von der Norm. Ein Snack-Vergnügen, das nicht nur den Gaumen anregt, sondern auch den Geist kitzelt: in der Pause,  zwischendurch, als Meetingfood, an der Bar oder auf dem Zimmer."
+      imageSrc="/images/3D Pringles 40g Composing.png" imageLeft />
     
 
-    <LandingPageProductDisplay />
+    <LandingPageProductDisplay 
+      v-if="pringlesProducts.products"
+      :products="pringlesProducts.products"
+    />
 
     <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles-automat.png" 
       SubTitle="Drehautomat für Pringles®️" Title="Die impulsstarke und mobile Snackinsel" 
@@ -92,6 +107,13 @@ const {
 const runtimeConfig = useRuntimeConfig();
 const isHero = ref(runtimeConfig.public.isHero);
 const { settingsIsDirty, openDrawerWithView, updateNewBlockPosition } = useSiteConfiguration();
+
+const { fetchProducts } = useProducts();
+
+let  pringlesProducts = await fetchProducts({ categoryUrlPath: "snacks/pringles", page: 1, itemsPerPage: 4});
+let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
+
+
 
 const { data, fetchPageTemplate, dataIsEmpty } = useHomepage();
 

@@ -9,13 +9,11 @@
       </div>
       <!-- Text Section -->
       <div class="flex-1">
-        <p class="text-xs uppercase text-[17px]">FOODSERVER-KLASSIKER</p>
-        <h2 class="font-bold mt-2 text-[33px] font-bold">
-          Hygienischer Kippdeckel und visueller Mehrwert
+        <p class="text-xs leading-[22px] uppercase text-[17px]">{{topTitle}}</p>
+        <h2 class="font-bold mt-2 text-[33px] leading-[30px]">
+          {{title}}
         </h2>
-        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular">
-          Praxis bewährt, ansprechend und formschön präsentiert sich der KELLOGG’S® Foodserver aus hochwertigem Acryl. 
-          Für bis zu 750 g Cerealien oder Müsli. Der praktische Kippdeckel sorgt für den hygienischeren Verschluss nach jeder Portionierung.
+        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular" v-html="description">
         </p>
       </div>
 
@@ -57,6 +55,9 @@
 
 <script setup lang="ts">
 defineProps({
+  title: String,
+  topTitle: String,
+  description: String,
   imageSrc: { type: String, required: true },
   imageLeft: Boolean
 });

@@ -9,7 +9,7 @@
       </p>
     </div>
     <div>
-      <p class="text-[#707070] text-sm text-[20px]">
+      <p class="text-[#707070] text-sm text-[20px] font-normal">
         In der Hotellerie entscheidet oft das kulinarische Angebot über den Erfolg, besonders beim Frühstück und in Tagungsräumen. Hier spielt der Hoteleinkauf eine Schlüsselrolle: Durch die Auswahl qualitativer Produkte können Hotels ihr Frühstücksbuffet und Snack-Angebot in Tagungsräumen aufwerten.
       </p>
       <button

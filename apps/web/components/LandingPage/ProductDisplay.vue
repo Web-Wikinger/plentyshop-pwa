@@ -2,51 +2,29 @@
   <div class="flex flex-wrap justify-center gap-6 p-6">
     <LandingPageProductCard
       v-for="product in products"
-      :key="product.id"
       :product="product"
+      :name="productGetters.getName(product)"
+      :image-url="addModernImageExtension(productGetters.getSecondPreviewImage(product))"
+      :image-alt="
+        productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+        productGetters.getName(product) ||
+        ''
+      "
+      :image-height="productGetters.getImageHeight(product) || 600"
+      :image-width="productGetters.getImageWidth(product) || 600"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
 
-interface Product {
-  id: number;
-  name: string;
-  price: string;
-  image: string;
-  background: string;
-}
+const { addModernImageExtension } = useModernImage();
 
-const products = ref<Product[]>([
-  {
-    id: 1,
-    name: 'Pringles Original - 40g',
-    price: '6,72 EUR',
-    image: '/images/pringles-original.png',
-    background: 'bg-red-500',
-  },
-  {
-    id: 2,
-    name: 'Pringles Sour Cream & Onion - 40g',
-    price: '6,72 EUR',
-    image: '/images/pringles-sour-cream.png',
-    background: 'bg-green-500',
-  },
-  {
-    id: 3,
-    name: 'Pringles Sweet Paprika - 40g',
-    price: '6,72 EUR',
-    image: '/images/pringles-paprika.png',
-    background: 'bg-orange-500',
-  },
-  {
-    id: 4,
-    name: 'Pringles Hot & Spicy - 40g',
-    price: '6,72 EUR',
-    image: '/images/pringles-hot-spicy.png',
-    background: 'bg-gray-700',
-  },
-]);
+import type { ProductListProps } from '~/components/LandingPage/Product/types.ts';
+
+const {products} = defineProps<ProductListProps>();
+
+
 </script>
