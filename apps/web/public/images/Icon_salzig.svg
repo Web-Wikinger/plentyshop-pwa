@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="131.366" height="127.866" viewBox="0 0 131.366 127.866">
+  <g id="Icon_salzig" transform="translate(-288.8 -261)">
+    <path id="Path_53" data-name="Path 53" d="M416.659,261V365.991a19.373,19.373,0,0,1-19.375,19.375H311.675A19.373,19.373,0,0,1,292.3,365.991V261" transform="translate(0)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+    <path id="Path_54" data-name="Path 54" d="M292.3,522.6v62.568a10.847,10.847,0,0,0,7.273,10.243l.585.2a164.921,164.921,0,0,0,108.65,0l.585-.2a10.847,10.847,0,0,0,7.273-10.243V522.6" transform="translate(0 -242.225)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+    <line id="Line_63" data-name="Line 63" x1="68.227" transform="translate(303.817 278.605)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+    <line id="Line_64" data-name="Line 64" x1="28.373" transform="translate(387.715 278.605)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+    <path id="Path_55" data-name="Path 55" d="M1213.039,454.609l-18.086-18.086a2.811,2.811,0,0,1,0-3.985l18.086-18.086a2.812,2.812,0,0,1,3.984,0l18.086,18.086a2.812,2.812,0,0,1,0,3.985l-18.086,18.086A2.812,2.812,0,0,1,1213.039,454.609Z" transform="translate(-835.033 -141.321)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+    <path id="Path_56" data-name="Path 56" d="M651.968,907.508l2.214-25.478a2.821,2.821,0,0,1,3.051-2.563l25.477,2.215a2.821,2.821,0,0,1,2.563,3.051l-2.214,25.478a2.821,2.821,0,0,1-3.051,2.563l-25.478-2.215A2.821,2.821,0,0,1,651.968,907.508Z" transform="translate(-333.021 -572.653)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7"/>
+  </g>
+</svg>

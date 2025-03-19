@@ -1,6 +1,11 @@
 <template>
   <div class="mx-auto">
-    <LandingPageHeader />
+    <LandingPageHeader 
+      title="Platzierungsvorschlag und Best Practice-Tipps für die Hotellerie"
+      subtitle="Kellogg's® Produkte effektiv am Frühstücksbuffet und in Tagungsräumen platzieren"
+      description="In der Hotellerie entscheidet oft das kulinarische Angebot über den Erfolg, besonders beim Frühstück und in Tagungsräumen. Hier spielt der Hoteleinkauf eine Schlüsselrolle: Durch die Auswahl qualitativer Produkte können Hotels ihr Frühstücksbuffet und Snack-Angebot in Tagungsräumen aufwerten."
+      buttonText="Zum Snack-Angebot"
+    />
 
     <LandingPagePresentation imageSrc="/images/image-1.jpeg" 
         SubTitle="Genussvoll in den Tag starten" Title="Das Hotelfrühstück mit <br>
@@ -10,7 +15,7 @@
                 Betriebswirtschaft und Agrarstruktur, Dezember 2021<br>
                 **Quelle: VuMa 2023" 
         ButtonText="Zum Frühstücksbuffet"/>
-    <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/image-1.jpeg" 
+    <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/composing_tagung.png" 
         SubTitle="Mehr Schwung" 
         Title="Im Tagungsraum mit Kellogg’s®️ Produkten für eine gute Basis sorgen" 
         Description="KELLOGG’s®️ Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s®️ Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
@@ -22,7 +27,12 @@
       :products="cerealienProducts.products"
     />
       
-    <LandingPageComparison />    
+    <LandingPageComparison 
+      title="Je mehr KELLOGG‘s®️ gegessen wird, desto weniger Belag"
+      subtitle="Große Geschmacksvielfalt - Gute Laune inklusive"
+      description="Das Kellogg’s®️ Sortiment umfasst unterschiedlichste knusprige Cereals und Müslis. Mit einer Auswahl davon haben Ihre Gäste eine gute Basis für leckere Bowls, die sie mit Zutaten von Ihrem Buffet ergänzen können und Sie profitieren - <strong>bei einer Platzierung im ersten Buffetdrittel </strong>- durch einen günstigeren Wareneinsatz als z.B. bei Wurst und Käse.*"
+      imageText="Beispiel Platzierung auf Ihrem Buffet:"
+    />    
 
     <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_breakfastcorner.png" 
         SubTitle="BREAKFAST CORNER – Kellogg’s®️ am Frühstücksbuffet" Title="Hotelgäste am Morgen glücklich machen" 

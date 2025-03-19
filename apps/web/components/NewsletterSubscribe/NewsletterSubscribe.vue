@@ -211,11 +211,11 @@ const onSubmit = handleSubmit(() => subscribeNewsletter());
 </script>
 
 <style scoped>
-::v-deep .custom-input-wrapper {
+:deep(.custom-input-wrapper) {
   @apply rounded-full overflow-hidden mx-auto;
 }
 
-::v-deep .custom-input-wrapper input {
+:deep(.custom-input-wrapper input) {
   @apply rounded-full;
 }
 </style>

@@ -11,13 +11,13 @@
           />
         </div>
         <div class="md:ml-6 flex-1 my-[20px]">
-          <h2 class="text-lg uppercase text-[17px] leading-[22px]">Große Geschmacksvielfalt - Gute Laune inklusive</h2>
-          <h1 class="text-2xl font-bold mt-2 text-[33px] leading-[44px] text-white">Je mehr KELLOGG‘s®️ gegessen wird, desto weniger Belag</h1>
+          <h2 class="text-lg uppercase text-[17px] leading-[22px]">{{title}}</h2>
+          <h1 class="text-2xl font-bold mt-2 text-[33px] leading-[44px] text-white">{{ subtitle }}</h1>
           <p class="mt-2 text-20px text-white">
-            Das Kellogg’s®️ Sortiment umfasst unterschiedlichste knusprige Cereals und Müslis. Mit einer Auswahl davon haben Ihre Gäste eine gute Basis für leckere Bowls, die sie mit Zutaten von Ihrem Buffet ergänzen können und Sie profitieren - <strong>bei einer Platzierung im ersten Buffetdrittel </strong>- durch einen günstigeren Wareneinsatz als z.B. bei Wurst und Käse.*
+            {{ description }}
           </p>
           <p class="mt-2 font-bold text-[20px] leading-[27px] mt-[50px] text-white">
-            Beispiel Platzierung auf Ihrem Buffet:
+            {{imageText}}
           </p>
           <img 
             src="/images/platzierungs-grafik.png"
@@ -46,7 +46,12 @@
 </template>
 
 <script setup lang="ts">
-// No script logic required for this static component
+defineProps({
+  title: String,
+  subtitle: String,
+  description: String,
+  imageText: String,
+});
 </script>
 
 <style scoped>
