@@ -29,7 +29,7 @@
           <img class="w-[50px] h-auto" src="/images/social/instagram.svg" alt="Instagram">
         </a>
         <a href="https://www.youtube.com/user/KELLOGGDeutschland">
-          <img class="w-[50px] h-auto" src="/images/social/youtube.svg" alt="YouTube">
+          <img class="w-[50px] h-auto" src="/images/social/youTube.svg" alt="YouTube">
         </a>
         <a href="https://www.tiktok.com/@kelloggs_de">
           <img class="w-[50px] h-auto" src="/images/social/tiktok.svg" alt="TikTok">
@@ -45,7 +45,7 @@
           <img class="w-[50px] h-auto" src="/images/social/instagram.svg" alt="Instagram">
         </a>
         <a href="https://www.youtube.com/channel/UCzwrjVlnMRynB80igUyAioQ">
-          <img class="w-[50px] h-auto" src="/images/social/youtube.svg" alt="YouTube">
+          <img class="w-[50px] h-auto" src="/images/social/youTube.svg" alt="YouTube">
         </a>
         <a href="https://www.tiktok.com/@pringles_de">
           <img class="w-[50px] h-auto" src="/images/social/tiktok.svg" alt="TikTok">
