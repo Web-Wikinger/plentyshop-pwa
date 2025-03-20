@@ -47,7 +47,7 @@
       </div>
       <div class="flex items-center justify-between">
         <select 
-          v-model="selectedQuantity" 
+          v-model="quantity" 
           class="w-3/5 h-[45px] bg-gray-200 border border-gray-300 text-sm px-2"
           @change="debouncedAddToCart"
         >
@@ -95,7 +95,6 @@ const {
 } = defineProps<ProductProps>();
 
 let available =productGetters.canBeAddedToCartFromCategoryPage(product);
-let selectedQuantity = 1;
 const { cartIsEmpty } = useCart();
 
 const localePath = useLocalePath();
@@ -186,12 +185,13 @@ const addItemToCart = async () => {
   if (loading.value || !available) return;
   quantity.value = 1;
 
+  debouncedAddToCart();
 };
 
-const quantity = ref(0);
+const quantity = ref(1);
 onMounted(() => {
   available =productGetters.canBeAddedToCartFromCategoryPage(product);
-  quantity.value = getCartItem(Number(productGetters.getId(product)))?.quantity ?? 0;
+  quantity.value = getCartItem(Number(productGetters.getId(product)))?.quantity ?? 1;
 })
 
 const getCartItem = (productId: Number) => {
