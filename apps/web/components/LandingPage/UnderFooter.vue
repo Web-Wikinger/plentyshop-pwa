@@ -5,7 +5,7 @@
       <img src="/images/payments/Google_Pay.svg" alt="Google Pay" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Klarna.svg" alt="Klarna" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Mastercard.svg" alt="Mastercard" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
-      <img src="/images/payments/PayPal.svg" alt="PayPal" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
+      <img src="/images/payments/Paypal.svg" alt="PayPal" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Sofort.svg" alt="Sofort" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Visa.svg" alt="Visa" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
     </div>
