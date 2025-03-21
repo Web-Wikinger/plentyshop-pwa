@@ -41,10 +41,6 @@ const checkEnvironments = (integrations: any) => {
 
   checkEnvironments(config.integrations);
 
-  app.get('/test', (req, res) => {
-    res.json({ message: 'Test route is working!' });
-  });
-
   app.listen(port, host, () => {
     consola.success(`API server listening on http://${host}:${port}`);
   });

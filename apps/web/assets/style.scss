@@ -1,5 +1,5 @@
-@import 'custom';
-@import '_variables';
+@use 'custom' as *;
+@use '_variables' as *;
 
 :root {
   --colors-2-primary-50: #{$color-2-primary-50};
