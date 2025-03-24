@@ -1,4 +1,31 @@
 <template>
+   <!-- <EmptyBlock v-if="dataIsEmpty" @add-new-block="openBlockList" />
+  <Editor
+      v-if="isEditing && currentBlockIndex !== null"
+      :index="currentBlockIndex"
+      :block="currentBlock"
+      @update="updateBlock"
+    />
+  <template v-for="(block, index) in data.blocks" :key="index">
+        <PageBlock
+          :index="index"
+          :block="block"
+          :is-preview="isPreview"
+          :disable-actions="disableActions"
+          :is-clicked="isClicked"
+          :clicked-block-index="clickedBlockIndex"
+          :is-tablet="isTablet"
+          :block-has-data="blockHasData"
+          :get-component="getComponent"
+          :tablet-edit="tabletEdit"
+          :add-new-block="addNewBlock"
+          :handle-edit="handleEdit"
+          :delete-block="deleteBlock"
+          class="mx-8 md:mx-24 first:mx-0 !mb-0"
+          :changeBlockPosition="changeBlockPosition"
+          :isLastBlock="isLastBlock"
+        />
+    </template>-->
   <KelloggsHeroSection></KelloggsHeroSection>
   <LanguageSelector />
   <KelloggsRedBar class="mb-12"></KelloggsRedBar>
@@ -6,6 +33,9 @@
   <KelloggsOurBenefits></KelloggsOurBenefits>
 </template>
 <script lang="ts" setup>
+/*import homepageTemplateDataEn from '../composables/useHomepage/homepageTemplateDataEn.json';
+import homepageTemplateDataDe from '../composables/useHomepage/homepageTemplateDataDe.json';
+const { $i18n } = useNuxtApp();
 const {
   currentBlock,
   currentBlockIndex,
@@ -30,7 +60,20 @@ const { settingsIsDirty, openDrawerWithView, updateNewBlockPosition } = useSiteC
 const { data, fetchPageTemplate, dataIsEmpty } = useHomepage();
 
 const { isEditing, isEditingEnabled, disableActions } = useEditor();
-const { getRobots, setRobotForStaticPage } = useRobots();
+
+
+const defaultAddBlock = (lang: string) => {
+  return lang === 'en' ? homepageTemplateDataEn.blocks[1] : homepageTemplateDataDe.blocks[1];
+};
+
+const addNewBlock = (index: number, position: number) => {
+  const insertIndex = position === -1 ? index : index + 1;
+  const updatedBlocks = [...data.value.blocks];
+
+  updatedBlocks.splice(insertIndex, 0, defaultAddBlock($i18n.locale.value));
+
+  data.value.blocks = updatedBlocks;
+};
 
 const openBlockList = (index: number, position: number) => {
   const insertIndex = position === -1 ? index : index + 1;
@@ -49,8 +92,9 @@ const getComponent = (name: string) => {
   }
 };
 
-await getRobots();
-setRobotForStaticPage('Homepage');
+
+
+
 
 onMounted(() => {
   isEditingEnabled.value = false;
@@ -71,6 +115,14 @@ const handleBeforeUnload = (event: BeforeUnloadEvent) => {
 };
 
 fetchPageTemplate();
+
+
+*/
+
+const { getRobots, setRobotForStaticPage } = useRobots();
+
+await getRobots();
+//setRobotForStaticPage('Homepage');
 </script>
 
 

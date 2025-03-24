@@ -19,5 +19,5 @@ const getHTMLTexts = () => {
 };
 
 await getRobots();
-setRobotForStaticPage('CancellationForm');
+//setRobotForStaticPage('CancellationForm');
 </script>
