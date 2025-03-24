@@ -121,7 +121,7 @@ fetchPageTemplate();
 
 const { getRobots, setRobotForStaticPage } = useRobots();
 
-await getRobots();
+//await getRobots();
 //setRobotForStaticPage('Homepage');
 </script>
 

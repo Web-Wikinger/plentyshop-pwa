@@ -217,6 +217,6 @@ const sendContact = async () => {
 
 const onSubmit = handleSubmit(() => sendContact());
 
-await getRobots();
+//await getRobots();
 //setRobotForStaticPage('ContactPage');
 </script>

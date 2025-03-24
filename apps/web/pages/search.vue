@@ -45,6 +45,6 @@ watch(
   },
 );
 
-await getRobots();
+//await getRobots();
 //setRobotForStaticPage('SearchResult');
 </script>

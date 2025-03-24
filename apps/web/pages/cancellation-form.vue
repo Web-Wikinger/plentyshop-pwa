@@ -18,6 +18,6 @@ const getHTMLTexts = () => {
   return data.value.htmlText ?? '';
 };
 
-await getRobots();
+//await getRobots();
 //setRobotForStaticPage('CancellationForm');
 </script>
