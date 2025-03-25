@@ -121,8 +121,12 @@ import type { NewsletterSubscribeProps } from './types';
 const textGroup = ref(true);
 const buttonGroup = ref(true);
 const settingsGroup = ref(true);
-const { data } = useHomepage();
-const { blockIndex } = useSiteConfiguration();
 
-const newsletterBlock = computed(() => (data.value.blocks[blockIndex.value].options || {}) as NewsletterSubscribeProps);
+const { data } = useCategoryTemplate();
+const { blockUuid } = useSiteConfiguration();
+const { findOrDeleteBlockByUuid } = useBlockManager();
+
+const newsletterBlock = computed(
+  () => (findOrDeleteBlockByUuid(data.value, blockUuid.value)?.content || {}) as NewsletterSubscribeProps,
+);
 </script>
