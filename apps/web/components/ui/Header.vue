@@ -1,4 +1,5 @@
 <template>
+  <TopHeader />
   <MegaMenu :categories="categoryTree">
     <template v-if="viewport.isGreaterOrEquals('md')">
       <nav class="hidden md:flex md:flex-row md:flex-nowrap ml-auto">
