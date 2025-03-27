@@ -1,0 +1,30 @@
+<template>
+  <div class="relative flex justify-between items-center bg-red-color text-white px-[80px] py-[45px] rounded-3xl w-full lg:max-w-[1200px] m-0 mx-auto">
+    <div class="w-[540px] flex-1">
+      <p class="text-[17px] leading-[22px] uppercase">{{topTitle}}</p>
+      <h2 class="text-[33px] leading-[44px] font-bold mt-2">{{title}}</h2>
+      <p class="mt-4 text-[20px] leading-[27px]">
+        {{description}}
+      </p>
+    </div>
+    <div class="flex-1">
+      <p 
+        v-if="imageTitle"
+        class="text-[20px] leading-[27px] font-bold"
+      >{{imageTitle}}</p>
+      <img :src="imageSrc" alt="Cereal and milk" class="w-[37] m-auto" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+defineProps({
+  title: String,
+  topTitle: String,
+  description: String,
+  imageSrc: { type: String, required: true },
+  imageLeft: Boolean,
+  btnText: String,
+  imageTitle: String
+});
+</script>

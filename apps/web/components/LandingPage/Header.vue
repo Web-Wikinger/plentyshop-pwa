@@ -9,10 +9,10 @@
       </p>
     </div>
     <div>
-      <p class="text-[#707070] text-sm text-[20px] font-normal">
-        {{description}}
+      <p class="text-[#707070] text-sm text-[20px] font-normal" v-html="description">
       </p>
       <button
+        v-if="buttonText"
         class="px-6 py-2 border-2 border-red-color text-red-color rounded-[1vw] hover:bg-red-color hover:text-white transition text-[20px] mt-[37px]"
       >
         {{buttonText}}

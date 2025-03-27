@@ -1,7 +1,7 @@
 <template>
   <div class="flex lg:flex-row flex-col justify-center w-full py-20">
     <!-- Main Container with Red Background -->
-    <div class="relative flex justify-between items-center bg-red-color text-white px-[100px] py-[45px] rounded-3xl w-full max-w-5xl lg:h-[380px] m-0">
+    <div class="relative flex justify-between items-center bg-red-color text-white px-[100px] py-[45px] rounded-3xl w-full max-w-5xl lg:min-h-[380px] m-0">
       
       <div v-if="imageLeft"
         class="flex-1"
@@ -15,6 +15,12 @@
         </h2>
         <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular text-white" v-html="description">
         </p>
+        <button
+          v-if="btnText"
+          class="px-6 py-2 border-2 border-white text-white rounded-[1vw] hover:bg-white hover:text-white transition text-[20px] mt-[37px]"
+        >
+          {{btnText}}
+        </button>
       </div>
 
       <div v-if="!imageLeft"
@@ -59,7 +65,8 @@ defineProps({
   topTitle: String,
   description: String,
   imageSrc: { type: String, required: true },
-  imageLeft: Boolean
+  imageLeft: Boolean,
+  btnText: String
 });
 
 const viewport = useViewport();
