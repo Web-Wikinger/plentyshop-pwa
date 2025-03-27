@@ -12,4 +12,8 @@ export type NewsletterSubscribeProps = {
   button: {
     label?: string;
   };
+
+  belowInput?: {
+    textHtml: string;
+  }
 };

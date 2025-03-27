@@ -52,7 +52,7 @@ export const useSiteConfiguration: UseSiteConfigurationReturn = () => {
   const loadGoogleFont: LoadGoogleFont = (fontName: string) => {
     const link = document.createElement('link');
 
-    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:wght@400;700&display=swap`;
+    // link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName)}:wght@400;700&display=swap`;
     link.rel = 'stylesheet';
 
     document.head.appendChild(link);

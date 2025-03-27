@@ -69,6 +69,7 @@ export default {
           'body-bg': '#F1F3F5',
           button: '#062633',
         },
+        'red-color': '#D21246'
       },
       gridTemplateAreas: {
         'product-page': ['left-top right', 'left-bottom right'],
@@ -100,6 +101,18 @@ export default {
         xl: '3.75rem',
       },
     },
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: {
+        sm: '600px',
+        md: '728px',
+        lg: '984px',
+        xl: '1240px',
+        '2xl': '1240px',
+      },
+    },
+
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [sfTypography, require('@savvywombat/tailwindcss-grid-areas')],

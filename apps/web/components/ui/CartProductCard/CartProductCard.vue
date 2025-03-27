@@ -121,7 +121,9 @@
               class="absolute top-2 lg:top-auto lg:bottom-2 right-0 bg-white">
       <SfIconDelete size="base" class="text-black" />
     </UiButton>
-  </div>
+      </div>
+    </div>
+</div>
 </template>
 
 <script setup lang="ts">

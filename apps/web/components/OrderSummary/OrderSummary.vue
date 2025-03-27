@@ -10,12 +10,12 @@
     <div class="pb-4 mt-3 md:pb-6 md:mt-0">
       <div v-if="orderPropertiesWithVatAdditionalCosts.length > 0" class="mb-4">
         <div
-          v-for="property in orderPropertiesWithVatAdditionalCosts"
-          :key="cartGetters.getBasketItemOrderParamPropertyId(property)"
-          class="flex justify-between typography-text-base w-full"
-        >
-          <p class="flex flex-col gap-2 grow pr-2">{{ cartGetters.getBasketItemOrderParamName(property) }}</p>
-          <p class="flex flex-col gap-2 text-right">
+             class="flex justify-between typography-text-base w-full"
+             v-for="property in orderPropertiesWithVatAdditionalCosts"
+             :key="cartGetters.getBasketItemOrderParamPropertyId(property)">
+          <p class="g-12-m lg:g-16-m flex flex-col gap-2 grow pr-2">{{ cartGetters.getBasketItemOrderParamName(property)
+            }}</p>
+          <p class="g-12-m lg:g-16-m flex flex-col gap-2 text-right">
             {{ n(cartGetters.getBasketItemOrderParamPrice(property), 'currency') }}
           </p>
         </div>
@@ -51,12 +51,12 @@
 
       <div v-if="orderPropertiesWithoutVat.length > 0" class="mb-4">
         <div
-          v-for="property in orderPropertiesWithoutVat"
-          :key="cartGetters.getBasketItemOrderParamPropertyId(property)"
-          class="flex justify-between typography-text-base w-full"
-        >
-          <p class="flex flex-col gap-2 grow pr-2">{{ cartGetters.getBasketItemOrderParamName(property) }}</p>
-          <p class="flex flex-col gap-2 text-right">
+             class="flex justify-between typography-text-base w-full"
+             v-for="property in orderPropertiesWithoutVat"
+             :key="cartGetters.getBasketItemOrderParamPropertyId(property)">
+          <p class="g-12-m lg:g-16-m flex flex-col gap-2 grow pr-2">{{ cartGetters.getBasketItemOrderParamName(property)
+            }}</p>
+          <p class="g-12-m lg:g-16-m flex flex-col gap-2 text-right">
             {{ n(cartGetters.getBasketItemOrderParamPrice(property), 'currency') }}
           </p>
         </div>

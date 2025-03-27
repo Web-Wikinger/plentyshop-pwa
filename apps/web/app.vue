@@ -47,6 +47,8 @@ onMounted(() => {
   isPreview.value = !!pwaCookie.value || (showConfigurationDrawer as boolean);
 });
 
+console.log('i18n LOCALE', locale.value, locale)
+
 await setInitialDataSSR();
 setVsfLocale(locale.value);
 
