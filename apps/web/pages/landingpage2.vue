@@ -67,26 +67,7 @@ den Geschmackssinn anregen und mit Markenstrahlkraft die Wertigkeit des Angebots
   </div>
 </template>
 <script lang="ts" setup>
-const {
-  currentBlock,
-  currentBlockIndex,
-  isClicked,
-  clickedBlockIndex,
-  isTablet,
-  isPreview,
-  blockHasData,
-  tabletEdit,
-  handleEdit,
-  deleteBlock,
-  updateBlock,
-  changeBlockPosition,
-  isLastBlock,
-  togglePlaceholder,
-} = useBlockManager();
 
-const runtimeConfig = useRuntimeConfig();
-const isHero = ref(runtimeConfig.public.isHero);
-const { settingsIsDirty, openDrawerWithView, updateNewBlockPosition } = useSiteConfiguration();
 
 const { fetchProducts } = useProducts();
 
@@ -94,51 +75,11 @@ let  pringlesProducts = await fetchProducts({ categoryUrlPath: "snacks/pringles"
 let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
 
 
-
-const { data, fetchPageTemplate, dataIsEmpty } = useHomepage();
-
-const { isEditing, isEditingEnabled, disableActions } = useEditor();
 const { getRobots, setRobotForStaticPage } = useRobots();
 
-const openBlockList = (index: number, position: number) => {
-  const insertIndex = position === -1 ? index : index + 1;
-  togglePlaceholder(index, position === -1 ? 'top' : 'bottom');
-  updateNewBlockPosition(insertIndex);
-  openDrawerWithView('blocks');
-};
-
-const getComponent = (name: string) => {
-  if (name === 'NewsletterSubscribe') return resolveComponent('NewsletterSubscribe');
-  if (name === 'UiTextCard') return resolveComponent('UiTextCard');
-  if (name === 'UiImageText') return resolveComponent('UiImageText');
-  if (name === 'ProductRecommendedProducts') return resolveComponent('ProductRecommendedProducts');
-  if (name === 'UiCarousel') {
-    return isHero.value ? resolveComponent('UiHeroCarousel') : resolveComponent('UiBlazeCarousel');
-  }
-};
 
 await getRobots();
 setRobotForStaticPage('Homepage');
-
-onMounted(() => {
-  isEditingEnabled.value = false;
-  window.addEventListener('beforeunload', handleBeforeUnload);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('beforeunload', handleBeforeUnload);
-});
-
-const hasUnsavedChanges = () => {
-  return !isEditingEnabled.value && !settingsIsDirty.value;
-};
-
-const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-  if (hasUnsavedChanges()) return;
-  event.preventDefault();
-};
-
-fetchPageTemplate();
 </script>
 
 

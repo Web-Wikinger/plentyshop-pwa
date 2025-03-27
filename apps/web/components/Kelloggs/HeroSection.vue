@@ -23,11 +23,7 @@
 <style scoped>
 .kl-hero-section {
   position: relative;
-<<<<<<< HEAD
   background-image: url("/kelloggs/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548");
-=======
-  background-image: url("https://kelloggs-shop.de/cdn/shop/t/26/assets/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548");
->>>>>>> abdo-branch
   background-size: cover;
   background-position: center;
   color: white;
