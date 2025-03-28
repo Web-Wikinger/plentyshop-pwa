@@ -4,6 +4,7 @@
   <KelloggsRedBar class="mb-12"></KelloggsRedBar>
   <KelloggsOurProducts></KelloggsOurProducts> 
   <KelloggsOurBenefits></KelloggsOurBenefits>
+  <LandingPageHomepageSection />
 </template>
 <script lang="ts" setup>
 const {
