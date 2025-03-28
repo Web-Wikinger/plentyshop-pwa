@@ -26,7 +26,7 @@
       class="my-[143px] " 
     />
 
-
+    
     <LandingPagePresentation imageSrc="/images/Pringles List.png" :bgColor="'bg-gray-100'"
         SubTitle="Blickfänge schaffen" Title="PRINGLES® Displays als Verkaufsbooster" 
         Description="Nutzen Sie aufmerksamkeitsstarke Displays, um PRINGLES® optimal zu präsentieren. Diese sind sowohl für die 165 g-Dosen als auch die 40 g-Dosen verfügbar. In engen Räumlichkeiten passt beispielsweise die kompakte Banane für die 40 g-Dosen perfekt auf den Kassentresen, während das stabile Papp-Regal bei ausreichend Platz die 165 g-Dosen ideal in Szene setzt. Schreiben Sie uns bei Interesse an Display-Möglichkeiten!"

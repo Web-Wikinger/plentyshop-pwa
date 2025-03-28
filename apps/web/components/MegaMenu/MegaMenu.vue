@@ -89,6 +89,100 @@
               </template>
             </div>
           </li>
+          <li v-if="categoryTree.length !== 0">
+            <UiButton
+                      ref="triggerReference"
+                      variant="tertiary"
+                      data-testid="category-button"
+                      class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
+                      :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === -99 && isOpen }"
+                      @click="openMenu([-99])">
+              <span class="g-16">Verkaufshilfen</span>
+            </UiButton>
+
+            <div
+                 v-if="
+                  isOpen &&
+                  activeMenu &&
+                  activeNode.length === 1 &&
+                  activeNode[0] === -99
+                "
+                 :key="-99"
+                 ref="megaMenuReference"
+                 :style="style"
+                 class="hidden md:flex gap-x-6 bg-white shadow-lg p-6 left-0 right-0 outline-none z-40"
+                 tabindex="0"
+                 @click.passive="close"
+                 @keydown.esc="focusTrigger(-99)">
+
+              <div>
+                <ul class="flex mt-2">
+                  <li  :key="-98">
+                    <SfListItem :tag="NuxtLink" size="sm"
+                                href="https://kelloggs-shop.de/pages/pringles-pos" class="py-1.5 g-16-m">
+                      Pringles Automat
+                    </SfListItem>
+                  </li>
+                  <li  :key="-98">
+                    <SfListItem :tag="NuxtLink" size="sm"
+                                href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
+                      B2B Starter Kit
+                    </SfListItem>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li v-if="categoryTree.length !== 0">
+            <UiButton
+                      ref="triggerReference"
+                      variant="tertiary"
+                      data-testid="category-button"
+                      class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
+                      :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === -98 && isOpen }"
+                      @click="openMenu([-98])">
+              <span class="g-16">Verkaufsstrategien für Ihre Branche</span>
+            </UiButton>
+
+            <div
+                 v-if="
+                  isOpen &&
+                  activeMenu &&
+                  activeNode.length === 1 &&
+                  activeNode[0] === -98
+                "
+                 :key="-98"
+                 ref="megaMenuReference"
+                 :style="style"
+                 class="hidden md:flex gap-x-6 bg-white shadow-lg p-6 left-0 right-0 outline-none z-40"
+                 tabindex="0"
+                 @click.passive="close"
+                 @keydown.esc="focusTrigger(-98)">
+
+              <div>
+                <ul class="flex mt-2">
+                  <li >
+                    <SfListItem :tag="NuxtLink" size="sm"
+                                :href="localePath('/hotellerie')" class="py-1.5 g-16-m">
+                      Hotellerie
+                    </SfListItem>
+                  </li>
+                  <li  :key="-98">
+                    <SfListItem :tag="NuxtLink" size="sm"
+                                :href="localePath('/bars-gastronomie')" class="py-1.5 g-16-m">
+                      Bars & Gastronomie
+                    </SfListItem>
+                  </li>
+                  <li  :key="-98">
+                    <SfListItem :tag="NuxtLink" size="sm"
+                                :href="localePath('/kiosk-getrankehandel')" class="py-1.5 g-16-m">
+                      Kiosk & Getränkehandel
+                    </SfListItem>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
         </ul>
       </nav>
 
