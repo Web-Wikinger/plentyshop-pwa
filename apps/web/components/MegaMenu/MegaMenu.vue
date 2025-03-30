@@ -41,7 +41,7 @@
                       class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
                       :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === menuNode.id && isOpen }"
                       @click="menuNode.childCount > 0 ? openMenu([menuNode.id]) : openMenu([])">
-              <span class="g-16">{{ categoryTreeGetters.getName(menuNode) }}</span>
+              <span class="g-16">{{ categoryTreeGetters.getName(menuNode) }} <SfIconExpandMore /></span>
             </UiButton>
 
             <div
@@ -97,7 +97,7 @@
                       class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
                       :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === -99 && isOpen }"
                       @click="openMenu([-99])">
-              <span class="g-16">Verkaufshilfen</span>
+              <span class="g-16">Verkaufshilfen <SfIconExpandMore /></span>
             </UiButton>
 
             <div
@@ -141,7 +141,7 @@
                       class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
                       :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === -98 && isOpen }"
                       @click="openMenu([-98])">
-              <span class="g-16">Verkaufsstrategien für Ihre Branche</span>
+              <span class="g-16">Verkaufsstrategien für Ihre Branche <SfIconExpandMore /></span>
             </UiButton>
 
             <div
@@ -262,6 +262,7 @@ import {
   SfIconMenu,
   useTrapFocus,
   useDropdown,
+  SfIconExpandMore
 } from '@storefront-ui/vue';
 import { unrefElement } from '@vueuse/core';
 import type { MegaMenuProps } from '~/components/MegaMenu/types';
