@@ -1,6 +1,6 @@
 <template>
     <div class="register-form">
-      <form @submit.prevent="registerUser" class="form-grid">
+      <form @submit.prevent="submitForm" class="form-grid">
         <!-- Row 1: Kundengruppe -->
         <div class="form-group full">
           <label for="customerGroup">Kundengruppe</label>
@@ -102,7 +102,8 @@
   
         <!-- Button -->
         <div class="form-group full">
-          <button type="submit">Registrieren</button>
+          <button type="submit" @click="activeFunction = 'f1'">Registrieren F1</button>
+          <button type="submit" @click="activeFunction = 'f2'">Registrieren F2</button>
         </div>
       </form>
     </div>
@@ -112,10 +113,11 @@
 <script>
 
 import { httpClient } from '@/sdk.client'; // adjust path as needed
-
+const { register } = useCustomer();
 export default {
   data() {
     return {
+      activeFunction: 'f1',
       customerGroups: [],
       data : {
             contact: {
@@ -160,111 +162,43 @@ export default {
         { id: 2, name: "Händler" }
       ];
     },
-    async registerUser() {
-
-
-      /*if (this.form.password !== this.form.passwordRepeat) {
-        alert("Passwörter stimmen nicht überein.");
-        return;
-      }*/
-
-      // Call Plentymarkets API or custom backend route here
-      console.log("Registering user:", this.testData);
+    async registerUser_1() {
+      console.log("Registering user:", this.data);
      
-  const payload = {
-    contact: {
-      referrerId: 4.01,
-      typeId: 1,
-      options: {
-        typeId: {
-          typeId: 2,
-          subTypeId: 4,
-          value: 'test+189@web-wikinger.de',
-          priority: 0
-        }
-      },
-      password: 'Simo@2025'
-    },
-    honeypot: '',
-    billingAddress: {
-      countryId: 1,
-      gender: 'male',
-      name2: 'Mohamed',
-      name3: 'Aarab',
-      telephone: '26326',
-      address1: 'wet',
-      address2: '24116',
-      postalCode: '24116',
-      town: 'Kiel'
-    }
-  };
-
-  try {
-    const response = await httpClient('https://b2b.kelloggs-shop.de/rest/io/customer/', // endpoint
-      payload, // data
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-
-    console.log('✅ Registered customer:', response);
-  } catch (err) {
-    console.error('❌ Error during registration:', err);
-  }
- 
-  /* 
-  register({
-  contact: {
-    referrerId: 4.01,
-    typeId: 1,
-    options: {
-      typeId: {
-        typeId: 2,
-        subTypeId: 4,
-        value: "test+18999@webikinger.de",
-        priority: 0
-      }
-    },
-    password: "Simo@2025"
-  },
-  billingAddress: {
-    countryId: 1,
-    gender: "male",
-    name2: "Mohamed2",
-    name3: "Aarab2",
-    telephone: "263262",
-    address1: "wet2",
-    address2: "24116",
-    postalCode: "24116",
-    town: "Kiel"
-  }
-}).then(res => {
-  console.log("✅ Registered successfully!", res);
-}).catch(err => {
-  console.error("❌ Error during registration", err);
-});
-     
-            fetch("https://b2b.kelloggs-shop.de/rest/io/customer/", {
-            method: "POST",
+      try {
+        const response = await httpClient('https://b2b.kelloggs-shop.de/rest/io/customer/', // endpoint
+          this.data, // data
+          {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.testData)
-            })
-            .then(response => {
-                if (!response.ok) throw new Error("Request failed");
-                return response.json();
-            })
-            .then(result => {
-                console.log("✅ Success:", result);
-            })
-            .catch(error => {
-                console.error("❌ Error:", error);
-            });*/
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+
+        console.log('✅ Registered customer:', response);
+      } catch (err) {
+        console.error('❌ Error during registration:', err);
+      }
+    },
+    async registerUser_2() {
+
+      console.log("Registering user:", this.data);
+    
+      register(this.data).then(res => {
+        console.log("✅ Registered successfully!", res);
+      }).catch(err => {
+        console.error("❌ Error during registration", err);
+      });
+     
       
+    },
+    submitForm() {
+      if (this.activeFunction === 'f1') {
+        this.registerUser_1();
+      } else if (this.activeFunction === 'f2') {
+        this.registerUser_2();
+      }
     }
   }
 };
