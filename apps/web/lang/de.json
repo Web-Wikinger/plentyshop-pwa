@@ -454,6 +454,10 @@
   "emptyStateAltText": "Bild, das beschreibt, dass keine Produkte gefunden wurden",
   "emptyStateText": "Wir haben keine Produkte mehr in dieser Kategorie.",
   "emptyStateText2": "Haben Sie nicht gefunden, was Sie suchen?",
+  "categoryPage" : { 
+    "textNotlogged": "Sie sind Geschäftkunde und wollen unsere Produkte erwerben?",
+    "buttonRegister": "Jetzt registrieren"
+  },
   "emptyWishlist": "Ihre Wunschliste ist leer",
   "error": {
     "accessKeyMailFailed": "Die E-Mail konnte nicht versendet werden, bitte kontaktieren Sie den Shopbetreiber.",

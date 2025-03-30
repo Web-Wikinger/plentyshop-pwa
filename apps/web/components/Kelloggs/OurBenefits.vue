@@ -14,7 +14,7 @@
           <div class="kl-img-wrapper">
             <img src="/images/kelloggs/World@2x.png" alt="Shop">
           </div>
-          <p class="kl-card-title">Preisvorteil im Vergleich zum Großhandel</p>
+          <p class="kl-card-title">Preisvorteil</p>
           <p class="kl-card-description">Unsere Preise sind darauf ausgelegt, dir einen klaren Vorteil gegenüber den
             üblichen Großhandelsangeboten zu bieten. So kannst du hochwertige Produkte zu Konditionen genießen, die
             deinen Gewinn maximieren und deine Wettbewerbsfähigkeit stärken.</p>
@@ -27,7 +27,7 @@
           <div class="kl-img-wrapper">
             <img src="/images/kelloggs/Cereal Bowl@2x.png" alt="Familie">
           </div>
-          <p class="kl-card-title">Topaktuelles Portfolio</p>
+          <p class="kl-card-title">Flexibiltät</p>
           <p class="kl-card-description">Unser Sortiment wird laufend aktualisiert, um stets die neuesten Trends und
             Marktbedürfnisse abzudecken. Ob bewährte Bestseller oder innovative Highlights – wir bieten dir eine
             vielfältige Auswahl, die perfekt auf deine Kunden zugeschnitten ist.</p>
@@ -40,7 +40,7 @@
           <div class="kl-img-wrapper">
             <img src="/images/kelloggs/home/icon-delivery.png" alt="Kostenlose Lieferung">
           </div>
-          <p class="kl-card-title kl-title-long">Kostenlose Lieferung & flexible Zahlungsmöglichkeiten</p>
+          <p class="kl-card-title kl-title-long">Lieferung</p>
           <p class="kl-card-description">Spare nicht nur bei den Produkten, sondern auch bei der Lieferung: Ab einem
             Bestellwert von 100 € ist der Versand kostenlos. Zudem bieten wir flexible Zahlungsmöglichkeiten an, damit
             du deine Einkäufe so einfach und bequem wie möglich abwickeln kannst.</p>
@@ -53,7 +53,7 @@
           <div class="kl-img-wrapper">
             <img src="/images/kelloggs/Person Kopie@2x.png" alt="Zufriendenheit">
           </div>
-          <p class="kl-card-title">Unser Ziel: Deine Zufriedenheit</p>
+          <p class="kl-card-title">Unser Ziel</p>
           <p class="kl-card-description">Deine Zufriedenheit steht für uns an erster Stelle. Mit unserem
             Fullservice-Angebot unterstützen wir dich in jeder Phase – von der Produktauswahl über die Bestellung bis
             hin zum After-Sales-Service. </p>
@@ -178,5 +178,8 @@
     display: block;
     padding-right: 15px;
   }
+}
+p.kl-card-title {
+    text-align: center;
 }
 </style>

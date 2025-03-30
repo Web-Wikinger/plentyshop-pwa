@@ -10,6 +10,10 @@
         <p class="kl-red-bar__content">Schnelle Lieferung</p>
       </div>
       <div class="kl-red-bar__item">
+        <img src="/images/kelloggs/icn-circled-white.svg" alt="Kein Mindestbestellwert">
+        <p class="kl-red-bar__content">Kein Mindestbestellwert</p>
+      </div>
+      <div class="kl-red-bar__item">
         <img src="/images/kelloggs/icn-circled-white.svg"
              alt="Flexible Zahlungsmöglichkeiten">
         <p class="kl-red-bar__content">Flexible Zahlungsmöglichkeiten</p>
@@ -36,7 +40,7 @@
 .kl-red-bar-wrapper {
   display: flex;
   justify-content: space-around;
-  max-width: 950px;
+  max-width: 1275px;
   margin: 0 auto;
   gap: 8%;
 }

@@ -7,7 +7,7 @@
     </section>
 
     <!-- Registration Steps -->
-    <section class="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto px-4">
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
       <div v-for="(step, index) in steps" :key="index" class="flex flex-col items-center text-center">
         <img :src="step.icon" alt="icon" class="w-24 h-24 object-contain" />
         <p class="text-gray-900 mt-2 text-lg font-bold">{{ step.text }}</p>
@@ -31,7 +31,7 @@
         <h1 class="g-32 lg:g-40">Jetzt als Kellogg's Businesspartner im Online-Shop registrieren</h1>
         <p class="g-24 mt-2">Sichern Sie sich exklusive Businesspartner-Vorteile!</p>
         <div class="mt-8 mx-auto text-left">
-          <h2 class="g-24">Vorteile der Freischaltung</h2>
+          <h2 class="g-24">Vorteile</h2>
           <ul class="mt-4">
             <li v-for="(benefit, index) in benefits" :key="index"
                 class="bg-[#be0036] py-1 rounded-r-2xl flex items-center">
@@ -47,9 +47,10 @@
       </section>
 
       <!-- Registration Form -->
-      <section class="bg-white shadow-lg p-4 lg:p-10 rounded-lg mt-10 mr-auto max-w-4xl">
-        <Register :show-benefits="false" :changeable-view="false" @registered="navigateAfterAuth" /> 
-      </section>
+       <!--<section class="bg-white shadow-lg p-4 lg:p-10 rounded-lg mt-10 mr-auto max-w-4xl">
+          <Register :show-benefits="false" :changeable-view="false" @registered="navigateAfterAuth" />
+      </section> --> 
+      <B2bRegisterForm />
     </section>
 
   </article>
@@ -70,27 +71,19 @@ const navigateAfterAuth = (skipReload) => {
 
 // Steps for registration process
 const steps = ref([
-  { icon: "/images/kelloggs/Form.svg", text: "B2B-Formular ausfüllen" },
-  { icon: "/images/kelloggs/Form-Check.svg", text: "Wir prüfen Ihre Angaben" },
-  { icon: "/images/kelloggs/Check.svg", text: "Freischaltung & Bestätigungs-E-Mail" },
-  { icon: "/images/kelloggs/Login.svg", text: "Mit Ihrer E-Mail Adresse einloggen" },
-  { icon: "/images/kelloggs/Basket.svg", text: "Über das B2B-Portal einkaufen" }
+  { icon: "/images/kelloggs/Form.svg", text: "Formular ausfüllen" },
+  { icon: "/images/kelloggs/Check.svg", text: "Freischaltung und Bestätigungs Mail" },
+  { icon: "/images/kelloggs/Basket.svg", text: "Über das Portal einkaufen" }
 ]);
 
 // Benefits of registration
 const benefits = ref([
-  "Topaktuelles Portfolio aller Kellogg‘s, Pringles und SweetSnacks.",
-  "Warenverfügbarkeit",
+  "Preisvorteil im Vergleich zum Großhandel",
+  "Topaktuelles Portfolio",
   "Einfache und flexible Bestellmöglichkeiten",
-  "Mit Fullservice Angebot",
-  "Rabattaktionen",
-  "Preisstafflungen möglich",
-  "Freie Lieferung ab 100€ Einkauf",
-  "Schnelle Infos über Neuheiten",
-  "Spezielle Produktaktionen",
-  "Garantierte Bestellungsupdates",
-  "Flexible Zahlungsmöglichkeiten (Paypal, etc.)",
-  "Zeitersparnis durch Kundenkonten"
+  "Kostenlose Lieferung ab 100€",
+  "Kein Mindestbestellwert",
+  "Preisstaffelungen möglich"
 ]);
 
 // Login form data
