@@ -237,6 +237,73 @@
                 </SfListItem>
               </li>
             </template>
+            <li>
+              <SfListItem
+                size="lg"
+                tag="button"
+                type="button"
+                @click="toggleVerkaufshilfenMenu"
+              >
+                <div class="flex flex-row items-center">
+                    <p class="flex font-medium">Verkaufshilfen</p>
+                    <div class="flex-1 absolute h-8 w-16 right-0">
+                      <SfIconChevronRight v-if="!isVerkaufshilfenMenuOpen" class="text-neutral-500" />
+                      <SfIconArrowBack v-else class="text-neutral-500" />
+                    </div>
+                </div>
+              </SfListItem>
+
+              <!-- Test Sub-items (Shown only when isVerkaufshilfenMenuOpen is true) -->
+              <ul v-if="isVerkaufshilfenMenuOpen" class="ml-6 mt-2">
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" href="https://kelloggs-shop.de/pages/pringles-pos">
+                    <p class="text-left">Pringles Automat</p>
+                  </SfListItem>
+                </li>
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/">
+                    <p class="text-left">B2B Starter Kit</p>
+                  </SfListItem>
+                </li>
+                
+              </ul>
+            </li>
+
+            <li>
+              <SfListItem
+                size="lg"
+                tag="button"
+                type="button"
+                @click="toggleVerkaufshilfen2Menu"
+              >
+                <div class="flex flex-row items-center">
+                    <p class="flex font-medium">Verkaufsstrategien für Ihre Branche</p>
+                    <div class="flex-1 absolute h-8 w-16 right-0">
+                      <SfIconChevronRight v-if="!isVerkaufshilfen2MenuOpen" class="text-neutral-500" />
+                      <SfIconArrowBack v-else class="text-neutral-500" />
+                    </div>
+                </div>
+              </SfListItem>
+
+              <!-- Test Sub-items (Shown only when isVerkaufshilfenMenuOpen is true) -->
+              <ul v-if="isVerkaufshilfen2MenuOpen" class="ml-6 mt-2">
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" :href="localePath('/hotellerie')">
+                    <p class="text-left">Hotellerie</p>
+                  </SfListItem>
+                </li>
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" :href="localePath('/bars-gastronomie')">
+                    <p class="text-left">Bars & Gastronomie</p>
+                  </SfListItem>
+                </li>
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" :href="localePath('/kiosk-getrankehandel')">
+                    <p class="text-left">Kiosk & Getränkehandel</p>
+                  </SfListItem>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </SfDrawer>
@@ -341,4 +408,16 @@ watch(
     setCategory(categoryTree.value);
   },
 );
+
+const isVerkaufshilfenMenuOpen = ref(false);
+
+const toggleVerkaufshilfenMenu = () => {
+  isVerkaufshilfenMenuOpen.value = !isVerkaufshilfenMenuOpen.value;
+};
+
+const isVerkaufshilfen2MenuOpen = ref(false);
+
+const toggleVerkaufshilfen2Menu = () => {
+  isVerkaufshilfen2MenuOpen.value = !isVerkaufshilfen2MenuOpen.value;
+};
 </script>
