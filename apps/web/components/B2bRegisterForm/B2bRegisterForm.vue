@@ -1,6 +1,6 @@
 <template>
     <div class="register-form">
-      <form @submit.prevent="submitForm" class="form-grid">
+      <form @submit.prevent="submitForm" class="form-grid" ref="CustomerRegistrationForm">
         <!-- Row 1: Kundengruppe -->
         <div class="form-group full">
           <label for="customerGroup">Kundengruppe</label>
@@ -102,9 +102,10 @@
   
         <!-- Button -->
         <div class="form-group full">
-          <button type="submit" @click="activeFunction = 'f1'">Registrieren F1</button>
-          <button type="submit" @click="activeFunction = 'f2'">Registrieren F2</button>
+          <button type="submit" @click="activeFunction = 'f1'">Registrieren</button>
+          <!--<button type="submit" @click="activeFunction = 'f2'">Registrieren F2</button>-->
         </div>
+        <ReCaptcha/>
       </form>
     </div>
   </template>
@@ -113,11 +114,13 @@
 <script>
 
 import { httpClient } from '@/sdk.client'; // adjust path as needed
+
 const { register } = useCustomer();
 export default {
   data() {
     return {
       activeFunction: 'f1',
+      googleRecaptchaApiKey: '6LczjZcpAAAAAPu2LrxCO-OQaaYzj4VTFwdLHoBG',
       customerGroups: [],
       data : {
             contact: {
@@ -164,23 +167,30 @@ export default {
     },
     async registerUser_1() {
       console.log("Registering user:", this.data);
-     
+
       try {
-        const response = await httpClient('https://b2b.kelloggs-shop.de/rest/io/customer/', // endpoint
-          this.data, // data
-          {
+        const recaptchaToken = await this.executeReCaptcha(this.$refs.CustomerRegistrationForm);
+        this.data.recaptcha = recaptchaToken;
+        console.log(this.data);
+
+        const params = {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
-            }
+              'Content-Type': 'application/json',
+            },
           }
-        );
+        const response = await httpClient('https://b2b.kelloggs-shop.de/rest/io/customer/',this.data,params);
 
-        console.log('✅ Registered customer:', response);
+        console.log('✅ Registered customer:');
+
+        console.log(response)
+
+        
       } catch (err) {
         console.error('❌ Error during registration:', err);
       }
     },
+
     async registerUser_2() {
 
       console.log("Registering user:", this.data);
@@ -199,7 +209,30 @@ export default {
       } else if (this.activeFunction === 'f2') {
         this.registerUser_2();
       }
+    },
+    executeReCaptcha(form){
+       
+        const recaptchaElement = form.querySelector("[data-recaptcha]");
+
+        if (window.grecaptcha && recaptchaElement){
+
+           return new Promise((resolve, reject) =>{
+
+                window.grecaptcha.execute(this.googleRecaptchaApiKey,{ action: "homepage" })
+                .then(response =>{
+                        if (response){
+                            resolve(response);
+                        }else{
+                            reject();
+                        }
+                });
+
+
+            });
+        }
+
     }
+
   }
 };
 </script>

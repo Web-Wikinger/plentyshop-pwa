@@ -2,8 +2,8 @@
   <div class="mx-auto px-[30px] py-[70px]">
     <div class="flex flex-col md:flex-row justify-center items-start">
       <div class="max-w-[360px] text-center md:text-left mb-6 md:mb-0 mr-[80px]">
-        <span class="text-[18px] mb-[8px] font-bold">Unsere Rezepte</span>
-        <h1 class="font-bold mb-4 text-[48px] leading-[60px]">Verkaufsstrategien für Ihre :</h1>
+        <span class="text-[18px] mb-[8px] font-bold"></span>
+        <h1 class="font-bold mb-4 text-[48px] leading-[60px]">Verkaufsstrategien für Ihre</h1>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px] max-w-[920px] flex-1">
         <div v-for="recipe in recipes" :key="recipe.id" class="bg-white shadow-lg shadow-r shadow-b rounded-none overflow-hidden">
