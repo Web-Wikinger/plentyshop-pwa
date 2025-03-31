@@ -11,10 +11,9 @@
           />
         </div>
         <div class="md:ml-6 flex-1 my-[20px]">
-          <h2 class="text-lg uppercase text-[17px] leading-[22px]">{{title}}</h2>
+          <h2 class="text-lg uppercase text-[17px] leading-[22px]" v-html="title"></h2>
           <h1 class="text-2xl font-bold mt-2 text-[33px] leading-[44px] text-white">{{ subtitle }}</h1>
-          <p class="mt-2 text-20px text-white">
-            {{ description }}
+          <p class="mt-2 text-20px text-white" v-html="description">
           </p>
           <p class="mt-2 font-bold text-[20px] leading-[27px] mt-[50px] text-white">
             {{imageText}}

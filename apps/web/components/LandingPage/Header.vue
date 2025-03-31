@@ -4,8 +4,7 @@
       <h2 class="text-lg font-semibold text-gray-800 text-[23px]">
         {{title}}
       </h2>
-      <p class="text-[#2C2C2C] mt-1 lg:text-[40px] text-[20px] mt-[14px] font-bold">
-        {{subtitle}}
+      <p class="text-[#2C2C2C] mt-1 lg:text-[40px] text-[20px] mt-[14px] font-bold" v-html="subtitle">
       </p>
     </div>
     <div>

@@ -101,37 +101,31 @@
             </UiButton>
 
             <div
-                 v-if="
-                  isOpen &&
-                  activeMenu &&
-                  activeNode.length === 1 &&
-                  activeNode[0] === -99
-                "
-                 :key="-99"
-                 ref="megaMenuReference"
-                 :style="style"
-                 class="hidden md:flex gap-x-6 bg-white shadow-lg p-6 left-0 right-0 outline-none z-40"
-                 tabindex="0"
-                 @click.passive="close"
-                 @keydown.esc="focusTrigger(-99)">
-
+              v-if="isOpen && activeMenu && activeNode.length === 1 && activeNode[0] === -99"
+              :key="-99"
+              ref="megaMenuReference"
+              :style="newStyle"
+              class="top-full w-auto min-w-[200px] bg-white shadow-lg p-4 outline-none z-40"
+              tabindex="0"
+              @click.passive="close"
+              @keydown.esc="focusTrigger(-99)">
+              
               <div>
-                <ul class="flex mt-2">
-                  <li  :key="-98">
-                    <SfListItem :tag="NuxtLink" size="sm"
-                                href="https://kelloggs-shop.de/pages/pringles-pos" class="py-1.5 g-16-m">
+                <ul class="flex flex-col space-y-2">
+                  <li>
+                    <SfListItem :tag="NuxtLink" size="sm" href="https://kelloggs-shop.de/pages/pringles-pos" class="py-1.5 g-16-m">
                       Pringles Automat
                     </SfListItem>
                   </li>
-                  <li  :key="-98">
-                    <SfListItem :tag="NuxtLink" size="sm"
-                                href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
+                  <li>
+                    <SfListItem :tag="NuxtLink" size="sm" href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
                       B2B Starter Kit
                     </SfListItem>
                   </li>
                 </ul>
               </div>
             </div>
+
           </li>
           <li v-if="categoryTree.length !== 0">
             <UiButton
@@ -153,14 +147,14 @@
                 "
                  :key="-98"
                  ref="megaMenuReference"
-                 :style="style"
-                 class="hidden md:flex gap-x-6 bg-white shadow-lg p-6 left-0 right-0 outline-none z-40"
+                 :style="newStyle"
+                 class="top-full w-auto min-w-[200px] bg-white shadow-lg p-4 outline-none z-40"
                  tabindex="0"
                  @click.passive="close"
                  @keydown.esc="focusTrigger(-98)">
 
               <div>
-                <ul class="flex mt-2">
+                <ul class="flex flex-col space-y-2 ">
                   <li >
                     <SfListItem :tag="NuxtLink" size="sm"
                                 :href="localePath('/hotellerie')" class="py-1.5 g-16-m">
@@ -282,6 +276,8 @@ const { referenceRef, floatingRef, style } = useDropdown({
   placement: 'bottom-start',
   middleware: [],
 });
+
+const newStyle = "position: absolute;top: 81px;left: unset;";
 const categoryTree = ref(categoryTreeGetters.getTree(props.categories));
 
 // onBeforeRouteLeave((to, from) => {
