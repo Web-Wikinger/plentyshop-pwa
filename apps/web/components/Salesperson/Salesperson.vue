@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-white p-6 rounded-lg shadow-md">
+  <div class="w-full bg-white p-6 rounded-lg">
     <!-- Tabs Navigation -->
     <ul class="flex justify-between border-b mb-4">
         <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'CreateCustomer' }">
@@ -49,7 +49,7 @@
 
       <!-- Second Tab -->
       <div v-if="isAuthenticated && activeTab === 'CreateCustomer'" class="flex justify-center items-center">
-        <div class="w-full bg-[#d0033d] text-white p-6 rounded-lg shadow-md">
+        <div class="w-full bg-[#d0033d] text-white p-6 rounded-lg">
           <h3 class="text-center text-xl font-bold mb-6">B2B Kundendaten erfassen</h3>
 
           <form @submit.prevent="registerCustomer" ref="CustomerRegistrationForm" class="space-y-4">
@@ -138,7 +138,7 @@
 
       <!-- Change Password Tab -->
       <div v-if="isAuthenticated && activeTab === 'changePassword'" class="flex justify-center items-center">
-        <div class="w-full bg-[#d0033d] text-white rounded-lg shadow-md p-4">
+        <div class="w-full bg-[#d0033d] text-white rounded-lg p-4">
           <h3 class="text-center text-xl font-bold mb-6">Passwort ändern</h3>
 
           <form @submit.prevent="changePassword" class="space-y-4">
