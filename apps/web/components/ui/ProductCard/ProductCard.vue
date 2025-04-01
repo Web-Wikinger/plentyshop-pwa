@@ -2,6 +2,16 @@
   <div class="kl-card-image-zoom rounded-md flex flex-col"
        data-testid="product-card">
     <div class="relative overflow-hidden">
+<<<<<<< HEAD
+=======
+      <UiBadges
+        :use-tags="useTagsOnCategoryPage"
+        :class="['absolute', isFromWishlist ? 'mx-2' : 'm-2']"
+        :product="product"
+        :use-availability="isFromWishlist"
+      />
+
+>>>>>>> dbbb525f (feat: hide tags on category page (#1173))
       <SfLink
               :tag="NuxtLink"
               rel="preload"
@@ -116,7 +126,13 @@ const { data: categoryTree } = useCategoryTree();
 const { price, crossedPrice } = useProductPrice(product);
 const { send } = useNotification();
 const loading = ref(false);
+<<<<<<< HEAD
 const { showNetPrices } = useCustomer();
+=======
+const config = useRuntimeConfig();
+const useTagsOnCategoryPage = config.public.useTagsOnCategoryPage;
+
+>>>>>>> dbbb525f (feat: hide tags on category page (#1173))
 const path = computed(() => productGetters.getCategoryUrlPath(product, categoryTree.value));
 const productSlug = computed(() => productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`);
 const productPath = computed(() => localePath(`${path.value}/${productSlug.value}`));
