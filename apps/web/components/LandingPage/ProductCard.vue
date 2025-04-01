@@ -55,11 +55,19 @@
             {{ n }} Paket
           </option>
         </select>
-        <button @click.stop="addItemToCart" 
-          class="w-full bg-[#2C2C2C] text-white font-bold rounded-none h-[45px] hover:bg-gray-800 text-[14px] flex items-center justify-center no-underline"
+        <div v-if="!loading">
+          <button @click.stop="addItemToCart" 
+              class="w-full bg-[#2C2C2C] text-white font-bold rounded-none h-[45px] hover:bg-gray-800 text-[14px] flex items-center justify-center no-underline"
+            >
+              IN DEN WARENKORB
+          </button>
+        </div>
+        <div 
+          v-else
+          class="w-full  text-white font-bold rounded-none h-[45px] hover:bg-gray-800 text-[14px] flex items-center justify-center no-underline"
         >
-          IN DEN WARENKORB
-      </button>
+          <SfLoaderCircular size="sm" />
+        </div>
       </div>
     </div>
   </div>
@@ -72,6 +80,8 @@ import { productGetters } from '@plentymarkets/shop-api';
 import { defaults } from '~/composables';
 import { Product } from '@plentymarkets/shop-api';
 import { computed, ref } from 'vue';
+import { SfLoaderCircular } from '@storefront-ui/vue';
+
 import _ from 'lodash';
 
 const {
