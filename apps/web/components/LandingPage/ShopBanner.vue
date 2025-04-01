@@ -2,8 +2,12 @@
   <div class="flex w-full bg-white rounded-[4vw] overflow-hidden">
     <!-- Left Section -->
     <div class="w-[44%] bg-[#f60b45] text-white flex pb-10 flex-col  justify-center rounded-l-lg">
-      <h2 class="text-[70px] font-bold px-10 leading-[75px]">Sichern Sie sich das Starter-Kit!</h2>
-      <p class=" bg-white text-black  py-3 text-[40px] font-bold rounded-none shadow-md pl-10 mr-[100px]">Servicetool gratis!*</p>
+      <h2 class="text-[70px] font-bold px-10 leading-[75px]">
+        <a href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/">Sichern Sie sich das Starter-Kit!</a>
+      </h2>
+      <p class=" bg-white text-black  py-3 text-[40px] font-bold rounded-none shadow-md pl-10 mr-[100px]">
+        Servicetool gratis!*
+      </p>
       <p class="mt-[60px] text-[8px] opacity-90 leading-relaxed px-10 mr-[100px]">
         * Das Angebot gilt für registrierte Businesspartner im B2B Kellogg’s Shop mit angegebener Ust-ID.<br>
         Nur ein Starter Kit pro Businesspartner bestellbar. Nur solange der Vorrat reicht. Keine Barauszahlung möglich.

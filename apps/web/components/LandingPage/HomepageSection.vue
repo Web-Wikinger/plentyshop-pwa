@@ -43,7 +43,7 @@ const recipes = [
     id: 4,
     title: "Pringles",
     image: "/images/hp-block/4.png",
-    url: '/'
+    url: 'https://kelloggs-shop.de/pages/pringles-pos'
   }
 ];
 </script>

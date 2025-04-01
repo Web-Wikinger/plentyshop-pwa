@@ -4,7 +4,8 @@
       title="Platzierungsvorschlag und Best Practice-Tipps für Getränkemärkte und Kiosks"
       subtitle="PRINGLES® sind die perfekte Ergänzung für Ihr Kerngeschäft"
       description="Was passt besser zusammen als ein kühles Getränk und ein salziger Snack? PRINGLES® sind starker Umsatztreiber für Kiosk- und Getränkemarktbesitzer. Snack-Käufe sind oft impulsiv – besonders als Belohnung am Abend. Sie sind eng mit dem Konsum von kalten Getränken wie Bier und Softdrinks verknüpft, was sie ideal für Cross-Selling, also den gemeinsamen Verkauf mit Ihrem Kerngeschäft, macht. Strategisch platziert, steigern PRINGLES® spürbar den Umsatz.<br><br><br>*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für Betriebswirtschaft und Agrarstruktur, Dezember 2021	"
-      buttonText=""
+      buttonText="Zum Cerealien-Angebot"
+      buttonLink="/snacks/pringles/"
     />
 
     <LandingPageMinHeightDiv 
@@ -13,6 +14,7 @@
       description="PRINGLES® sind in zwei verschiedenen Gebinden verfügbar: In der praktischen 40 g-Dose als To-go-Snack und der klassischen 165 g-Dose zum Teilen. Die 40 g Dose gibt es in den schnelldrehenden Sorten Original, Sour Cream & Onion, Paprika sowie Hot & Spicy. Die klassischen 165 g-Dosen sind derweil in über 10 Flavours bestellbar und überzeugen Ihre Kunden mit immer wieder neuen Limited Editions."
       imageSrc="/images/pringles-lp3.png"
       btnText="Zum PRINGLES® Sortiment"
+      buttonLink="/snacks/pringles/"
       imageLeft 
     />
     
@@ -30,7 +32,10 @@
     <LandingPagePresentation imageSrc="/images/Pringles List.png" :bgColor="'bg-gray-100'"
         SubTitle="Blickfänge schaffen" Title="PRINGLES® Displays als Verkaufsbooster" 
         Description="Nutzen Sie aufmerksamkeitsstarke Displays, um PRINGLES® optimal zu präsentieren. Diese sind sowohl für die 165 g-Dosen als auch die 40 g-Dosen verfügbar. In engen Räumlichkeiten passt beispielsweise die kompakte Banane für die 40 g-Dosen perfekt auf den Kassentresen, während das stabile Papp-Regal bei ausreichend Platz die 165 g-Dosen ideal in Szene setzt. Schreiben Sie uns bei Interesse an Display-Möglichkeiten!"
-        ButtonText="Mehr Infos"/>
+        ButtonText="Mehr Infos"
+        :mailTo=true
+        buttonLink="mailto:Foodservice.DACH@kellanova.com"
+        />
 
     <div class="py-[70px]">
       <LandingPageShopBanner class="mx-auto w-[1200px]"/>
@@ -46,6 +51,7 @@
         SubTitle="Den Dreh raus" Title="Der Drehautomat für Pringles® bringt Zusatzumsätze" 
         Description="Signalrot oder schwarz, gefüllt mit 49 Pringles® 40 g Dosen, ist der Drehautomat für Pringles® ein Umsatzbringer ohne zusätzlichen Personalaufwand. Das Handling ist easy: Einfach Sorte aussuchen, Geld einwerfen, drehen und snacken. Der Automat ist vielseitig einsetzbar, als Hingucker auf dem Standfuß, diebstahlsicher an der Wand oder als Miniautomat direkt auf dem Tresen platziert."
         ButtonText="Mehr Infos zum Automaten"
+        buttonLink="https://kelloggs-shop.de/pages/pringles-pos"
     />
     
     <LandingPageInfoBlock 

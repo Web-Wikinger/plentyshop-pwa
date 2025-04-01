@@ -8,14 +8,13 @@
       </p>
     </div>
     <div>
-      <p class="text-[#707070] text-sm text-[20px] font-normal" v-html="description">
+      <p class="text-[#707070] text-sm text-[20px] font-normal mb-[30px]"  v-html="description">
       </p>
-      <button
-        v-if="buttonText"
-        class="px-6 py-2 border-2 border-red-color text-red-color rounded-[1vw] hover:bg-red-color hover:text-white transition text-[20px] mt-[37px]"
-      >
-        {{buttonText}}
-      </button>
+       <NuxtLink v-if="buttonText"
+                    :to="buttonLink"
+                    class="mt-6 px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start">
+                    {{buttonText}}
+          </NuxtLink>
     </div>
   </div>
 </template>
@@ -26,6 +25,7 @@ defineProps({
   subtitle: String,
   description: String,
   buttonText: String,
+  buttonLink:String
 });
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-red-color pt-12 mt-12 flex justify-center">
+  <div class="bg-red-color pt-12 mt-12 flex justify-center" >
     <div class=" p-8 rounded-[1vw] w-full text-center">
       <div class="flex justify-center gap-4">
         <div class="bg-white w-[475px] rounded-[4vw]">
@@ -17,9 +17,11 @@
         Aus Edelstahl gefertigt und platzsparend designt. Verfügbar als 3er oder 4er Dispenser. Beide Varianten 
         lassen sich perfekt mit der Breakfast Corner kombinieren.
       </p>
-      <button class="mt-6 text-white mb-[65px] py-2 w-[330px] rounded-[1vw] font-semibold hover:bg-red-800 border-white border">
-        Hier bestellen
+      <button   class="mt-6 text-white mb-[65px] py-2 w-[330px] rounded-[1vw] font-semibold hover:bg-red-800 border-white border">
+        <a href="https://bestbreakfast.de/hotel_content.php?content=shop"> Hier bestellen</a>
       </button>
+      
+
     </div>
   </div>
 </template>

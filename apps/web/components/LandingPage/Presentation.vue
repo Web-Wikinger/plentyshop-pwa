@@ -25,11 +25,16 @@
             </p>
           </div>
 
-          <button v-if="!noButton"
-            class="mt-6 px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start"
-          >
+         <NuxtLink v-if="!noButton && !mailTo"
+                    :to="buttonLink"
+                    class="mt-6 px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start">
+                    {{ButtonText}}
+          </NuxtLink>
+          <a v-if="mailTo"
+            :href="buttonLink" 
+            class="mt-6 px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start">
             {{ButtonText}}
-          </button>
+          </a>
         </div>
 
         <div v-if="!imageLeft" class="h-full lg:flex items-center justify-center">
@@ -51,6 +56,8 @@ defineProps({
   Description: { type: String, default: '' },
   Additional: { type: String, default: '' },
   ButtonText: { type: String, default: '' },
-  noButton: Boolean
+  noButton: Boolean,
+  buttonLink :String,
+  mailTo:Boolean
 });
 </script>

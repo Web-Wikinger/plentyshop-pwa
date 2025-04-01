@@ -185,7 +185,7 @@ export default {
 
         console.log(response)
 
-        
+
       } catch (err) {
         console.error('❌ Error during registration:', err);
       }

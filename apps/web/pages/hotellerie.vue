@@ -5,6 +5,7 @@
       subtitle="Kellogg's<span class='text-lg align-super'>®</span> Produkte effektiv am Frühstücksbuffet und in Tagungsräumen platzieren"
       description="In der Hotellerie entscheidet oft das kulinarische Angebot über den Erfolg, besonders beim Frühstück und in Tagungsräumen. Hier spielt der Hoteleinkauf eine Schlüsselrolle: Durch die Auswahl qualitativer Produkte können Hotels ihr Frühstücksbuffet und Snack-Angebot in Tagungsräumen aufwerten."
       buttonText="Zum Snack-Angebot"
+      buttonLink="/snacks/pringles/"
     />
 
     <LandingPagePresentation imageSrc="/images/image-1.jpeg" 
@@ -14,13 +15,19 @@
         Additional="*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für <br>
                 Betriebswirtschaft und Agrarstruktur, Dezember 2021<br>
                 **Quelle: VuMa 2023" 
-        ButtonText="Zum Frühstücksbuffet"/>
+        ButtonText="Zum Frühstücksbuffet"
+        buttonLink="fruehstueck/cerealien/"
+        
+        />
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/composing_tagung.png" 
         SubTitle="Mehr Schwung" 
         Title="Im Tagungsraum mit Kellogg’s<span class='text-lg align-super'>®</span> Produkten für eine gute Basis sorgen" 
         Description="KELLOGG’s<span class='text-lg align-super'>®</span> Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s<span class='text-lg align-super'>®</span> Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
         Additional="" 
-        ButtonText="Zu den Präsentationsmöglichkeiten"/>
+        ButtonText="Zu den Präsentationsmöglichkeiten"
+        buttonLink="#Dispenser"
+        
+        />
     
     <LandingPageProductDisplay
       v-if="cerealienProducts.products"
@@ -34,7 +41,7 @@
       imageText="Beispiel Platzierung auf Ihrem Buffet:"
     />    
 
-    <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_breakfastcorner.png" 
+   <!-- <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_breakfastcorner.png" 
         SubTitle="BREAKFAST CORNER – Kellogg’s<span class='text-lg align-super'>®</span> am Frühstücksbuffet" Title="Hotelgäste am Morgen glücklich machen" 
         Description="Damit können Gäste jetzt ihre Frühstücksbowl so kreieren, wie sie in den Tag starten möchten: fruchtig-frisch oder herzhaft-anregend, entspannt oder genussvoll. Um es einfacher zu machen, sind alle Zutatenmengen in Löffel- und nicht in Grammangabe angegeben. Die Rezepte basieren auf Zutaten, die auf den meisten Frühstückbuffets vertreten sind. <br>
                   Gefertigt ist das Display aus hochwertigen Materialien mit transparenter Optik. Mit solidem Holzsockel für einen sicheren Stand. Kombinierbar mit den bekannten KELLOGG’S<span class='text-lg align-super'>®</span> Foodservern. Das Format ist 60 cm Breite und 40 cm Höhe. Unter bestimmten Voraussetzungen ist die Breakfast Corner individualisierbar (z. B. Logo-Einbindung, Bowlideen-Anzahl, Anpassung Corporate Look).
@@ -44,7 +51,7 @@
     <LandingPagePresentation imageLeft imageSrc="/images/Cup des Tages Aufsteller Bild.png" 
       SubTitle="Cup des Tages" Title="Eye Catcher für jedes Buffet" 
       Description="Wenn der Platz für eine Breakfast Corner nicht reicht oder nur eine Bowl-Idee, z. B. für die Meeting-Pause angeboten werden kann, empfiehlt sich der Cup des Tages Aufsteller mit einer tollen Bowl-Idee. Insgesamt stehen 6 alternative Varianten im Set zur Verfügung. "
-      ButtonText="Jetzt Set downloaden!"/>
+      ButtonText="Jetzt Set downloaden!"/>-->
   
     <LandingPageMinHeightDiv 
       title="Hygienischer Kippdeckel und visueller Mehrwert"
@@ -53,7 +60,7 @@
 präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foodserver aus hochwertigem Acryl. Für bis zu 750 g Cerealien oder Müsli. Der praktische Kippdeckel sorgt für den hygienesicheren Verschluss nach jeder Portionierung."
       imageSrc="/images/image-01.png" />
 
-    <LandingPageDispenser />
+    <LandingPageDispenser id="Dispenser" />
 
     
         
@@ -85,6 +92,7 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
                   und snacken. Ideal für attraktive Zusatzumsätze ohne
                   wesentlichen Personal- bzw. Zeitaufwand."
       ButtonText="Jetzt bestellen!"
+      buttonLink="https://kelloggs-shop.de/pages/pringles-pos"
       />
 
 
@@ -93,6 +101,7 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
       SubTitle="Pop in der After Hour" Title="PRINGLES<span class='text-lg align-super'>®</span> 40 g Dosen sind der ideale Snack für die Mini Bar" 
       Description="Der beliebte Snack eignet sich hervorragend für die Mini Bar. Durch ihre starke Markenstrahlkraft suggerieren PRINGLES<span class='text-lg align-super'>®</span> Gästen besondere Hochwertigkeit und Service. Außerdem sind die Dosen relativ klein, passen in nahezu jede Mini Bar und sind bei mehr Platz sogar ausgezeichnet stapelbar."
       ButtonText="Jetzt bestellen!"
+      buttonLink="/snacks/pringles/"
       />
   </div>
 </template>

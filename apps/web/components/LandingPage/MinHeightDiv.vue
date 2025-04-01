@@ -13,14 +13,13 @@
         <h2 class="font-bold mt-2 text-[33px] leading-[30px] text-white">
           {{title}}
         </h2>
-        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular text-white" v-html="description">
+        <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular text-white mb-[37px]" v-html="description">
         </p>
-        <button
-          v-if="btnText"
-          class="px-6 py-2 border-2 border-white text-white rounded-[1vw] hover:bg-white hover:text-white transition text-[20px] mt-[37px]"
-        >
-          {{btnText}}
-        </button>
+        <NuxtLink v-if="btnText"
+                    :to="buttonLink"
+                    class="px-6 py-2 border-2 border-white bg-red-color text-white rounded-[1vw] hover:bg-white hover:text-red-color transition text-[20px] mt-[37px]">
+                    {{btnText}}
+          </NuxtLink>
       </div>
 
       <div v-if="!imageLeft"
@@ -66,7 +65,8 @@ defineProps({
   description: String,
   imageSrc: { type: String, required: true },
   imageLeft: Boolean,
-  btnText: String
+  btnText: String,
+  buttonLink :String
 });
 
 const viewport = useViewport();
