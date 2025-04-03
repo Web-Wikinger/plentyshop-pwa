@@ -18,7 +18,9 @@ export default {
             recaptchaInitiated: false
         };
     },
-
+    beforeUnmount() {
+        this.removeRecaptchaScript();
+    },
     mounted()
     {
         this.$nextTick(() =>
@@ -95,6 +97,22 @@ export default {
                 .dispatchEvent(
                     new CustomEvent("recaptcha-response", { response: response })
                 );
+        },
+        removeRecaptchaScript() {
+            const script = document.getElementById("google-recaptcha-api");
+            const badge = document.querySelector('.grecaptcha-badge');
+
+            if (badge) {
+                badge.remove();
+            }
+
+            if (script) {
+                script.remove();
+                window.grecaptcha = undefined;
+                this.recaptchaInitiated = false;
+                gRecaptchaApiLoaded = undefined;
+            }
+           
         }
     }
 }

@@ -27,7 +27,7 @@
     <section class="flex flex-col lg:flex-row bg-primary-600 px-4 py-6 pb-24">
 
       <!-- Business Partner Registration -->
-      <section class="text-white px-4 mt-10 max-w-4xl ml-auto pr-8">
+      <section class="text-white w-full lg:w-1/2 pr-4">
         <h1 class="g-32 lg:g-40">Jetzt als Kellogg's Businesspartner im Online-Shop registrieren</h1>
         <p class="g-24 mt-2">Sichern Sie sich exklusive Businesspartner-Vorteile!</p>
         <div class="mt-8 mx-auto text-left">
@@ -50,7 +50,9 @@
        <!--<section class="bg-white shadow-lg p-4 lg:p-10 rounded-lg mt-10 mr-auto max-w-4xl">
           <Register :show-benefits="false" :changeable-view="false" @registered="navigateAfterAuth" />
       </section> --> 
-      <B2bRegisterForm />
+      <section class="bg-white shadow-lg p-4 lg:p-10 rounded-lg w-full lg:w-1/2 rounded-xl shadow-md">
+        <B2bRegisterForm />
+      </section>
     </section>
 
   </article>
