@@ -27,7 +27,7 @@
           <div class="kl-img-wrapper">
             <img src="/images/kelloggs/Cereal Bowl@2x.png" alt="Familie">
           </div>
-          <p class="kl-card-title">Flexibiltät</p>
+          <p class="kl-card-title">Flexibilität</p>
           <p class="kl-card-description">Unser Sortiment wird laufend aktualisiert, um stets die neuesten Trends und
             Marktbedürfnisse abzudecken. Ob bewährte Bestseller oder innovative Highlights – wir bieten dir eine
             vielfältige Auswahl, die perfekt auf deine Kunden zugeschnitten ist.</p>

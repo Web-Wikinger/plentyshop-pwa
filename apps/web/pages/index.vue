@@ -6,6 +6,7 @@
   <KelloggsOurBenefits></KelloggsOurBenefits>
   <LandingPageHomepageSection />
 </template>
+
 <script lang="ts" setup>
 const {
   currentBlock,

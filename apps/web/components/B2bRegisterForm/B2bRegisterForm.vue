@@ -200,7 +200,7 @@ const validationSchema = toTypedSchema(
       stateId:string().nullable(),
     }),
     privacyPolicy: boolean().isTrue().required('Bitte akzeptieren Sie die Daten­schutz­erklärung.'),
-    recaptcha: string().required(),
+    recaptcha: string().notRequired(),
     customerGroup: string().required('Kundengruppe ist erforderlich').notOneOf([""], 'Bitte wählen Sie eine Kundengruppe'),
   })
 );
@@ -216,7 +216,7 @@ const { values,defineField, handleSubmit,setFieldValue } = useForm({
         typeId: { 
           typeId: 2,
           subTypeId: 4,
-          value: "test+1899@web-wikinger.de",
+          value: "test+7894561@web-wikinger.de",
           priority: 0
          }
       }
@@ -233,11 +233,11 @@ const { values,defineField, handleSubmit,setFieldValue } = useForm({
       address2: '123',
       postalCode: '24116',
       town: 'Berlin',
-      countryId: "",
+      countryId: "1",
       stateId: "",
     },
-    recaptcha: '',
-    customerGroup : "",
+    //recaptcha: '',
+    customerGroup : "32",
   }
 });
 
@@ -262,12 +262,17 @@ const baseUrl = config.domain;;
 
 onMounted(() => {
   customerGroups.value = [
-    { id: 31, name: 'Neu-Kunde' },
-    { id: 32, name: 'Gastro' },
-    { id: 30, name: 'Kiosk' },
-    { id: 33, name: 'Tankstelle' },
-    { id: 34, name: 'Hotel' }
-  ];
+  { id: 30, name: 'Kiosk' },
+  { id: 32, name: 'Gastronomie' },
+  { id: 34, name: 'Hotel' },
+  { id: 36, name: 'Retailer' },
+  { id: 43, name: 'Büro' },
+  { id: 44, name: 'Eventagentur' },
+  { id: 45, name: 'Freizeitgastronomie' },
+  { id: 46, name: 'Getränkemarkt' },
+  { id: 48, name: 'Verein' },
+  { id: 56, name: 'Vending' }
+]
 });
 
 watch(
@@ -284,9 +289,9 @@ const submitWithRecaptcha = async () => {
   if (!recaptchaRef.value || !registerForm.value) return;
   
   try {
-    loading.value = true;
-    const recaptchaToken = await recaptchaRef.value.executeReCaptcha(registerForm.value)
-     //console.log('✅ Got reCAPTCHA token:', recaptchaToken)
+      loading.value = true;
+     const recaptchaToken = await recaptchaRef.value.executeReCaptcha(registerForm.value)
+     console.log('✅ Got reCAPTCHA token:', recaptchaToken)
     // Set the recaptcha value before validation
      await setFieldValue('recaptcha', recaptchaToken);
 
@@ -312,7 +317,7 @@ const onSubmit = handleSubmit(async (values) => {
           }
         });
 
-        if(response.events.AfterAccountAuthentication.isSuccess){
+        if(response?.events?.AfterAccountAuthentication?.isSuccess){
               //console.log('✅ Registered customer:', response);
               CustomerId.value =  response.data.id
             // add customer group

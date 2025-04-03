@@ -118,7 +118,7 @@
                     </SfListItem>
                   </li>
                   <li>
-                    <SfListItem :tag="NuxtLink" size="sm" href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
+                    <SfListItem :tag="NuxtLink" size="sm" href="/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
                       B2B Starter Kit
                     </SfListItem>
                   </li>
