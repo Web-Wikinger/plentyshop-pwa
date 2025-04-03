@@ -32,12 +32,14 @@
 import { categoryGetters, categoryTreeGetters, facetGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 
+const { isAuthorized } = useCustomer();
+
 definePageMeta({ layout: false, middleware: ['category-guard'] });
 
 const { t, locale } = useI18n();
 const route = useRoute();
 const router = useRouter();
-const { data: productsCatalog, productsPerPage, loading, checkingPermission } = useProducts();
+const { data: productsCatalog, productsPerPage, loading, checkingPermission, fetchProducts } = useProducts();
 const { data: categoryTree } = useCategoryTree();
 const { buildCategoryLanguagePath } = useLocalization();
 
@@ -98,6 +100,15 @@ useHead({
     { name: 'keywords', content: keywordsContent },
     { name: 'robots', content: robotsContent },
   ],
+});
+
+watch(isAuthorized, (newValue: Boolean) => {
+  if (newValue) {
+    // Fetch or update the productsCatalog when the user is authorized
+    fetchProducts({categoryId: String(categoryGetters.getId(productsCatalog.value.category))});
+  } else {
+
+  }
 });
 </script>
 
