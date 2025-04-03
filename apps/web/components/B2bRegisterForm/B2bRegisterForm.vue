@@ -156,7 +156,9 @@ const { send } = useNotification();
 const { t } = useI18n();
 const loading = ref(false);
 const CustomerId = ref('16304');
-const recaptchaRef = ref(null)
+const recaptchaRef = ref<{
+  executeReCaptcha: (form: HTMLFormElement) => Promise<string>
+} | null>(null)
 const emits = defineEmits(['loggedIn', 'change-view']);
 const registerForm = ref<HTMLFormElement | null>(null);
 const customerGroups = ref<{ id: number; name: string }[]>([]);
@@ -193,7 +195,7 @@ const validationSchema = toTypedSchema(
       address2: string().required('Nr. ist erforderlich'),
       postalCode: string().required('PLZ ist erforderlich'),
       town: string().required('Ort ist erforderlich'),
-      countryId: number().required('Land ist erforderlich'),
+      countryId: string().required('Land ist erforderlich'),
       contactPerson: string().nullable(),
       stateId:string().nullable(),
     }),
@@ -235,7 +237,6 @@ const { values,defineField, handleSubmit,setFieldValue } = useForm({
       stateId: "",
     },
     recaptcha: '',
-    //privacyPolicy : true,
     customerGroup : "",
   }
 });
@@ -269,14 +270,19 @@ onMounted(() => {
   ];
 });
 
-watch(() => values.billingAddress.gender, (newGender) => {
-  if (newGender !== 'company') {
-    setFieldValue('billingAddress.name1', '')
+watch(
+  () => values.billingAddress?.gender,
+  (newGender) => {
+    if (newGender !== 'company') {
+      setFieldValue('billingAddress.name1', '')
+    }
   }
-})
+)
 
 const submitWithRecaptcha = async () => {
-  if (!registerForm.value) return;
+
+  if (!recaptchaRef.value || !registerForm.value) return;
+  
   try {
     loading.value = true;
     const recaptchaToken = await recaptchaRef.value.executeReCaptcha(registerForm.value)
