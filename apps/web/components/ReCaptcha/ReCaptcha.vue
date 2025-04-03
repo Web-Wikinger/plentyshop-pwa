@@ -90,7 +90,6 @@ export default {
                 });
             }
         },
-
         recaptchaCallback(response)
         {
             this.$el.querySelector("[name=\"g-recaptcha-response\"]")
@@ -113,7 +112,27 @@ export default {
                 gRecaptchaApiLoaded = undefined;
             }
            
+        },
+        executeReCaptcha(form) {
+            const recaptchaElement = form?.querySelector('[data-recaptcha]');
+
+            if (window.grecaptcha && recaptchaElement) {
+                return new Promise((resolve, reject) => {
+                window.grecaptcha.execute(this.apiKey, { action: 'homepage' })
+                    .then((response) => {
+                    if (response) {
+                        resolve(response);
+                    } else {
+                        reject(new Error('No reCAPTCHA response received'));
+                    }
+                    })
+                    .catch((err) => reject(err));
+                });
+            }
+
+            return Promise.reject(new Error('reCAPTCHA not available'));
         }
+
     }
 }
 </script>

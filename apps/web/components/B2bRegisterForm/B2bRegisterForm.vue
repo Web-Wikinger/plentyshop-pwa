@@ -108,7 +108,7 @@
         <input type="checkbox" v-model="privacyPolicy" v-bind="privacyPolicyAttrs" class="mt-1" />
         <span>
           Hiermit bestätige ich, dass ich die
-          <a href="/datenschutz" target="_blank" class="text-red-600 underline">Datenschutzerklärung</a>
+          <a href="/privacy-policy" target="_blank" class="text-red-600 underline">Datenschutzerklärung</a>
           gelesen habe.
         </span>
       </label>
@@ -116,25 +116,30 @@
     <ErrorMessage name="privacyPolicy" class="text-red-500 text-sm mt-1" />
 
     <!-- Submit Button -->
-    <div class="col-span-2 flex justify-end mt-2">
-      <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg flex items-center gap-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="8.5" cy="7" r="4" />
-          <path d="M20 8v6M23 11h-6" />
-        </svg>
-        Registrieren
+    <div class="col-span-2 flex justify-center mt-2">
+      <button
+        :disabled="loading"
+        type="submit"
+        class="w-full max-w-sm bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg flex justify-center items-center gap-2"
+      >
+        <SfLoaderCircular
+          v-if="loading"
+          class="flex justify-center items-center"
+          size="base"
+        />
+        <template v-else>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+            <circle cx="8.5" cy="7" r="4" />
+            <path d="M20 8v6M23 11h-6" />
+          </svg>
+          <span>{{ t('auth.signup.submitLabel') }}</span>
+        </template>
       </button>
     </div>
-    <ReCaptcha/>
+
+    <ReCaptcha ref="recaptchaRef"/>
   </form>
-
-
-  <input type="text" v-model="CustomerId" placeholder="CustomerId" class="w-full px-4 py-2 border border-gray-300 rounded-md"/>
-      <button @click="addCustomerGroup()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg flex items-center gap-2">
-        Set Group
-      </button>
-
 
 </template>
 
@@ -142,22 +147,16 @@
 import { useForm, ErrorMessage } from 'vee-validate';
 import { object, string, boolean, number,ref as yupRef } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref,watch } from 'vue';
 import { httpClient } from '@/sdk.client';
+import { SfLoaderCircular } from '@storefront-ui/vue';
 
-declare global {
-  interface Window {
-    grecaptcha: {
-      execute(siteKey: string, options: { action: string }): Promise<string>;
-    };
-  }
-}
-
-const { login, loading } = useCustomer();
+const { login } = useCustomer();
 const { send } = useNotification();
 const { t } = useI18n();
+const loading = ref(false);
 const CustomerId = ref('16304');
-
+const recaptchaRef = ref(null)
 const emits = defineEmits(['loggedIn', 'change-view']);
 const registerForm = ref<HTMLFormElement | null>(null);
 const customerGroups = ref<{ id: number; name: string }[]>([]);
@@ -175,31 +174,35 @@ const validationSchema = toTypedSchema(
           typeId: number().required(),
           subTypeId: number().required(),
           priority: number().required(),
-          value: string().email().required()
+          value: string().email().required('Email ist erforderlich')
         })
       })
     }),
     billingAddress: object({
       gender:string().required(),
-      name1: string().required(),
+      name1: string().when('gender', {
+        is: 'company',
+        then: schema => schema.required('Firma ist erforderlich für Firmenkunden'),
+        otherwise: schema => schema.notRequired().nullable()
+      }),
       vatNumber: string().nullable(),
-      name2: string().required(),
-      name3: string().required(),
-      telephone: string().required(),
-      address1: string().required(),
-      address2: string().required(),
-      postalCode: string().required(),
-      town: string().required(),
-      countryId: number().required(),
+      name2: string().required('Vorname ist erforderlich'),
+      name3: string().required('Nachname ist erforderlich'),
+      telephone: string().notRequired(),
+      address1: string().required('Straße ist erforderlich'),
+      address2: string().required('Nr. ist erforderlich'),
+      postalCode: string().required('PLZ ist erforderlich'),
+      town: string().required('Ort ist erforderlich'),
+      countryId: number().required('Land ist erforderlich'),
       contactPerson: string().nullable(),
       stateId:string().nullable(),
     }),
-    privacyPolicy: boolean().isTrue().required(),
+    privacyPolicy: boolean().isTrue().required('Bitte akzeptieren Sie die Daten­schutz­erklärung.'),
     recaptcha: string().required(),
-    customerGroup: string().required('Kundengruppe erforderlich').notOneOf([""], 'Bitte wählen Sie eine Kundengruppe'),
+    customerGroup: string().required('Kundengruppe ist erforderlich').notOneOf([""], 'Bitte wählen Sie eine Kundengruppe'),
   })
 );
-const { defineField, handleSubmit,setFieldValue } = useForm({
+const { values,defineField, handleSubmit,setFieldValue } = useForm({
   validationSchema,
   initialValues: {
     contact: {
@@ -218,22 +221,22 @@ const { defineField, handleSubmit,setFieldValue } = useForm({
     },
     billingAddress: {  
       gender: "company",
-      contactPerson: "moh",
-      name1: 'test company',
+      contactPerson: "",
+      name1: 'Firma x GMBH',
       vatNumber: 'DE163594625',
-      name2: 'mohamed',
-      name3: 'aara',
-      telephone: '26326',
-      address1: 'wet',
-      address2: '24116',
+      name2: 'John Test',
+      name3: 'Rock',
+      telephone: '',
+      address1: 'Berlinerstraße',
+      address2: '123',
       postalCode: '24116',
-      town: 'kiel',
-      countryId: 1,
+      town: 'Berlin',
+      countryId: "",
       stateId: "",
     },
     recaptcha: '',
-    privacyPolicy : true,
-    customerGroup : "32",
+    //privacyPolicy : true,
+    customerGroup : "",
   }
 });
 
@@ -253,9 +256,8 @@ const [town, townAttrs] = defineField('billingAddress.town');
 const [countryId, countryIdAttrs] = defineField('billingAddress.countryId');
 const [gender, genderAttrs] = defineField('billingAddress.gender');
 const [customerGroup, customerGroupAttrs] = defineField('customerGroup');
-
-const googleRecaptchaApiKey = '6LczjZcpAAAAAPu2LrxCO-OQaaYzj4VTFwdLHoBG';
-const baseUrl = 'https://b2b.kelloggs-shop.de/rest';
+const config = useRuntimeConfig().public;
+const baseUrl = config.domain;;
 
 onMounted(() => {
   customerGroups.value = [
@@ -266,59 +268,76 @@ onMounted(() => {
     { id: 34, name: 'Hotel' }
   ];
 });
-const onSubmit = handleSubmit(async (values) => {
 
-  try {
-    const response = await httpClient(`${baseUrl}/io/customer/`, values, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    console.log('✅ Registered customer:', response);
-    
-    // add customer group
-    const response_group = await addCustomerGroup();
-    console.log('✅ add Customer Group :', response_group);
-
-    // login
-    loginUser();
-   
-  } catch (err) {
-    console.error('❌ Error during registration:', err);
+watch(() => values.billingAddress.gender, (newGender) => {
+  if (newGender !== 'company') {
+    setFieldValue('billingAddress.name1', '')
   }
-});
+})
+
 const submitWithRecaptcha = async () => {
   if (!registerForm.value) return;
-
   try {
-    const recaptchaToken = await executeReCaptcha(registerForm.value);
-
-    console.log(recaptchaToken)
+    loading.value = true;
+    const recaptchaToken = await recaptchaRef.value.executeReCaptcha(registerForm.value)
+     //console.log('✅ Got reCAPTCHA token:', recaptchaToken)
     // Set the recaptcha value before validation
-    await setFieldValue('recaptcha', recaptchaToken);
+     await setFieldValue('recaptcha', recaptchaToken);
 
-    // call submit handler (which will validate everything)
-    await onSubmit();
+     // call submit handler (which will validate everything)
+     await onSubmit();
+
+     loading.value = false;
+
   } catch (err) {
+    loading.value = false;
     console.error('❌ reCAPTCHA failed:', err);
-  }
-};
+  } 
 
-const loginUser = async () => {
-  const success = await login(email.value!, password.value!);
-  if (success) {
-    send({ message: t('auth.login.success'), type: 'positive' });
-    emits('loggedIn', false);
-  }
+  
 };
+const onSubmit = handleSubmit(async (values) => {
+
+       try {
+        let response = await httpClient(`${baseUrl}/rest/io/customer/`, values, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if(response.events.AfterAccountAuthentication.isSuccess){
+              //console.log('✅ Registered customer:', response);
+              CustomerId.value =  response.data.id
+            // add customer group
+              response = await addCustomerGroup();
+
+              if(response.success){
+                //console.log('✅ add Customer Group :', response);
+                loginUser();
+            
+              }
+        }else{
+            send({
+            message: 'Error during registration',
+            type: 'negative',
+          });
+        }
+
+       } catch (err) {
+        console.error('❌ Error during registration:', err);
+        send({
+            message: 'An error occurs during registration',
+            type: 'negative',
+          });
+      }
+});
 const addCustomerGroup = async () => {
 
   const contactId = CustomerId.value,
   customerGroupId = customerGroup.value;
 
-  const apiEndpoint = `WWExtendRegistrationForm/setCustomerGroup?customerGroup=${customerGroupId}&contactId=${contactId}`;
+  const apiEndpoint = `/rest/WWExtendRegistrationForm/setCustomerGroup?customerGroup=${customerGroupId}&contactId=${contactId}`;
 
   try {
     const response = await httpClient(`${baseUrl}/${apiEndpoint}`, {}, {
@@ -334,25 +353,14 @@ const addCustomerGroup = async () => {
   }
 
 }
-
-const executeReCaptcha = (form: HTMLFormElement): Promise<string> => {
-  const recaptchaElement = form.querySelector('[data-recaptcha]');
-
-  if (window.grecaptcha && recaptchaElement) {
-    return new Promise((resolve, reject) => {
-      window.grecaptcha.execute(googleRecaptchaApiKey, { action: 'homepage' })
-        .then((response) => {
-          if (response) {
-            resolve(response);
-          } else {
-            reject(new Error('No reCAPTCHA response received'));
-          }
-        })
-        .catch((err) => reject(err));
+const loginUser = async () => {
+  const success = await login(email.value!, password.value!);
+  if (success) {
+    send({
+      message: t('auth.signup.success'),
+      type: 'positive',
     });
+    emits('loggedIn', false);
   }
-
-  return Promise.reject(new Error('reCAPTCHA not available'));
-}
-
+};
 </script>
