@@ -1,5 +1,5 @@
 <template>
-  <section class="kl-hero-section">
+  <section class="kl-hero-section" id="hero-section">
     <div class="kl-hero-section__content page-width">
       <h1 class="kl-hero-section__title">
         Ihr Partner für<br> 

@@ -309,8 +309,6 @@ const submitWithRecaptcha = async () => {
 };
 const onSubmit = handleSubmit(async (values) => {
 
-     addCustomerGroup()
-     return 0;
        try {
         let response = await httpClient(`${baseUrl}/rest/io/customer/`, values, {
           method: 'POST',

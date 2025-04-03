@@ -22,6 +22,7 @@ if (categoryName == "Pringles") imageName = 'pringles'
 if (categoryName == "Cerealien") imageName = 'cerealien'
 if (categoryName == "Müsli") imageName = 'musli'
 if (categoryName == "Poptarts") imageName = 'pop-tarts'
+if (categoryName == "B2B Starterkits") imageName = 'pringles'
 
 if (['pringles', 'pop-tarts'].includes(imageName)) categoryTitle = 'Snacks';
 
