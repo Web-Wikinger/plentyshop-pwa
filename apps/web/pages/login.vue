@@ -8,7 +8,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: false,
-  middleware: ['guest-guard'],
+  middleware: ['logged-guard'],
 });
 
 const router = useRouter();
