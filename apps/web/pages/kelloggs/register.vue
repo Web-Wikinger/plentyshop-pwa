@@ -59,6 +59,11 @@
 
 <script setup>
 import { ref } from 'vue';
+
+definePageMeta({
+  middleware: ['logged-guard'],
+});
+
 const router = useRouter();
 const localePath = useLocalePath();
 const isLogin = ref(true);

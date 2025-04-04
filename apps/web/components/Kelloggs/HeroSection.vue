@@ -42,7 +42,7 @@
 
 @media (max-width: 1050px) {
   .kl-hero-section {
-    padding: 350px 12px 50px 12px;
+    padding: 50px 12px 200px 12px;
     aspect-ratio: auto;
     margin-top: 0px;
   }

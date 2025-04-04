@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col items-center space-y-2 p-4">
-    <div class="flex justify-center space-x-2">
+  <div class="flex flex-col items-center">
+    <div class="flex flex-wrap justify-center gap-1">
       <img src="/images/payments/Apple_Pay.svg" alt="Apple Pay" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Google_Pay.svg" alt="Google Pay" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
       <img src="/images/payments/Klarna.svg" alt="Klarna" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
