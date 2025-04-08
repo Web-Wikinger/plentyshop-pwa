@@ -8,8 +8,8 @@
       loading="lazy"
     />-->
     
-    <h1 class="mt-8 font-bold w-[50%] text-center text-[32px]">{{ $t('categoryPage.textNotlogged') }}</h1>
-    <UiButton :tag="NuxtLink" to="/kelloggs/register" variant="secondary" class="mt-4">
+    <h1 class="mt-8 font-bold w-[50%] text-center text-[15px] lg:text-[32px]">{{ $t('categoryPage.textNotlogged') }}</h1>
+    <UiButton :tag="NuxtLink" :to="localePath(paths.category)" variant="secondary" class="mt-4">
       {{ $t('categoryPage.buttonRegister') }}
     </UiButton>
   </section>

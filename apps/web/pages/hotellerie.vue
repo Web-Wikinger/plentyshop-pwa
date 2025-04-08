@@ -29,9 +29,11 @@
         
         />
     
+    <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-[99999]" size="2xl" />
+
     <LandingPageProductDisplay
-      v-if="cerealienProducts.products"
-      :products="cerealienProducts.products"
+      v-if="cerealienProducts.length"
+      :products="cerealienProducts"
     />
       
     <LandingPageComparison 
@@ -77,11 +79,11 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
     
 
     <LandingPageProductDisplay 
-      v-if="pringlesProducts.products"
-      :products="pringlesProducts.products"
+      v-if="pringlesProducts.length"
+      :products="pringlesProducts"
     />
 
-    <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles.png" 
+    <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles-automat.png" 
       SubTitle="Drehautomat für Pringles<span class='text-lg align-super'>®</span>" Title="Die impulsstarke und mobile Snackinsel" 
       Description="Überall wo Gäste freie Zeit genießen oder warten,
                   ist der neue Drehautomat für PRINGLES<span class='text-lg align-super'>®</span> die beliebte
@@ -107,13 +109,32 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
 </template>
 <script lang="ts" setup>
 
-const { fetchProducts } = useProducts();
+const { data: productsCatalog, loading, fetchProducts } = useProducts();
+const { isAuthorized } = useCustomer();
+import { SfLoaderCircular } from '@storefront-ui/vue';
+import { Product } from "@plentymarkets/shop-api";
 
-let  pringlesProducts = await fetchProducts({ categoryUrlPath: "snacks/pringles", page: 1, itemsPerPage: 4});
-let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
 
+const pringlesProducts     = ref([] as Product[])
+const cerealienProducts    = ref([] as Product[])
 
+console.log(pringlesProducts)
+console.log(cerealienProducts)
+async function loadProducts() {
+  const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
+  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
 
+  pringlesProducts.value  = pringlesRes.products
+  cerealienProducts.value = cerealienRes.products
+}
+
+onMounted(loadProducts)
+
+watch(isAuthorized, (newVal) => {
+  if (newVal) {
+    loadProducts()
+  }
+})
 
 const { getRobots, setRobotForStaticPage } = useRobots();
 
