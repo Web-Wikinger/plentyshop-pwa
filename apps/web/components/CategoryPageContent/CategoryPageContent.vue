@@ -45,6 +45,7 @@
                            :show-base-price="productGetters.showPricePerUnit(product)" />
           </NuxtLazyHydrate>
         </section>
+        
         <LazyCategoryEmptyState v-else />
         <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
           <span>{{ $t('asterisk') }}</span>
@@ -79,6 +80,7 @@ import { paths } from '~/utils/paths';
 
 const { title, totalProducts, itemsPerPage = 24, products = [] } = defineProps<CategoryPageContentProps>();
 
+console.log(title)
 const localePath = useLocalePath();
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();
@@ -91,4 +93,52 @@ const viewport = useViewport();
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 2));
 
 if (viewport.isLessThan('md')) close();
+
+const products_b2b = [
+  {
+    name: 'Pringles Starter Kit - 2x Banane',
+    ratingCount: 0,
+    rating: 0,
+    imageUrl: 'https://cdn02.plentymarkets.com/y1j7jytyy1rk/item/images/859/middle/Dummy5-S-Pringles-Starter-Kit-2x-Banane.jpg',
+    imageAlt: '',
+    imageTitle: '',
+    imageHeight: 600,
+    imageWidth: 600,
+    slug: "",
+    basePrice: '0$',
+    unitContent: '500ml',
+    unitName: '',
+    showBasePrice: false,
+  },
+  {
+    name: 'Pringles Starter Kit - Banane',
+    ratingCount: 0,
+    rating: 0,
+    imageUrl: 'https://cdn02.plentymarkets.com/y1j7jytyy1rk/item/images/858/middle/Dummy4-S-Pringles-Starter-Kit-Banane.jpg',
+    imageAlt: '',
+    imageTitle: '',
+    imageHeight: 600,
+    imageWidth: 600,
+    slug: "",
+    basePrice: '0$',
+    unitContent: '1 piece',
+    unitName: '',
+    showBasePrice: false,
+  },
+  {
+    name: 'Pringles Starter Kit - Magnethänger',
+    ratingCount: 0,
+    rating: 0,
+    imageUrl: 'https://cdn02.plentymarkets.com/y1j7jytyy1rk/item/images/857/middle/Dummy3-S-Pringles-Starter-Kit-Magnethaenger.jpg',
+    imageAlt: '',
+    imageTitle: '',
+    imageHeight: 600,
+    imageWidth: 600,
+    slug: "",
+    basePrice: '0$',
+    unitContent: '1 piece',
+    unitName: '',
+    showBasePrice: false,
+  },
+]
 </script>
