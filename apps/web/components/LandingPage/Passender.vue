@@ -31,8 +31,8 @@
     </div>
 
     <LandingPageProductDisplay
-      v-if="cerealienProducts.products"
-      :products="cerealienProducts.products"
+      v-if="cerealienProducts.length"
+      :products="cerealienProducts"
       class="mt-[107px] mb-[20px]"
     />
   </div>
@@ -40,9 +40,24 @@
 </template>
 
 <script setup lang="ts">
+import { Product } from "@plentymarkets/shop-api";
 
 const { fetchProducts } = useProducts();
+const { isAuthorized } = useCustomer();
 
-let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
+const cerealienProducts    = ref([] as Product[])
 
+async function loadProducts() {
+  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+
+  cerealienProducts.value = cerealienRes.products
+}
+
+onMounted(loadProducts)
+
+watch(isAuthorized, (newVal) => {
+  if (newVal) {
+    loadProducts()
+  }
+})
 </script>

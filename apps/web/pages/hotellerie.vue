@@ -114,12 +114,9 @@ const { isAuthorized } = useCustomer();
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import { Product } from "@plentymarkets/shop-api";
 
-
 const pringlesProducts     = ref([] as Product[])
 const cerealienProducts    = ref([] as Product[])
 
-console.log(pringlesProducts)
-console.log(cerealienProducts)
 async function loadProducts() {
   const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
   const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })

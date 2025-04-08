@@ -71,13 +71,6 @@ den Geschmackssinn anregen und mit Markenstrahlkraft die Wertigkeit des Angebots
 </template>
 <script lang="ts" setup>
 
-
-const { fetchProducts } = useProducts();
-
-let  pringlesProducts = await fetchProducts({ categoryUrlPath: "snacks/pringles", page: 1, itemsPerPage: 4});
-let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
-
-
 const { getRobots, setRobotForStaticPage } = useRobots();
 
 

@@ -95,13 +95,6 @@ const runtimeConfig = useRuntimeConfig();
 const isHero = ref(runtimeConfig.public.isHero);
 const { settingsIsDirty, openDrawerWithView, updateNewBlockPosition } = useSiteConfiguration();
 
-const { fetchProducts } = useProducts();
-
-let  pringlesProducts = await fetchProducts({ categoryUrlPath: "snacks/pringles", page: 1, itemsPerPage: 4});
-let  cerealienProducts = await fetchProducts({ categoryUrlPath: "fruehstueck/cerealien", page: 1, itemsPerPage: 4});
-
-
-
 const { data, fetchPageTemplate, dataIsEmpty } = useHomepage();
 
 const { isEditing, isEditingEnabled, disableActions } = useEditor();
