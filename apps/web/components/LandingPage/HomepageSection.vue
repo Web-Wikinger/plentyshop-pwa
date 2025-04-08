@@ -31,7 +31,7 @@ const recipes = [
   },
   {
     id: 2,
-    title: "Bars",
+    title: "Bars & Gastronomie",
     image: "/images/hp-block/automat_halterung_theken_automat.png",
     url: '/bars-gastronomie'
   },
@@ -43,7 +43,7 @@ const recipes = [
   },
   {
     id: 4,
-    title: "Pringles",
+    title: "Pringles Automat",
     image: "/images/hp-block/composing_pringles-automat.png",
     url: 'https://kelloggs-shop.de/pages/pringles-pos'
   }

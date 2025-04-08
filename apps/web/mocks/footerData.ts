@@ -25,7 +25,7 @@ export const categories = [
     subcategories: [
       {
         key: 'paymentAndShipping',
-        link: paths.home,
+        link: paths.zahlungundversand,
       },
       {
         key: 'faq',

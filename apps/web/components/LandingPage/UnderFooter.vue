@@ -10,7 +10,7 @@
       <img src="/images/payments/Visa.svg" alt="Visa" class="h-12 w-[74px] border border-gray-300 rounded-md p-1 bg-white">
     </div>
     <p class="text-gray-500 text-sm">© 2023, Kellogg's Shop</p>
-    <p class="text-gray-500 text-sm">*alle Preise sind Brutto inkl MwSt.</p>
+    <p class="text-gray-500 text-sm">*alle Preise sind Netto exkl. MwSt.</p>
   </div>
 </template>
 

@@ -24,7 +24,7 @@ den Geschmackssinn anregen und mit Markenstrahlkraft die Wertigkeit des Angebots
       class="mt-[50px]"
     />
     
-    <LandingPagePresentation imageSrc="/images/composing_pringles-automat.png" 
+    <LandingPagePresentation imageSrc="/images/composing_pringles.png" 
       SubTitle="DEN DREH RAUS" 
       Title="Der Drehautomat für PRINGLES® bringt Zusatzumsätze" 
       Description="Signalrot oder schwarz, gefüllt mit 49 PRINGLES® 40 g Dosen, ist der Drehautomat für PRINGLES® ein Umsatzbringer ohne zusätzlichen Personalaufwand. Das Handling ist easy: Einfach Sorte aussuchen, Geld einwerfen, drehen und snacken. Der Automat ist vielseitig einsetzbar, als Hingucker auf dem Standfuß, diebstahlsicher an der Wand oder als Miniautomat direkt auf dem Tresen platziert."

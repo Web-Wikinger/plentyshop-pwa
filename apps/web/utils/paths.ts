@@ -31,4 +31,5 @@ export const paths = {
   fruehstueck: '/kelloggs/fruehstueck',
   faq: '/kelloggs/faq',
   geschichte: '/kelloggs/geschichte',
+  zahlungundversand: '/kelloggs/zahlung-und-versand',
 };
