@@ -56,6 +56,9 @@
 import { SfLink, SfListItem } from '@storefront-ui/vue';
 import { categories } from '~/mocks';
 import type { FooterProps } from './types';
+import { watch } from 'vue';
+
+const { data: user, isAuthorized } = useCustomer();
 
 let text = {
   title: "Jetzt zum Newsletter anmelden und von exklusiven Vorteilen profitieren",
@@ -77,4 +80,36 @@ const NuxtLink = resolveComponent('NuxtLink');
 const getComponent = (name: string) => {
   if (name === 'NewsletterSubscribe') return resolveComponent('NewsletterSubscribe');
 };
+
+watch(isAuthorized, async (newVal, oldVal) => {
+  try {
+
+    // if loggout remove the session
+    if (!newVal) {
+          const response = await fetch('/rest/io/customer/logout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error(`Logout failed with status ${response.status}`);
+          }
+
+          console.log('io User logged out');
+    }else{
+            // Get the io session
+        const response = await fetch('/rest/io/customer');
+        const sessionData = await response.json();
+        console.log('io session:', sessionData);
+        
+    }
+  } catch (error) {
+    console.error('Error in watch isAuthorized:', error);
+  }
+});
+
+
+
 </script>
