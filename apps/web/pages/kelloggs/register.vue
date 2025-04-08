@@ -77,9 +77,9 @@ const navigateAfterAuth = (skipReload) => {
 
 // Steps for registration process
 const steps = ref([
-  { icon: "/images/kelloggs/Form.svg", text: "Formular ausfüllen" },
-  { icon: "/images/kelloggs/Check.svg", text: "Freischaltung und Bestätigungs Mail" },
-  { icon: "/images/kelloggs/Basket.svg", text: "Über das Portal einkaufen" }
+  { icon: "/images/kelloggs/form/Form.svg", text: "Formular ausfüllen" },
+  { icon: "/images/kelloggs/form/Check.svg", text: "Freischaltung und Bestätigungs Mail" },
+  { icon: "/images/kelloggs/form/Basket.svg", text: "Über das Portal einkaufen" }
 ]);
 
 // Benefits of registration

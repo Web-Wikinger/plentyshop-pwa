@@ -57,7 +57,7 @@
              aria-labelledby="muesli-title"
              aria-describedby="muesli-description">
           <div class="kl-img-wrapper">
-            <img src="/images/kelloggs/img-muesli@2x.png" alt="Müsli">
+            <img src="/images/kelloggs/img-new-muesli@2x.jpg" alt="Müsli">
           </div>
           <p id="muesli-title" class="kl-card-title">Müsli</p>
           <p id="muesli-description" class="kl-card-description">
