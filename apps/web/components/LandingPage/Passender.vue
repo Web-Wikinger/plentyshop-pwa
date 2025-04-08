@@ -11,7 +11,7 @@
       </p>
     </div>
 
-    <div class="max-w-4xl mx-[230px] mt-8 grid grid-cols-1 md:grid-cols-2 gap-[30px]">
+    <div class="max-w-4xl mx-[230px] mt-8 grid grid-cols-1 md:grid-cols-2 gap-[30px] mx-auto">
       <!-- First Card -->
       <div class="bg-red-color text-center rounded-[30px] w-[440px] h-[440px] p-6 rounded-lg flex flex-col items-center">
         <img height="125" width="125" class="py-[57px]" src="/images/Icon_salzig.svg">
