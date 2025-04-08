@@ -1,241 +1,224 @@
 <template>
   <div class="w-full bg-white p-6 rounded-lg">
-    <!-- Tabs Navigation -->
-    <ul class="flex justify-between border-b mb-4">
+     <!-- Tabs Navigation -->
+     <ul class="flex justify-between border-b mb-4">
         <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'CreateCustomer' }">
-          <a 
-            class="cursor-pointer px-4 py-2" 
-            :class="{ 'border-blue-500 font-semibold': activeTab === 'CreateCustomer' }" 
-            @click="activeTab = 'CreateCustomer'"
-          >
-            Neukunden anlegen
-          </a>
+           <a 
+              class="cursor-pointer px-4 py-2" 
+              :class="{ 'border-blue-500 font-semibold': activeTab === 'CreateCustomer' }" 
+              @click="activeTab = 'CreateCustomer'"
+              >
+           Neukunden anlegen
+           </a>
         </li>
         <li v-if="!isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'login' }">
-          <a 
-            class="text-lg font-semibold text-gray-700" 
-            @click="activeTab = 'login'"
-          >
-            Einloggen
-          </a>
+           <a 
+              class="text-lg font-semibold text-gray-700" 
+              @click="activeTab = 'login'"
+              >
+           Einloggen
+           </a>
         </li>
-
         <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'customerEntries' }">
-          <a 
-            class="cursor-pointer px-4 py-2" 
-            :class="{ 'border-blue-500 font-semibold': activeTab === 'customerEntries' }" 
-            @click="fetchCustomerEntries"
-          >
-            Kundenzugang
-          </a>
+           <a 
+              class="cursor-pointer px-4 py-2" 
+              :class="{ 'border-blue-500 font-semibold': activeTab === 'customerEntries' }" 
+              @click="fetchCustomerEntries"
+              >
+           Kundenzugang
+           </a>
         </li>
         <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'changePassword' }">
-          <a 
-            class="cursor-pointer px-4 py-2" 
-            :class="{ 'border-blue-500 font-semibold': activeTab === 'changePassword' }" 
-            @click="activeTab = 'changePassword'"
-          >
-            Passwort ändern
-          </a>
+           <a 
+              class="cursor-pointer px-4 py-2" 
+              :class="{ 'border-blue-500 font-semibold': activeTab === 'changePassword' }" 
+              @click="activeTab = 'changePassword'"
+              >
+           Passwort ändern
+           </a>
         </li>
         <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3">
-          <a class="cursor-pointer px-4 py-2 text-red-500" @click.prevent="logoutVertriebUser">
-            Logout
-          </a>
+           <a class="cursor-pointer px-4 py-2 text-red-500" @click.prevent="logoutVertriebUser">
+           Logout
+           </a>
         </li>
-      </ul>
-    <!-- Tabs Content -->
-    <div class="tab-content mt-3 mx-[200px]">
-
-      <!-- Second Tab -->
-      <div v-if="isAuthenticated && activeTab === 'CreateCustomer'" class="flex justify-center items-center">
-        <div class="w-full bg-[#d0033d] text-white p-6 rounded-lg">
-          <h3 class="text-center text-xl font-bold mb-6">B2B Kundendaten erfassen</h3>
-
-          <form @submit.prevent="registerCustomer" ref="CustomerRegistrationForm" class="space-y-4">
-            <!-- Firmenname -->
-            <div>
-              <label class="block text-sm font-medium">Firmenname*</label>
-              <input type="text" v-model="customer.firmName" @input="validateField('firmName')" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-              <small v-if="errors.firmName" class="text-yellow-300">{{ errors.firmName }}</small>
-            </div>
-
-            <!-- Ansprechpartner -->
-            <div>
-              <label class="block text-sm font-medium">Ansprechpartner*</label>
-              <input type="text" v-model="customer.contactPerson" @input="validateField('contactPerson')" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-              <small v-if="errors.contactPerson" class="text-yellow-300">{{ errors.contactPerson }}</small>
-            </div>
-
-            <!-- Straße, Hausnummer -->
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium">Straße*</label>
-                <input type="text" v-model="customer.street" @input="validateField('street')" required
-                      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-                <small v-if="errors.street" class="text-yellow-300">{{ errors.street }}</small>
-              </div>
-              <div>
-                <label class="block text-sm font-medium">Hausnummer*</label>
-                <input type="text" v-model="customer.housenumber" @input="validateField('housenumber')" required
-                      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-                <small v-if="errors.housenumber" class="text-yellow-300">{{ errors.housenumber }}</small>
-              </div>
-            </div>
-
-            <!-- PLZ, Ort -->
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium">Ort*</label>
-                <input type="text" v-model="customer.city" @input="validateField('city')" required
-                      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-                <small v-if="errors.city" class="text-yellow-300">{{ errors.city }}</small>
-              </div>
-              <div>
-                <label class="block text-sm font-medium">PLZ*</label>
-                <input type="text" v-model="customer.zipCity" @input="validateField('zipCity')" required
-                      class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-                <small v-if="errors.zipCity" class="text-yellow-300">{{ errors.zipCity }}</small>
-              </div>
-            </div>
-
-            <!-- E-Mail Adresse -->
-            <div>
-              <label class="block text-sm font-medium">E-Mail Adresse*</label>
-              <input type="email" v-model="customer.email" @input="validateField('email')" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-              <small v-if="errors.email" class="text-yellow-300">{{ errors.email }}</small>
-            </div>
-
-            <!-- Telefonnummer -->
-            <div>
-              <label class="block text-sm font-medium">Telefonnummer*</label>
-              <input type="text" v-model="customer.phone" @input="validateField('phone')" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-              <small v-if="errors.phone" class="text-yellow-300">{{ errors.phone }}</small>
-            </div>
-
-            <!-- UST-ID (Optional) -->
-            <div>
-              <label class="block text-sm font-medium">UST-ID</label>
-              <input type="text" v-model="customer.taxId" placeholder="OPTIONAL"
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="w-full py-2 bg-white text-[#d0033d] font-bold rounded-md disabled:opacity-50" :disabled="!isFormValid">
-              Kunde anlegen
-            </button>
-            <recaptcha></recaptcha>
-          </form>
+     </ul>
+     <!-- Tabs Content -->
+     <div class="tab-content mt-3 mx-[200px]">
+        <!-- Second Tab -->
+        <div v-if="isAuthenticated && activeTab === 'CreateCustomer'" class="flex justify-center items-center">
+           <div class="w-full bg-[#d0033d] text-white p-6 rounded-lg">
+              <h3 class="text-center text-xl font-bold mb-6">B2B Kundendaten erfassen</h3>
+              <form @submit.prevent="registerCustomer" ref="CustomerRegistrationForm" class="space-y-4">
+                 <!-- Firmenname -->
+                 <div>
+                    <label class="block text-sm font-medium">Firmenname*</label>
+                    <input type="text" v-model="customer.firmName" @input="validateField('firmName')" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                    <small v-if="errors.firmName" class="text-yellow-300">{{ errors.firmName }}</small>
+                 </div>
+                 <!-- Ansprechpartner -->
+                 <div>
+                    <label class="block text-sm font-medium">Ansprechpartner*</label>
+                    <input type="text" v-model="customer.contactPerson" @input="validateField('contactPerson')" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                    <small v-if="errors.contactPerson" class="text-yellow-300">{{ errors.contactPerson }}</small>
+                 </div>
+                 <!-- Straße, Hausnummer -->
+                 <div class="grid grid-cols-2 gap-4">
+                    <div>
+                       <label class="block text-sm font-medium">Straße*</label>
+                       <input type="text" v-model="customer.street" @input="validateField('street')" required
+                          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                       <small v-if="errors.street" class="text-yellow-300">{{ errors.street }}</small>
+                    </div>
+                    <div>
+                       <label class="block text-sm font-medium">Hausnummer*</label>
+                       <input type="text" v-model="customer.housenumber" @input="validateField('housenumber')" required
+                          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                       <small v-if="errors.housenumber" class="text-yellow-300">{{ errors.housenumber }}</small>
+                    </div>
+                 </div>
+                 <!-- PLZ, Ort -->
+                 <div class="grid grid-cols-2 gap-4">
+                    <div>
+                       <label class="block text-sm font-medium">Ort*</label>
+                       <input type="text" v-model="customer.city" @input="validateField('city')" required
+                          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                       <small v-if="errors.city" class="text-yellow-300">{{ errors.city }}</small>
+                    </div>
+                    <div>
+                       <label class="block text-sm font-medium">PLZ*</label>
+                       <input type="text" v-model="customer.zipCity" @input="validateField('zipCity')" required
+                          class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                       <small v-if="errors.zipCity" class="text-yellow-300">{{ errors.zipCity }}</small>
+                    </div>
+                 </div>
+                 <!-- E-Mail Adresse -->
+                 <div>
+                    <label class="block text-sm font-medium">E-Mail Adresse*</label>
+                    <input type="email" v-model="customer.email" @input="validateField('email')" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                    <small v-if="errors.email" class="text-yellow-300">{{ errors.email }}</small>
+                 </div>
+                 <!-- Telefonnummer -->
+                 <div>
+                    <label class="block text-sm font-medium">Telefonnummer*</label>
+                    <input type="text" v-model="customer.phone" @input="validateField('phone')" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                    <small v-if="errors.phone" class="text-yellow-300">{{ errors.phone }}</small>
+                 </div>
+                 <!-- UST-ID (Optional) -->
+                 <div>
+                    <label class="block text-sm font-medium">UST-ID</label>
+                    <input type="text" v-model="customer.taxId" placeholder="OPTIONAL"
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                 </div>
+                 <!-- Submit Button -->
+                 <button type="submit" class="w-full py-2 bg-white text-[#d0033d] font-bold rounded-md disabled:opacity-50" :disabled="!isFormValid">
+                 Kunde anlegen
+                 </button>
+                 <ReCaptcha ref="recaptchaRef"/>
+              </form>
+           </div>
         </div>
-      </div>
-
-
-
-
-      <!-- Change Password Tab -->
-      <div v-if="isAuthenticated && activeTab === 'changePassword'" class="flex justify-center items-center">
-        <div class="w-full bg-[#d0033d] text-white rounded-lg p-4">
-          <h3 class="text-center text-xl font-bold mb-6">Passwort ändern</h3>
-
-          <form @submit.prevent="changePassword" class="space-y-4">
-            <!-- Current Password -->
-            <div>
-              <label class="block text-sm font-medium">aktuelles Passwort*</label>
-              <input type="password" v-model="passwordForm.currentPassword" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-            </div>
-
-            <!-- New Password -->
-            <div>
-              <label class="block text-sm font-medium">neues Passwort*</label>
-              <input type="password" v-model="passwordForm.newPassword" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-            </div>
-
-            <!-- Confirm New Password -->
-            <div>
-              <label class="block text-sm font-medium">neues Passwort bestätigen*</label>
-              <input type="password" v-model="passwordForm.confirmPassword" required
-                    class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="w-full py-2 bg-black text-white font-bold rounded-md">
-              Passwort aktualisieren
-            </button>
-          </form>
+        <!-- Change Password Tab -->
+        <div v-else-if="isAuthenticated && activeTab === 'changePassword'" class="flex justify-center items-center">
+           <div class="w-full bg-[#d0033d] text-white rounded-lg p-4">
+              <h3 class="text-center text-xl font-bold mb-6">Passwort ändern</h3>
+              <form @submit.prevent="changePassword" class="space-y-4">
+                 <!-- Current Password -->
+                 <div>
+                    <label class="block text-sm font-medium">aktuelles Passwort*</label>
+                    <input type="password" v-model="passwordForm.currentPassword" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                 </div>
+                 <!-- New Password -->
+                 <div>
+                    <label class="block text-sm font-medium">neues Passwort*</label>
+                    <input type="password" v-model="passwordForm.newPassword" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                 </div>
+                 <!-- Confirm New Password -->
+                 <div>
+                    <label class="block text-sm font-medium">neues Passwort bestätigen*</label>
+                    <input type="password" v-model="passwordForm.confirmPassword" required
+                       class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
+                 </div>
+                 <!-- Submit Button -->
+                 <button type="submit" class="w-full py-2 bg-black text-white font-bold rounded-md">
+                 Passwort aktualisieren
+                 </button>
+              </form>
+           </div>
         </div>
-      </div>
-
-       <!-- Customer Entries Tab -->
-       <div v-if="isAuthenticated && activeTab === 'customerEntries'">
-        <div class="container-fluid">
-          <h3 class="mb-3 text-center font-weight-bold">Kundenzugang</h3>
-
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Kunden ID</th>
-                <th>Kundenkonto Login</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="entry in customerEntries" :key="entry.id">
-                <td>{{ entry.id }}</td>
-                <td>{{ entry.customer_id }}</td>
-                <td>
-                  <button class="btn btn-primary btn-sm" @click="redirectToLogin(entry.customer_id)">
-                    Login
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Customer Entries Tab -->
+        <div v-else-if="isAuthenticated && activeTab === 'customerEntries'">
+           <div class="container-fluid">
+              <h3 class="mb-3 text-center font-weight-bold">Kundenzugang</h3>
+              <table class="table table-bordered table-striped">
+                 <thead>
+                    <tr>
+                       <th>ID</th>
+                       <th>Kunden ID</th>
+                       <th>Kundenkonto Login</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr v-for="entry in customerEntries" :key="entry.id">
+                       <td>{{ entry.id }}</td>
+                       <td>{{ entry.customer_id }}</td>
+                       <td>
+                          <button class="btn btn-primary btn-sm" @click="redirectToLogin(entry.customer_id)">
+                          Login
+                          </button>
+                       </td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
         </div>
-      </div>
-
-        <div class="w-full  bg-white ">
-          <!-- Header with gray tab -->
-          
-          <form @submit.prevent="loginVertriebUser" class="mt-6 space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" v-model="email" required
-                class="mt-1 w-full px-3 py-2 border border-gray-300 text-gray-700 focus:ring-1 focus:ring-gray-400 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Password</label>
-              <input type="password" v-model="password" required
-                class="mt-1 w-full px-3 py-2 border border-gray-300 text-gray-700 focus:ring-1 focus:ring-gray-400 focus:outline-none" />
-            </div>
-
-            <button type="submit"
-              class=" py-2 px-4 bg-[#d0033d] text-white font-semibold hover:bg-[#d0033d] transition">
+        <div v-else class="w-full  bg-white ">
+           <!-- Header with gray tab -->
+           <form @submit.prevent="loginVertriebUser" class="mt-6 space-y-4">
+              <div>
+                 <label class="block text-sm font-medium text-gray-700">Email</label>
+                 <input type="email" v-model="email" required
+                    class="mt-1 w-full px-3 py-2 border border-gray-300 text-gray-700 focus:ring-1 focus:ring-gray-400 focus:outline-none" />
+              </div>
+              <div>
+                 <label class="block text-sm font-medium text-gray-700">Password</label>
+                 <input type="password" v-model="password" required
+                    class="mt-1 w-full px-3 py-2 border border-gray-300 text-gray-700 focus:ring-1 focus:ring-gray-400 focus:outline-none" />
+              </div>
+              <button type="submit"
+                 class=" py-2 px-4 bg-[#d0033d] text-white font-semibold hover:bg-[#d0033d] transition">
               Login
-            </button>
-          </form>
-      </div>
-
-    </div>
-
+              </button>
+           </form>
+        </div>
+     </div>
      <!-- Loading Overlay -->
      <div v-if="loading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
+        <div class="spinner-border text-primary" role="status">
+           <span class="sr-only">Loading...</span>
+        </div>
+     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
+import { httpClient } from '@/sdk.client';
+const { send } = useNotification();
+const { login } = useCustomer();
+const emits = defineEmits(['loggedIn', 'change-view']);
+const { t } = useI18n();
 
+
+const recaptchaRef = ref<{
+  executeReCaptcha: (form: HTMLFormElement) => Promise<string>
+} | null>(null)
 // Add these at the top with other refs
 const email = ref<string>('')
 const password = ref<string>('')
@@ -256,6 +239,7 @@ interface Customer {
   email: string
   phone: string
   taxId: string
+  password:string
 }
 
 interface Errors {
@@ -272,7 +256,7 @@ interface Errors {
 const activeTab = ref<string>('login')
 const loading = ref<boolean>(false)
 const customerEntries = ref<any[]>([])
-const CustomerRegistrationForm = ref<HTMLElement | null>(null)
+const CustomerRegistrationForm = ref<HTMLFormElement | null>(null)
 
 const passwordForm = reactive<PasswordForm>({
   currentPassword: '',
@@ -281,14 +265,15 @@ const passwordForm = reactive<PasswordForm>({
 })
 
 const customer = reactive<Customer>({
-  firmName: '',
-  contactPerson: '',
-  street: '',
-  housenumber: '',
-  city: '',
-  zipCity: '',
-  email: '',
-  phone: '',
+  firmName: 'Company b2b test',
+  contactPerson: 'simo',
+  street: 'westring',
+  housenumber: '10',
+  city: 'hamburg',
+  zipCity: '23658',
+  email: 'test93192025@web-wikinger.de',
+  phone: '6969568542',
+  password:"New@Customer2025",
   taxId: ''
 })
 
@@ -304,8 +289,11 @@ const errors = reactive<Errors>({
 })
 
 const isAuthenticated = computed(() => {
-  return process.client ? !!localStorage.getItem('vertrieb-token') : false
-})
+  if (!process.client) return false;
+
+  const token = localStorage.getItem('vertrieb-token');
+  return token && token !== 'undefined';
+});
 
 const isFormValid = computed(() => {
   const validErrors = Object.values(errors).every(error => error === '')
@@ -389,53 +377,116 @@ const registerCustomer = async () => {
     alert('Bitte füllen Sie alle Pflichtfelder korrekt aus.')
     return
   }
+  if (!recaptchaRef.value || !CustomerRegistrationForm.value) return;
+
+  const recaptchaToken = await recaptchaRef.value.executeReCaptcha(CustomerRegistrationForm.value)
+
+  if (!recaptchaToken) return;
 
   try {    
-    const userObject = {
-      contact: {
-        referrerId: 4.01,
-        typeId: 1,
-        classId: 18,
-        options: {
-          typeId: {
-            typeId: 2,
-            subTypeId: 4,
-            value: customer.email,
-            priority: 0,
+
+        const userObj = {
+              contact: {
+                referrerId: 4.01,
+                typeId: 1,
+                classId: 18,
+                options: {
+                  typeId: {
+                    typeId: 2,
+                    subTypeId: 4,
+                    value: customer.email,
+                    priority: 0,
+                  },
+                },
+                password: customer.password,
+              },
+              billingAddress: {
+                countryId: 1,
+                telephone: customer.phone,
+                address1: customer.street,
+                address2: customer.housenumber,
+                postalCode: customer.zipCity || "", 
+                town: customer.city,
+                contactPerson: customer.contactPerson,
+                name1: customer.firmName, 
+                isPrimary: 1,
+              },
+              recaptcha: recaptchaToken
+          };
+
+
+        let response = await httpClient(`/rest/io/customer/`, userObj, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
           }
-        },
-        password: "New@Customer2025"
-      },
-      billingAddress: {
-        countryId: 1,
-        telephone: customer.phone,
-        address1: customer.street,
-        address2: customer.housenumber,
-        postalCode: customer.zipCity || "",
-        town: customer.city,
-        contactPerson: customer.contactPerson,
-        name1: customer.firmName,
-        isPrimary: 1
-      },
-    }
+        });
 
-    let response = await axios.post('/rest/io/customer', userObject)
-    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
+        if(response?.events?.AfterAccountAuthentication?.isSuccess){
+              
+            
+               const salespersonToken = localStorage.getItem('vertrieb-token')
+    
+               if (!salespersonToken){
+                    send({
+                      message: 'Salesperson token fehlt',
+                      type: 'negative',
+                    });
+                    return;
+               }
 
-    const salespersonToken = localStorage.getItem('vertrieb-token')
-    if (!salespersonToken) throw new Error('Salesperson token fehlt')
+                 const customerData = {
+                    customerId: response.data.id,
+                    token: salespersonToken,
+                    taxId: customer.taxId
+                  }
 
-    const customerData = {
-      customerId: response.data.id,
-      token: salespersonToken,
-      taxId: customer.taxId
-    }
+                try{
+                      response = await httpClient(`/rest/salesperson-customers-create`, customerData, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        }
+                      });
 
-    await axios.post('/rest/salesperson-customers-create', customerData)
-    alert('Ceres::Template.regSuccessful')
-    window.location.reload()
+                      if(response.id){
+                        const success = await login(customer.email!, customer.password!);
+                          if (success) {
+                            send({
+                              message: t('auth.signup.success'),
+                              type: 'positive',
+                            });
+                            emits('loggedIn', false);
+                          }
+                      }else{
+                        send({
+                            message: 'Error during creating the relation',
+                            type: 'negative',
+                          });
+                      }
+                     
+                }catch(error: any) {
+                      send({
+                        message: 'Error during creating the entry',
+                        type: 'negative',
+                      });
+                }
+
+  
+
+
+        }else{
+            send({
+            message: 'Error during registration',
+            type: 'negative',
+          });
+        }
   } catch (error: any) {
-    alert(error.response?.data?.error || 'Registrierung fehlgeschlagen')
+         console.error('❌ Error during registration:', error);
+        send({
+            message: error.response?.data?.error || 'Registrierung fehlgeschlagen',
+            type: 'negative',
+          });
   }
 }
 
@@ -466,12 +517,20 @@ const changePassword = async () => {
   try {
     const token = process.client ? localStorage.getItem('vertrieb-token') : null
     if (!token) {
-      alert("Authentication token is missing.")
+      send({
+            message: "Authentication token is missing.",
+            type: 'negative',
+          });
       return
     }
 
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      alert("New passwords do not match!")
+      
+      
+    send({
+            message: "New passwords do not match!",
+            type: 'negative',
+          });
       return
     }
 
@@ -483,13 +542,21 @@ const changePassword = async () => {
 
     loading.value = true
     await axios.post('/rest/salesperson-change-password', data)
-    
-    alert("Password changed successfully!")
+  
+    send({
+            message: "Password changed successfully!",
+            type: 'positive',
+          });
     passwordForm.currentPassword = ""
     passwordForm.newPassword = ""
     passwordForm.confirmPassword = ""
+
   } catch (error: any) {
-    alert(error.response?.data?.error || "Error updating password")
+
+    send({
+            message: error.response?.data?.error || "Error updating password",
+            type: 'negative',
+          });
   } finally {
     loading.value = false
   }

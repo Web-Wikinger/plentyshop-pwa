@@ -310,7 +310,7 @@ const submitWithRecaptcha = async () => {
 const onSubmit = handleSubmit(async (values) => {
 
        try {
-        let response = await httpClient(`${baseUrl}/rest/io/customer/`, values, {
+        let response = await httpClient(`/rest/io/customer/`, values, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -348,7 +348,7 @@ const addCustomerGroup = async () => {
   const contactId = CustomerId.value,
   customerGroupId = customerGroup.value;
 
-  const apiEndpoint = `${baseUrl}/rest/WWExtendRegistrationForm/setCustomerGroup?customerGroup=${customerGroupId}&contactId=${contactId}`;
+  const apiEndpoint = `/rest/WWExtendRegistrationForm/setCustomerGroup?customerGroup=${customerGroupId}&contactId=${contactId}`;
 
   try {
     const response = await httpClient(apiEndpoint, {}, {
