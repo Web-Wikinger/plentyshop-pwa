@@ -7,7 +7,6 @@
               :heading="t('myCart')">
     <div v-if="!cartIsEmpty" class="md:grid md:grid-cols-12 md:gap-x-6" data-testid="cart-page-content">
       <div class="col-span-7 mb-2 md:mb-0">
-        <KelloggsFreeShippingCalculator :cart="cart"></KelloggsFreeShippingCalculator>
         <div class="hidden lg:grid grid-cols-5 items-center mb-3">
           <div class="col-span-3 g-16">Artikel</div>
           <div class="g-16">Menge</div>
@@ -49,6 +48,24 @@ import { SfLoaderCircular } from '@storefront-ui/vue';
 import { cartGetters } from '@plentymarkets/shop-api';
 
 definePageMeta({ pageType: 'static' });
+
+const shippingRules = [
+  {
+    id: 14,
+    name: 'B2B / Retail 2 / Vertrieb',
+    minFreeShipping: 100,
+  },
+  {
+    id: 12,
+    name: 'Retail',
+    minFreeShipping: 280,
+  },
+  {
+    id: 10,
+    name: 'Mariott',
+    minFreeShipping: 200,
+  }
+];
 
 const NuxtLink = resolveComponent('NuxtLink');
 const { t } = useI18n();

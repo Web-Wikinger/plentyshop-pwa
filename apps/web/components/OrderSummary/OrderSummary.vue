@@ -23,6 +23,8 @@
 
       <UiDivider class="mb-2 w-auto" />
 
+      <KelloggsFreeShippingCalculator :cart="cart"></KelloggsFreeShippingCalculator>
+
       <div class="flex justify-between typography-text-base pb-4 pt-2">
         <div class="flex flex-col gap-2 grow pr-2">
           <p class="g-12-m lg:g-16-m" data-testid="subtotal-label">{{ t('itemsSubtotal') }}</p>
