@@ -22,7 +22,7 @@
 {{ $t('listSettings') }}
 </UiButton> -->
         </div>
-        <section v-if="products?.length"
+        <section v-if="products?.length && isAuthorized"
                  class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-4 mb-10 md:mb-5"
                  data-testid="category-grid">
           <NuxtLazyHydrate when-visible v-for="(product, index) in products" :key="index">
@@ -45,7 +45,33 @@
                            :show-base-price="productGetters.showPricePerUnit(product)" />
           </NuxtLazyHydrate>
         </section>
-        
+        <section v-else-if="products?.length && !isAuthorized"
+        class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-4 mb-10 md:mb-5"
+        data-testid="category-grid">
+          <NuxtLazyHydrate
+            when-visible
+            v-for="(product, index) in products"
+            :key="index"
+          >
+            <LandingPageCatProductCard
+              :product="product"
+              :name="productGetters.getName(product) ?? ''"
+              :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
+              :image-alt="productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                            productGetters.getName(product) ||
+                            ''
+                            "
+              :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
+                              productGetters.getName(product) ||
+                              ''
+                              "
+              :image-height="productGetters.getImageHeight(product) || 600"
+              :image-width="productGetters.getImageWidth(product) || 600"
+              :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
+              :priority="index < 5"
+            />
+          </NuxtLazyHydrate>
+        </section>
         <LazyCategoryEmptyState v-else />
         <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
           <span>{{ $t('asterisk') }}</span>
@@ -85,8 +111,7 @@ const localePath = useLocalePath();
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();
 
-const { showNetPrices } = useCustomer();
-
+const { isAuthorized, showNetPrices } = useCustomer();
 const { isOpen, open, close } = useDisclosure();
 const viewport = useViewport();
 
