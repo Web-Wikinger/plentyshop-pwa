@@ -26,7 +26,7 @@
           </div> -->
         </section>
       </div>
-      <section class="mx-4 mt-28 mb-20">
+      <!-- <section class="mx-4 mt-28 mb-20">
         <p class="g-16 lg:g-18 mt-2">Weitere Produkte</p>
         <p class="g-40 lg:g-56 mb-6">Das könnte dir auch gefallen</p>
         <NuxtLazyHydrate when-visible>
@@ -34,7 +34,7 @@
                                             :category-id="productGetters.getCategoryIds(product)[0]"
                                             :text="{ title: '' }" />
         </NuxtLazyHydrate>
-      </section>
+      </section> -->
     </NarrowContainer>
 
     <UiReviewModal />

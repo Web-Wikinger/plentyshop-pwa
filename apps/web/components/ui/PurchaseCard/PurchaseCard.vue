@@ -6,6 +6,7 @@
     <div class="relative">
       <div class="drift-zoom-image">
         <section class="max-w-[520px] ml-auto px-4 pt-6 lg:pt-0 lg:px-0">
+          <KelloggsFreeShippingCalculator :cart="cart"></KelloggsFreeShippingCalculator>
           <div class="flex">
             <h1 class="font-bold g-32" data-testid="product-name">
               {{ productGetters.getName(product) }}
@@ -232,7 +233,7 @@ const {
   resetInvalidFields: resetAttributeFields,
 } = useValidatorAggregator('attributes');
 const { clear, send } = useNotification();
-const { addToCart, loading } = useCart();
+const { data: cart, addToCart, loading } = useCart();
 const { t, n } = useI18n();
 const quantitySelectorValue = ref(productGetters.getMinimumOrderQuantity(product));
 const { isWishlistItem } = useWishlist();

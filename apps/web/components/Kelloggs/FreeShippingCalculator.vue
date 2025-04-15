@@ -1,5 +1,5 @@
 <template>
-  <div class="kl-shipping-progress pb-2">
+  <div v-if="isAuthorized" class="kl-shipping-progress pb-2">
     <div class="flex rounded-[1vw] overflow-hidden w-full text-sm font-medium text-white">
       <!-- Text Section -->
       <div class="bg-[#2ea533] flex-1 px-4 py-2 flex items-center">
@@ -66,7 +66,7 @@ const shippingRules = [
     minFreeShipping: 200,
   }
 ];
-const { data: userData } = useCustomer();
+const { data: userData, isAuthorized } = useCustomer();
 
 const props = defineProps<{
   cart: any;
