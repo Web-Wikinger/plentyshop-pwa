@@ -85,7 +85,6 @@ const totals = computed(() => {
   return {
     total: totalsData.total,
     subTotal: totalsData.subtotal,
-    vats: totalsData.totalVats,
   };
 });
 
