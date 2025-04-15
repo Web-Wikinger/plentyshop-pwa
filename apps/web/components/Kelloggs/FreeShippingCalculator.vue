@@ -48,12 +48,12 @@ const shippingRules = [
   {
     id: 14,
     name: 'Retail 2',
-    minFreeShipping: 280,
+    minFreeShipping: 100,
   },
   {
     id: 18,
     name: 'Vertrieb',
-    minFreeShipping: 280,
+    minFreeShipping: 100,
   },
   {
     id: 10,
