@@ -31,6 +31,7 @@
           <p class="g-12-m lg:g-16-m" v-for="(vat, index) in totals.vats" :key="index" data-testid="vat-label">
             {{ t('estimatedTax') }} {{ cartGetters.getTotalVatValue(vat) }}%
           </p>
+          <p v-if="false" class="g-12-m lg:g-16-m" data-testid="shipping-label">{{ t('delivery') }}</p>
           <p class="g-12-m lg:g-16-m" v-if="cartGetters.getCouponDiscount(props.cart)" data-testid="coupon-label">{{
             t('coupon.name') }}</p>
         </div>
@@ -38,6 +39,9 @@
           <p data-testid="subtotal" class="g-12-m lg:g-16-m">{{ n(totals.subTotal, 'currency') }}</p>
           <p v-for="(vat, index) in totals.vats" :key="index" data-testid="vat" class="g-12-m lg:g-16-m">
             {{ n(cartGetters.getTotalVatAmount(vat), 'currency') }}
+          </p>
+          <p v-if="false" data-testid="shipping" class="g-12-m lg:g-16-m">
+            {{ getShippingAmount(cartGetters.getShippingPrice(props.cart)) }}
           </p>
           <p v-if="cartGetters.getCouponDiscount(props.cart)" class="g-12-m lg:g-16-m" data-testid="coupon-value">
             {{ n(cartGetters.getCouponDiscount(props.cart), 'currency') }}
