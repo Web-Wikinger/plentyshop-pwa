@@ -156,26 +156,30 @@
         <div v-else-if="isAuthenticated && activeTab === 'customerEntries'">
            <div class="container-fluid">
               <h3 class="mb-3 text-center font-weight-bold">Kundenzugang</h3>
-              <table class="table table-bordered table-striped">
-                 <thead>
-                    <tr>
-                       <th>ID</th>
-                       <th>Kunden ID</th>
-                       <th>Kundenkonto Login</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                    <tr v-for="entry in customerEntries" :key="entry.id">
-                       <td>{{ entry.id }}</td>
-                       <td>{{ entry.customer_id }}</td>
-                       <td>
-                          <button class="btn btn-primary btn-sm" @click="redirectToLogin(entry.customer_id)">
-                          Login
-                          </button>
-                       </td>
-                    </tr>
-                 </tbody>
-              </table>
+              <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg shadow-sm">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">ID</th>
+      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kunden ID</th>
+      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kundenkonto Login</th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-gray-200">
+    <tr v-for="entry in customerEntries" :key="entry.id">
+      <td class="px-4 py-2 text-sm text-gray-900">{{ entry.id }}</td>
+      <td class="px-4 py-2 text-sm text-gray-900">{{ entry.customer_id }}</td>
+      <td class="px-4 py-2">
+        <button
+          class="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-200"
+          @click="redirectToLogin(entry.customer_id)"
+        >
+          Login
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
            </div>
         </div>
         <div v-else class="w-full  bg-white ">
@@ -265,15 +269,15 @@ const passwordForm = reactive<PasswordForm>({
 })
 
 const customer = reactive<Customer>({
-  firmName: 'Company b2b test',
-  contactPerson: 'simo',
-  street: 'westring',
-  housenumber: '10',
-  city: 'hamburg',
-  zipCity: '23658',
-  email: 'test93192025@web-wikinger.de',
-  phone: '6969568542',
-  password:"New@Customer2025",
+  firmName: '',
+  contactPerson: '',
+  street: '',
+  housenumber: '',
+  city: '',
+  zipCity: '',
+  email: '',
+  phone: '',
+  password:"",
   taxId: ''
 })
 

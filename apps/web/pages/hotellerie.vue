@@ -83,7 +83,7 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
       :products="pringlesProducts"
     />
 
-    <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles-automat.png" 
+    <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles.png" 
       SubTitle="Drehautomat für Pringles<span class='text-lg align-super'>®</span>" Title="Die impulsstarke und mobile Snackinsel" 
       Description="Überall wo Gäste freie Zeit genießen oder warten,
                   ist der neue Drehautomat für PRINGLES<span class='text-lg align-super'>®</span> die beliebte

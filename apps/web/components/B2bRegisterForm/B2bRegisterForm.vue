@@ -204,9 +204,8 @@ const validationSchema = toTypedSchema(
     customerGroup: string().required('Kundengruppe ist erforderlich').notOneOf([""], 'Bitte wählen Sie eine Kundengruppe'),
   })
 );
-const { values,defineField, handleSubmit,setFieldValue } = useForm({
-  validationSchema,
-  initialValues: {
+
+const initialValuesTest =  {
     contact: {
       password: 'Simo@2025',
       repeatPassword : 'Simo@2025',
@@ -238,6 +237,15 @@ const { values,defineField, handleSubmit,setFieldValue } = useForm({
     },
     //recaptcha: '',
     customerGroup : "32",
+}
+
+const { values,defineField, handleSubmit,setFieldValue } = useForm({
+  validationSchema,
+  initialValues: {
+    customerGroup : '',
+    billingAddress : {
+      countryId :''
+    }
   }
 });
 
@@ -257,8 +265,7 @@ const [town, townAttrs] = defineField('billingAddress.town');
 const [countryId, countryIdAttrs] = defineField('billingAddress.countryId');
 const [gender, genderAttrs] = defineField('billingAddress.gender');
 const [customerGroup, customerGroupAttrs] = defineField('customerGroup');
-const config = useRuntimeConfig().public;
-const baseUrl = config.domain;;
+
 
 onMounted(() => {
   customerGroups.value = [
