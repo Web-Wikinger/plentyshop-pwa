@@ -3,7 +3,7 @@
     <div class="flex rounded-[1vw] overflow-hidden w-full text-sm font-medium text-white">
       <!-- Text Section -->
       <div class="bg-[#2ea533] flex-1 px-4 py-2 flex items-center">
-        <p class="shipping-text m-0">
+        <p class="!text-white shipping-text m-0">
           <template v-if="remainingAmount > 0">
             Noch
             <strong class="font-bold text-white">

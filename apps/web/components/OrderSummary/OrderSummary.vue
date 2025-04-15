@@ -103,7 +103,7 @@ const orderPropertiesWithVatAdditionalCosts = computed(() =>
 <style lang="scss">
 @media only screen and (min-width: 1024px) {
   .kl-summary {
-    color: white;
+    color: black;
 
     p,
     h1,
@@ -112,7 +112,7 @@ const orderPropertiesWithVatAdditionalCosts = computed(() =>
     h4,
     h5,
     h6 {
-      color: white
+      color: black
     }
   }
 }

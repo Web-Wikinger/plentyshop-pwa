@@ -17,7 +17,7 @@
         </div>
         <Coupon v-if="viewport.isLessThan('lg')" class="mb-2" />
       </div>
-      <div class="lg:py-6 lg:px-4 lg:ml-12 relative col-span-5 md:sticky md:top-10 h-fit mt-4 lg:mt-0 lg:bg-primary-500 lg:px-12"
+      <div class="lg:py-6 lg:px-4 lg:ml-12 relative col-span-5 md:sticky md:top-10 h-fit mt-4 lg:mt-0 lg:px-12"
            :class="{ 'pointer-events-none opacity-50': loading }">
         <SfLoaderCircular v-if="loading" class="absolute top-[130px] right-0 left-0 m-auto z-[999]" size="2xl" />
         <OrderSummary class="kl-summary" :cart="cart">
@@ -27,7 +27,7 @@
                     :tag="NuxtLink"
                     :to="goToCheckout()"
                     size="lg"
-                    class="w-full mb-4 md:mb-0 shadow-none lg:bg-white lg:text-black lg:g-16">
+                    class="w-full mb-4 md:mb-0 shadow-none lg:bg-primary-500 lg:text-white lg:g-16">
             {{ t('goToCheckout') }}
           </UiButton>
           <client-only>
