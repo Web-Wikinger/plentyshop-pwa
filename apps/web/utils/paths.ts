@@ -32,5 +32,6 @@ export const paths = {
   faq: '/kelloggs/faq',
   geschichte: '/kelloggs/geschichte',
   zahlungundversand: '/kelloggs/zahlung-und-versand',
-  widerrufsrecht_fur_den_verkauf_von_waren: "/widerrufsrecht-fur-den-verkauf-von-waren"
+  widerrufsrecht_fur_den_verkauf_von_waren: "/widerrufsrecht-fur-den-verkauf-von-waren",
+  declarationOfAccessibility: '/declaration-of-accessibility',
 };
