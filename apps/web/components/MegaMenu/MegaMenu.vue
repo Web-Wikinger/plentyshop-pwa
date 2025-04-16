@@ -112,11 +112,11 @@
               
               <div>
                 <ul class="flex flex-col space-y-2">
-                  <li>
+                 <!-- <li>
                     <SfListItem :tag="NuxtLink" size="sm" href="https://kelloggs-shop.de/pages/pringles-pos" class="py-1.5 g-16-m">
                       Pringles Automat
                     </SfListItem>
-                  </li>
+                  </li>-->
                   <li>
                     <SfListItem :tag="NuxtLink" size="sm" href="/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
                       B2B Starter Kit

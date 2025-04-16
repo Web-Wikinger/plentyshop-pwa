@@ -205,7 +205,7 @@ const validationSchema = toTypedSchema(
   })
 );
 
-const initialValuesTest =  {
+let initialValues =  {
     contact: {
       password: 'Simo@2025',
       repeatPassword : 'Simo@2025',
@@ -239,14 +239,43 @@ const initialValuesTest =  {
     customerGroup : "32",
 }
 
+initialValues =  {
+    contact: {
+      password: '',
+      repeatPassword : '',
+      referrerId: 1,
+      typeId: 1,
+      options: {
+        typeId: { 
+          typeId: 2,
+          subTypeId: 4,
+          value: "",
+          priority: 0
+         }
+      }
+    },
+    billingAddress: {  
+      gender: "",
+      contactPerson: "",
+      name1: '',
+      vatNumber: '',
+      name2: '',
+      name3: '',
+      telephone: '',
+      address1: '',
+      address2: '',
+      postalCode: '',
+      town: '',
+      countryId: "",
+      stateId: "",
+    },
+    //recaptcha: '',
+    customerGroup : "",
+}
+
 const { values,defineField, handleSubmit,setFieldValue } = useForm({
   validationSchema,
-  initialValues: {
-    customerGroup : '',
-    billingAddress : {
-      countryId :''
-    }
-  }
+  initialValues: initialValues
 });
 
 const [email, emailAttrs] = defineField('contact.options.typeId.value');
