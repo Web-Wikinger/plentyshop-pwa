@@ -18,15 +18,15 @@
             :total-reviews="reviewGetters.getTotalReviews(countsProductReviews)"
           /> -->
 
-          <!-- <div class="p-4 flex">
+          <div class="p-4 flex">
             <p @click="openDrawer()" class="font-bold leading-6 cursor-pointer">
               <span>{{ t('legalDetails') }}</span>
               <SfIconChevronRight />
             </p>
-          </div> -->
+          </div>
         </section>
       </div>
-      <!-- <section class="mx-4 mt-28 mb-20">
+      <section class="mx-4 mt-28 mb-20">
         <p class="g-16 lg:g-18 mt-2">Weitere Produkte</p>
         <p class="g-40 lg:g-56 mb-6">Das könnte dir auch gefallen</p>
         <NuxtLazyHydrate when-visible>
@@ -34,7 +34,7 @@
                                             :category-id="productGetters.getCategoryIds(product)[0]"
                                             :text="{ title: '' }" />
         </NuxtLazyHydrate>
-      </section> -->
+      </section>
     </NarrowContainer>
 
     <UiReviewModal />
@@ -67,6 +67,17 @@ const { open, openDrawer } = useProductLegalDetailsDrawer();
 const countsProductReviews = computed(() => reviewGetters.getReviewCounts(productReviews.value));
 
 await fetchProduct(productParams);
+
+const { isAuthorized } = useCustomer();
+
+watch(isAuthorized, (newValue: Boolean) => {
+  if (newValue) {
+    // Fetch or update the current Product
+    fetchProduct(productParams);
+  } else {
+
+  }
+});
 
 if (Object.keys(product.value).length === 0) {
   throw new Response(null, {

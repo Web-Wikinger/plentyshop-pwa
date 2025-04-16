@@ -31,7 +31,7 @@
                       :max="5" />
             <SfCounter class="ml-1" size="xs">{{ reviewGetters.getTotalReviews(reviewAverage) }}</SfCounter>
           </div>
-          <div class="flex flex-col mt-2">
+          <div v-if="isAuthorized" class="flex flex-col mt-2">
             <Price :price="priceWithProperties" :crossed-price="crossedPrice" />
             <div class="text-gray-600">
               <p class="g-12-m mt-1 text-gray-600">{{ product.variation.weightG }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
@@ -49,7 +49,7 @@
                 }}</UiTag>
             </div> -->
           </div>
-          <LowestPrice :product="product" />
+          <!-- <LowestPrice :product="product" /> -->
           <!-- <BasePrice
                      v-if="productGetters.showPricePerUnit(product)"
                      :base-price="basePriceSingleValue"
@@ -72,7 +72,7 @@
           <!-- <ProductAttributes :product="product" /> -->
           <GraduatedPriceList :product="product" :count="quantitySelectorValue" />
 
-          <div class="mt-4">
+          <div v-if="isAuthorized" class="mt-4">
             <div class="flex flex-col md:flex-row flex-wrap gap-4">
               <UiQuantitySelector
                                   :min-value="productGetters.getMinimumOrderQuantity(product)"
@@ -220,6 +220,8 @@ import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } 
 import { type PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import { type PayPalAddToCartCallback } from '~/components/PayPal/types';
 
+const { isAuthorized } = useCustomer();
+
 const { product, reviewAverage } = defineProps<PurchaseCardProps>();
 const runtimeConfig = useRuntimeConfig();
 const showNetPrices = runtimeConfig.public.showNetPrices;
@@ -284,12 +286,16 @@ const getKgPrice = (product: Product) => {
   return (price.value / weight) * 1000;
 }
 
-const priceWithProperties = computed(
-  () =>
+const priceWithProperties = computed(() => {
+  if (!isAuthorized) return 0;
+
+  return (
     (productGetters.getSpecialOffer(product) ||
       productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.unitPrice.value ||
-      0) + getPropertiesPrice(product),
-);
+      0) + getPropertiesPrice(product)
+  );
+});
+
 
 const basePriceSingleValue = computed(
   () =>
