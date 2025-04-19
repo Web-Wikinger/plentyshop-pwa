@@ -48,6 +48,10 @@ export const categories = [
         key: 'termsAndConditions',
         link: paths.termsAndConditions,
       },
+      {
+        key: 'Widerrufsrecht',
+        link: paths.widerrufsrecht_fur_den_verkauf_von_waren,
+      },
     ],
   },
 ];

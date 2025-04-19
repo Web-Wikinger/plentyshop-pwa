@@ -94,7 +94,7 @@
                       ref="triggerReference"
                       variant="tertiary"
                       data-testid="category-button"
-                      class="group mr-2 !text-black hover:underline !py-1.5 !px-5"
+                      class="group mr-2 !text-black hover:underline !py-1.5 !px-5 !rounded-none"
                       :class="{ '!bg-primary-500 !text-white !no-underline': activeNode[0] === -99 && isOpen }"
                       @click="openMenu([-99])">
               <span class="g-16">Verkaufshilfen <SfIconExpandMore /></span>
@@ -197,7 +197,7 @@
                 v-model="isOpen"
                 placement="left"
                 class="right-12 max-w-96 bg-white overflow-y-auto z-[1000]">
-        <nav>
+        <nav @click="handleNavClick">
           <ul class="mt-2 mb-6" v-if="activeMenu">
             <li v-if="activeMenu.id !== 0">
               <SfListItem
@@ -256,13 +256,8 @@
               <!-- Test Sub-items (Shown only when isVerkaufshilfenMenuOpen is true) -->
               <ul v-if="isVerkaufshilfenMenuOpen" class="ml-6 mt-2">
                 <li>
-                  <SfListItem size="lg" :tag="NuxtLink" href="https://kelloggs-shop.de/pages/pringles-pos">
-                    <p class="text-left">Pringles Automat</p>
-                  </SfListItem>
-                </li>
-                <li>
-                  <SfListItem size="lg" :tag="NuxtLink" href="https://b2b.kelloggs-shop.de/snacks/b2b-starterkits/">
-                    <p class="text-left">B2B Starter Kit</p>
+                  <SfListItem size="lg" :tag="NuxtLink" href="/snacks/b2b-starterkits/">
+                    <p class="text-left">B2B Starter Kits</p>
                   </SfListItem>
                 </li>
                 
@@ -344,6 +339,8 @@ const { referenceRef, floatingRef, style } = useDropdown({
   middleware: [],
 });
 
+window.addEventListener('scroll', close)
+
 const newStyle = "position: absolute;top: 81px;left: unset;";
 const categoryTree = ref(categoryTreeGetters.getTree(props.categories));
 
@@ -370,6 +367,27 @@ const megaMenuReference = ref();
 const triggerReference = ref();
 
 const activeMenu = computed(() => (category.value ? findNode(activeNode.value, category.value) : null));
+
+
+function handleNavClick(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+  const clickedLink = target.closest('a');
+  const clickedButton = target.closest('button');
+
+  if (clickedLink) {
+    // Real <NuxtLink> navigation
+    close();
+    return;
+  }
+
+  if (clickedButton) {
+    // Check if the button contains a <NuxtLink> (e.g. category button with a link inside)
+    const containsLink = clickedButton.querySelector('a');
+    if (containsLink) {
+      close();
+    }
+  }
+}
 
 const trapFocusOptions = {
   activeState: isOpen,

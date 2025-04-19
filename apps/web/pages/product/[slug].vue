@@ -72,7 +72,6 @@ const { isAuthorized } = useCustomer();
 
 watch(isAuthorized, (newValue: Boolean) => {
   if (newValue) {
-    // Fetch or update the current Product
     fetchProduct(productParams);
   } else {
 

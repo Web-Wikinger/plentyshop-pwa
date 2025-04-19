@@ -81,34 +81,34 @@ const getComponent = (name: string) => {
   if (name === 'NewsletterSubscribe') return resolveComponent('NewsletterSubscribe');
 };
 
-watch(isAuthorized, async (newVal, oldVal) => {
-  try {
+// watch(isAuthorized, async (newVal, oldVal) => {
+//   try {
 
-    // if loggout remove the session
-    if (!newVal) {
-          const response = await fetch('/rest/io/customer/logout', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+//     // if loggout remove the session
+//     if (!newVal) {
+//           const response = await fetch('/rest/io/customer/logout', {
+//             method: 'POST',
+//             headers: {
+//               'Content-Type': 'application/json'
+//             }
+//           });
 
-          if (!response.ok) {
-            throw new Error(`Logout failed with status ${response.status}`);
-          }
+//           if (!response.ok) {
+//             throw new Error(`Logout failed with status ${response.status}`);
+//           }
 
-          console.log('io User logged out');
-    }else{
-            // Get the io session
-        const response = await fetch('/rest/io/customer');
-        const sessionData = await response.json();
-        console.log('io session:', sessionData);
+//           console.log('io User logged out');
+//     }else{
+//             // Get the io session
+//         const response = await fetch('/rest/io/customer');
+//         const sessionData = await response.json();
+//         console.log('io session:', sessionData);
         
-    }
-  } catch (error) {
-    console.error('Error in watch isAuthorized:', error);
-  }
-});
+//     }
+//   } catch (error) {
+//     console.error('Error in watch isAuthorized:', error);
+//   }
+// });
 
 
 

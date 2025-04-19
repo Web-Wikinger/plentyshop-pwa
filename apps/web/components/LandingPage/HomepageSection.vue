@@ -9,7 +9,7 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px] m-auto xl:max-w-[920px] flex-1">
         <div v-for="recipe in recipes" :key="recipe.id" class="bg-white shadow-lg shadow-r shadow-b rounded-none overflow-hidden">
-          <a :href="localePath(recipe.url)"><img :src="recipe.image" :alt="recipe.title" class="w-full h-[447px] object-cover duration-500 ease-in-out hover:scale-105 rounded-[1vw]"></a>
+          <a :href="localePath(recipe.url)"><img :src="recipe.image" :alt="recipe.title" class="w-full h-[447px] object-cover duration-500 ease-in-out hover:scale-105 rounded-none"></a>
           <div class="py-4">
             <a :href="localePath(recipe.url)" class="text-[32px] font-bold pl-2">{{ recipe.title }}</a>
           </div>

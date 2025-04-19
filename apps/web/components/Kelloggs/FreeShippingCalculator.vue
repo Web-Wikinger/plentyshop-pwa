@@ -1,5 +1,5 @@
 <template>
-  <div class="kl-shipping-progress pb-2">
+  <div v-if="isAuthorized"   class="kl-shipping-progress pb-2">
     <div class="flex rounded-[1vw] overflow-hidden w-full text-sm font-medium text-white">
       <!-- Text Section -->
       <div class="bg-[#2ea533] flex-1 px-4 py-2 flex items-center">
@@ -86,7 +86,8 @@ const formattedRemainingAmount = ref(n(FREE_SHIPPING_THRESHOLD.value, 'currency'
 
 function updateTotals() {
   // not yet logged in → full threshold remains
-  if (!isAuthorized) {
+  console.log("here")
+  if (!isAuthorized.value) {
     cartTotal.value                = 0;
     remainingAmount.value          = FREE_SHIPPING_THRESHOLD.value;
     formattedRemainingAmount.value = n(FREE_SHIPPING_THRESHOLD.value, 'currency');
@@ -98,15 +99,16 @@ function updateTotals() {
   cartTotal.value       = subtotal;
   remainingAmount.value = Math.max(0, FREE_SHIPPING_THRESHOLD.value - subtotal);
   formattedRemainingAmount.value = n(remainingAmount.value, 'currency');
+  console.log(remainingAmount.value)
 }
 
-watch(
-  isAuthorized,
-  () => {
+
+updateTotals()
+watch(isAuthorized, (newValue: Boolean) => {
+  if (newValue) {
     updateTotals();
-  },
-  { immediate: true }
-);
+  }
+});
 
 
 const progressBarWidth = computed(() => {

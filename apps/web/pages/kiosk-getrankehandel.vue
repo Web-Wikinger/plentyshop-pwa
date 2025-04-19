@@ -4,7 +4,7 @@
       title="Platzierungsvorschlag und Best Practice-Tipps für Getränkemärkte und Kiosks"
       subtitle="PRINGLES® sind die perfekte Ergänzung für Ihr Kerngeschäft"
       description="Was passt besser zusammen als ein kühles Getränk und ein salziger Snack? PRINGLES® sind starker Umsatztreiber für Kiosk- und Getränkemarktbesitzer. Snack-Käufe sind oft impulsiv – besonders als Belohnung am Abend. Sie sind eng mit dem Konsum von kalten Getränken wie Bier und Softdrinks verknüpft, was sie ideal für Cross-Selling, also den gemeinsamen Verkauf mit Ihrem Kerngeschäft, macht. Strategisch platziert, steigern PRINGLES® spürbar den Umsatz.<br><br><br>*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für Betriebswirtschaft und Agrarstruktur, Dezember 2021	"
-      buttonText="Zum Cerealien-Angebot"
+      noButton
       buttonLink="/snacks/pringles/"
     />
 

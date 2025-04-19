@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-100 py-10 px-5">
-    <div class=" mx-[250px] text-center">
+    <div class=" lg:mx-[250px] text-center">
       <h3 class="text-[17px] uppercase text-[#2C2C2C]">Süß trifft würzig</h3>
       <h2 class="text-[25px] leading-[33px] font-bold mt-1">
         Food Pairing mit Cerealien
