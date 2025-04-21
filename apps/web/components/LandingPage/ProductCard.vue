@@ -164,7 +164,7 @@ const updateCart = async () => {
     send({ message: t('addedToCart'), type: 'positive' });
   } else {
     if (quantity.value === 0) {
-      await deleteCartItem({ cartItemId: cartItem.id });
+      await deleteCartItem(cartItem);
       send({ message: t('removedFromCart'), type: 'positive' });
     } else {
       await setCartItemQuantity({

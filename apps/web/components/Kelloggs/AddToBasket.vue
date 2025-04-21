@@ -57,7 +57,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useCart } from '~/composables/useCart';
-import { useNotification } from '~/composables/useNotification';
+
 import _ from 'lodash';
 const { t } = useI18n();
 const { addToCart, setCartItemQuantity, deleteCartItem } = useCart();

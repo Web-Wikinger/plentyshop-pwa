@@ -82,14 +82,13 @@ const runtimeConfig = useRuntimeConfig();
 const isHero = ref(runtimeConfig.public.isHero);
 const { settingsIsDirty, openDrawerWithView, updateNewBlockPosition } = useSiteConfiguration();
 
-const { data, fetchPageTemplate, dataIsEmpty } = useHomepage();
 
 const { isEditing, isEditingEnabled, disableActions } = useEditor();
 const { getRobots, setRobotForStaticPage } = useRobots();
 
 const openBlockList = (index: number, position: number) => {
   const insertIndex = position === -1 ? index : index + 1;
-  togglePlaceholder(index, position === -1 ? 'top' : 'bottom');
+  togglePlaceholder(String(index), position === -1 ? 'top' : 'bottom');
   updateNewBlockPosition(insertIndex);
 };
 
@@ -124,7 +123,6 @@ const handleBeforeUnload = (event: BeforeUnloadEvent) => {
   event.preventDefault();
 };
 
-fetchPageTemplate();
 </script>
 
 
