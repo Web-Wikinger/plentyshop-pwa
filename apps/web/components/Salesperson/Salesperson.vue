@@ -213,7 +213,6 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import { httpClient } from '@/sdk.client';
 const { send } = useNotification();
 const { login } = useCustomer();
 const emits = defineEmits(['loggedIn', 'change-view']);
@@ -419,14 +418,13 @@ const registerCustomer = async () => {
           };
 
 
-        let response = await httpClient(`/rest/io/customer/`, userObj, {
-          method: 'POST',
+        let response = await axios.post('/rest/io/customer/', userObj, {
           headers: {
             'Content-Type': 'application/json'
           }
         });
 
-        if(response?.events?.AfterAccountAuthentication?.isSuccess){
+        if(response?.data?.events?.AfterAccountAuthentication?.isSuccess){
               
             
                const salespersonToken = localStorage.getItem('vertrieb-token')
@@ -446,28 +444,27 @@ const registerCustomer = async () => {
                   }
 
                 try{
-                      response = await httpClient(`/rest/salesperson-customers-create`, customerData, {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json'
-                        }
-                      });
+                  response = await axios.post('/rest/salesperson-customers-create', customerData, {
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
 
-                      if(response.id){
-                        const success = await login(customer.email!, customer.password!);
-                          if (success) {
-                            send({
-                              message: t('auth.signup.success'),
-                              type: 'positive',
-                            });
-                            emits('loggedIn', false);
-                          }
-                      }else{
-                        send({
-                            message: 'Error during creating the relation',
-                            type: 'negative',
-                          });
-                      }
+                  if (response?.data?.id) {
+                    const success = await login(customer.email!, customer.password!);
+                    if (success) {
+                      send({
+                        message: t('auth.signup.success'),
+                        type: 'positive',
+                      });
+                      emits('loggedIn', false);
+                    }
+                  } else {
+                    send({
+                      message: 'Error during creating the relation',
+                      type: 'negative',
+                    });
+                  }
                      
                 }catch(error: any) {
                       send({
