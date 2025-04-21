@@ -1,5 +1,7 @@
 <template>
-  <KelloggsOurBrands></KelloggsOurBrands>
+  <LandingPageNewsletter />
+  <LandingPageOurBrands v-if="landingPages.includes(route.path)"></LandingPageOurBrands>
+  <KelloggsOurBrands v-else></KelloggsOurBrands>
   <footer 
     class="bg-white pt-10 pb-6" 
     data-testid="footer" 
@@ -57,7 +59,8 @@ import { SfLink, SfListItem } from '@storefront-ui/vue';
 import { categories } from '~/mocks';
 import type { FooterProps } from './types';
 import { watch } from 'vue';
-
+const route = useRoute();
+const landingPages = ['/hotellerie', '/bars-gastronomie', '/kiosk-getrankehandel'];
 const { data: user, isAuthorized } = useCustomer();
 
 let text = {
