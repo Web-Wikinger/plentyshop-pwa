@@ -23,7 +23,7 @@
     
     <!-- Right Section -->
     <div class="mx-2 lg:w-[28%] bg-purple-600 lg:flex justify-center items-center p-8 rounded-r-lg">
-      <img src="/images/Pringles Pop Image.png" alt="Pop & Go Display" class="w-[75%] max-w-xs">
+      <img src="/images/pringles-pop-image.png" alt="Pop & Go Display" class="w-[75%] max-w-xs">
     </div>
   </div>
 </template>
