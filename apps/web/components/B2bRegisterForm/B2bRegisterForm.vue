@@ -150,6 +150,8 @@ import { toTypedSchema } from '@vee-validate/yup';
 import { onMounted, ref,watch } from 'vue';
 import { httpClient } from '@/sdk.client';
 import { SfLoaderCircular } from '@storefront-ui/vue';
+const router = useRouter();
+
 
 const { login } = useCustomer();
 const { send } = useNotification();
@@ -336,6 +338,7 @@ const submitWithRecaptcha = async () => {
 
      loading.value = false;
 
+     router.back()
   } catch (err) {
     loading.value = false;
     console.error('❌ reCAPTCHA failed:', err);
