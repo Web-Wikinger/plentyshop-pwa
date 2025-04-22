@@ -32,7 +32,7 @@ den Geschmackssinn anregen und mit Markenstrahlkraft die Wertigkeit des Angebots
       buttonLink="https://kelloggs-shop.de/pages/pringles-pos"
     />
 
-    <p class="text-[45px] leading-[70px] font-bold text-red-color mx-[250px] text-center">SIE BIETEN EIN FRÜHSTÜCKSBUFFET AN?</p>
+    <p class="text-[45px] leading-[70px] break-words font-bold text-red-color lg:mx-[250px] text-center">SIE BIETEN EIN FRÜHSTÜCKSBUFFET AN?</p>
     <LandingPageComparison id="FRÜHSTÜCKSBUFFET"
       title="GROßE GESCHMACKSVIELFALT – GUTE LAUNE INKLUSIVE"
       subtitle="Frühstück mit KELLOGG‘S® ist profitabler für Sie"
