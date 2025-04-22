@@ -59,6 +59,18 @@
           >
             Jetzt anmelden
           </button>
+
+
+          <NuxtTurnstile
+            v-if="turnstileSiteKey"
+            v-bind="turnstileAttributes"
+            ref="turnstileElement"
+            v-model="turnstile"
+            :options="{ theme: 'light' }"
+            class="mt-4"
+          />
+
+          <ErrorMessage as="div" name="turnstile" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
         </form>
       </div>
     </div>
@@ -67,6 +79,16 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useForm, ErrorMessage } from 'vee-validate';
+
+const { subscribe, loading } = useNewsletter();
+const { send } = useNotification();
+const { t } = useI18n();
+const { errors, meta, defineField, handleSubmit, resetForm } = useForm();
+const runtimeConfig = useRuntimeConfig();
+const turnstileSiteKey = runtimeConfig.public?.turnstileSiteKey ?? '';
+const [turnstile, turnstileAttributes] = defineField('turnstile');
+const turnstileElement = ref();
 
 const email = ref('')
 const accepted = ref(false)
@@ -77,9 +99,30 @@ const canSubmit = computed(() => {
   return emailValid && accepted.value
 })
 
-function onSubmit() {
-  // replace with your actual signup logic
-  
+
+async function onSubmit() {
+  console.log('here')
+  if (!canSubmit) {
+    alert('Bitte bestätigen Sie die Datenschutzbestimmungen.')
+    return
+  }
+
+  const response = await subscribe({
+    email: email.value || '',
+    emailFolder: 1,
+    'cf-turnstile-response': turnstile.value,
+  });
+
+  if (response) {
+    send({
+      type: 'positive',
+      message: t('newsletter.success'),
+    });
+    resetForm();
+  }
+
+  turnstile.value = '';
+  turnstileElement.value?.reset();
 }
 </script>
 
