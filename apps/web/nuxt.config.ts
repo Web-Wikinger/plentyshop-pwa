@@ -6,6 +6,10 @@ import { appConfiguration } from './configuration/app.config';
 import { paths } from './utils/paths';
 
 export default defineNuxtConfig({
+  components: {
+    global: true,
+    dirs: ['~/kl_components', '~/components']
+  },
   telemetry: false,
   devtools: { enabled: true },
   typescript: {
