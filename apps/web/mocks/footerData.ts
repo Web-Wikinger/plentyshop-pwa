@@ -49,10 +49,6 @@ export const categories = [
         link: paths.termsAndConditions,
       },
       {
-        key: 'declarationOfAccessibility',
-        link: paths.declarationOfAccessibility,
-      },
-      {
         key: 'Widerrufsrecht',
         link: paths.widerrufsrecht_fur_den_verkauf_von_waren,
       },
