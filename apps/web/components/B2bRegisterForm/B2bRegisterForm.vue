@@ -338,7 +338,7 @@ const submitWithRecaptcha = async () => {
 
      loading.value = false;
 
-     router.back()
+     router.go(-1)
   } catch (err) {
     loading.value = false;
     console.error('❌ reCAPTCHA failed:', err);
@@ -363,7 +363,6 @@ const onSubmit = handleSubmit(async (values) => {
       const groupResponse = await addCustomerGroup();
       if (groupResponse?.data?.success) {
         loginUser(); // call your login function
-        router.back();
       }
 
     } else {
@@ -403,7 +402,6 @@ const addCustomerGroup = async () => {
 
 
 
-
 const loginUser = async () => {
   const success = await login(email.value!, password.value!);
   if (success) {
@@ -412,6 +410,7 @@ const loginUser = async () => {
       type: 'positive',
     });
     emits('loggedIn', false);
+    router.go(-1);
   }
 };
 </script>

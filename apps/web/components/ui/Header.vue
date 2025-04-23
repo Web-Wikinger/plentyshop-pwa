@@ -176,6 +176,9 @@ watch(
 const logOut = async () => {
   accountDropdownToggle();
   await logout();
+  const { deleteCart } = useCart();
+  await deleteCart();
+
   navigateTo(localePath(paths.home));
 };
 
