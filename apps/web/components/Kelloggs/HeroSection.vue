@@ -1,10 +1,8 @@
 <template>
   <section class="kl-hero-section" id="hero-section">
     <div class="kl-hero-section__content page-width">
-      <h1 class="kl-hero-section__title">
-        Ihr Partner für<br> 
-        Frühstücks und-<br>
-        Snackmomente
+      <h1 class="kl-hero-section__title lg:max-w-[800px]">
+        Ihr Partner für Frühstücks und Snackmomente
       </h1>
       <p class="kl-hero-section__description">Bestelle das komplette Kellogg’s und Pringles Sortiment jederzeit und von überall!</p>
       <a href="#our-products" class="kl-button">Produkte entdecken</a>

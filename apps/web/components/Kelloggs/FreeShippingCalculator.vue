@@ -80,35 +80,10 @@ const FREE_SHIPPING_THRESHOLD = computed(() => {
   return rule?.minFreeShipping ?? 100; // fallback to 100 if not found
 });
 
-const cartTotal                = ref(0);
-const remainingAmount          = ref(FREE_SHIPPING_THRESHOLD.value);
-const formattedRemainingAmount = ref(n(FREE_SHIPPING_THRESHOLD.value, 'currency'));
+const cartTotal = computed(() => cartGetters.getTotals(props.cart).subtotal || 0);
+const remainingAmount = computed(() => Math.max(0, FREE_SHIPPING_THRESHOLD.value - cartTotal.value));
+const formattedRemainingAmount = computed(() => n(remainingAmount.value, 'currency'));
 
-function updateTotals() {
-  // not yet logged in → full threshold remains
-  console.log("here")
-  if (!isAuthorized.value) {
-    cartTotal.value                = 0;
-    remainingAmount.value          = FREE_SHIPPING_THRESHOLD.value;
-    formattedRemainingAmount.value = n(FREE_SHIPPING_THRESHOLD.value, 'currency');
-    return;
-  }
-
-  // logged in → compute real totals
-  const subtotal = cartGetters.getTotals(props.cart).subtotal || 0;
-  cartTotal.value       = subtotal;
-  remainingAmount.value = Math.max(0, FREE_SHIPPING_THRESHOLD.value - subtotal);
-  formattedRemainingAmount.value = n(remainingAmount.value, 'currency');
-  console.log(remainingAmount.value)
-}
-
-
-updateTotals()
-watch(isAuthorized, (newValue: Boolean) => {
-  if (newValue) {
-    updateTotals();
-  }
-});
 
 
 const progressBarWidth = computed(() => {

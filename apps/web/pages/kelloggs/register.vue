@@ -78,7 +78,7 @@ const navigateAfterAuth = (skipReload) => {
 // Steps for registration process
 const steps = ref([
   { icon: "/images/kelloggs/form/Form.svg", text: "Formular ausfüllen" },
-  { icon: "/images/kelloggs/form/Check.svg", text: "Freischaltung- und Bestätigungsmail" },
+  { icon: "/images/kelloggs/form/Check.svg", text: "Freischaltungs- und Bestätigungsmail" },
   { icon: "/images/kelloggs/form/Basket.svg", text: "Über das Portal einkaufen" }
 ]);
 

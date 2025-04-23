@@ -45,7 +45,7 @@ const recipes = [
     id: 4,
     title: "Pringles Automat",
     image: "/images/hp-block/composing_pringles-automat.png",
-    url: 'https://kelloggs-shop.de/pages/pringles-pos'
+    url: '#'
   }
 ];
 </script>

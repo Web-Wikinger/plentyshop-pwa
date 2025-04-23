@@ -18,8 +18,7 @@
           </div>
           <p id="pringles-title" class="text-white kl-card-title">Pringles</p>
           <p id="pringles-description" class="text-white kl-card-description">
-            Ob der intensive Kick von Salt & Vinegar oder die köstlich saure Note von Sour Cream & Onion: Du wirst
-            garantiert deinen perfekten Pringles Moment finden.
+            Pringles ist das perfekte Produkt für Ihr Unternehmen. Egal ob Kioske, Bars, Gastronomiebetriebe und Hotels! Von Paprika bis Sour Cream & Onion – Pringles trifft garantiert den Geschmack Ihrer Kunden.
           </p>
           <NuxtLink
                     to="/snacks/pringles"
@@ -40,8 +39,7 @@
           </div>
           <p id="cereal-title" class="text-white kl-card-title">Cerealien</p>
           <p id="cereal-description" class="text-white kl-card-description">
-            Kellogg's Tresor, Kellogg's Smacks, Kellogg's Frosties oder doch Special K? Du hast die Wahl - bei dem
-            vielfältigen Cerealien-Sortiment findet jeder was!
+            Kellogg’s Chocos, Kellogg’s Frosties oder Special K – mit unserem vielfältigen Cerealien-Sortiment steigern Sie Ihren Umsatz! Für Kioske, und Hotels gibt es für jeden Geschmack die perfekte Wahl.
           </p>
           <NuxtLink
                     to="/fruehstueck/cerealien"
@@ -61,8 +59,7 @@
           </div>
           <p id="muesli-title" class="kl-card-title">Müsli</p>
           <p id="muesli-description" class="kl-card-description">
-            Das Problem ist, dass sie zu gut schmecken! Von Schokolade bis Nüssen - unser Müsli-Sortiment ist nicht nur
-            zum Frühstück ein Highlight!
+            Von zarter Schokolade bis hin zu knackigen Nüssen – unser Müsli-Sortiment begeistert mit besten Zutaten und vollem Geschmack. Ideal für Hotellerie, oder den Handel: höchste Qualität, attraktives Design und Geschmack, der begeistert.
           </p>
           <NuxtLink
                     to="/fruehstueck/muesli"

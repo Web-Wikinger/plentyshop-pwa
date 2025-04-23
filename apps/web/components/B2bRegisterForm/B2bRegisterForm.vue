@@ -363,6 +363,7 @@ const onSubmit = handleSubmit(async (values) => {
       const groupResponse = await addCustomerGroup();
       if (groupResponse?.data?.success) {
         loginUser(); // call your login function
+        router.back();
       }
 
     } else {

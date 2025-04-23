@@ -119,7 +119,7 @@
                   </li>-->
                   <li>
                     <SfListItem :tag="NuxtLink" size="sm" href="/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
-                      B2B Starter Kit
+                      B2B Starterkits
                     </SfListItem>
                   </li>
                 </ul>
@@ -257,7 +257,7 @@
               <ul v-if="isVerkaufshilfenMenuOpen" class="ml-6 mt-2">
                 <li>
                   <SfListItem size="lg" :tag="NuxtLink" href="/snacks/b2b-starterkits/">
-                    <p class="text-left">B2B Starter Kits</p>
+                    <p class="text-left">B2B Starterkits</p>
                   </SfListItem>
                 </li>
                 
