@@ -340,7 +340,21 @@ const { referenceRef, floatingRef, style } = useDropdown({
   middleware: [],
 });
 
-window.addEventListener('scroll', close)
+const onScroll = () => {
+  if (isOpen.value) {
+    close()
+  }
+}
+
+// when dropdown opens, attach scroll; when it closes, detach
+watch(isOpen, (open, prev) => {
+  if (open) {
+    window.addEventListener('scroll', onScroll, { passive: true })
+  }
+  else if (prev) {
+    window.removeEventListener('scroll', onScroll)
+  }
+})
 
 const newStyle = "position: absolute;top: 81px;left: unset;";
 const categoryTree = ref(categoryTreeGetters.getTree(props.categories));
