@@ -37,7 +37,7 @@
         <option value="male">Herr</option>
         <option value="female">Frau</option>
         <option value="diverse">Person</option>
-        <option value="company">Firma</option>
+        <option value="company" selected>Firma</option>
       </select>
     </div>
 
