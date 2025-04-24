@@ -112,11 +112,11 @@
               
               <div>
                 <ul class="flex flex-col space-y-2">
-                 <!-- <li>
-                    <SfListItem :tag="NuxtLink" size="sm" href="https://kelloggs-shop.de/pages/pringles-pos" class="py-1.5 g-16-m">
+                 <li>
+                    <SfListItem :tag="NuxtLink" size="sm" href="https://snackinginsel.de/" class="py-1.5 g-16-m">
                       Pringles Automat
                     </SfListItem>
-                  </li>-->
+                  </li>
                   <li>
                     <SfListItem :tag="NuxtLink" size="sm" href="/snacks/b2b-starterkits/" class="py-1.5 g-16-m">
                       B2B Starterkits
@@ -255,6 +255,11 @@
 
               <!-- Test Sub-items (Shown only when isVerkaufshilfenMenuOpen is true) -->
               <ul v-if="isVerkaufshilfenMenuOpen" class="ml-6 mt-2">
+                <li>
+                  <SfListItem size="lg" :tag="NuxtLink" href="https://snackinginsel.de/">
+                    <p class="text-left">Pringles Automat</p>
+                  </SfListItem>
+                </li>
                 <li>
                   <SfListItem size="lg" :tag="NuxtLink" href="/snacks/b2b-starterkits/">
                     <p class="text-left">B2B Starterkits</p>

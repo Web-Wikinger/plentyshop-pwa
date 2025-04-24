@@ -12,6 +12,13 @@ const { t } = useI18n();
 const { setPageMeta } = usePageMeta();
 const icon = 'home';
 setPageMeta(t('homepage.title'), icon);
+useHead({
+  title: 'Home',
+  meta: [
+    { name: 'description', content: 'Welcome to Kellogg\'s Shop' }
+  ]
+})
+
 
 const { getRobots, setRobotForStaticPage } = useRobots();
 getRobots();

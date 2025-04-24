@@ -51,7 +51,7 @@
         SubTitle="Den Dreh raus" Title="Der Drehautomat für Pringles® bringt Zusatzumsätze" 
         Description="Signalrot oder schwarz, gefüllt mit 49 Pringles® 40 g Dosen, ist der Drehautomat für Pringles® ein Umsatzbringer ohne zusätzlichen Personalaufwand. Das Handling ist easy: Einfach Sorte aussuchen, Geld einwerfen, drehen und snacken. Der Automat ist vielseitig einsetzbar, als Hingucker auf dem Standfuß, diebstahlsicher an der Wand oder als Miniautomat direkt auf dem Tresen platziert."
         ButtonText="Mehr Infos zum Automaten"
-        buttonLink="https://kelloggs-shop.de/pages/pringles-pos"
+        buttonLink="https://snackinginsel.de/"
     />
     
     <LandingPageInfoBlock 

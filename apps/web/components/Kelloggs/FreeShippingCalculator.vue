@@ -9,10 +9,10 @@
             <strong class="font-bold text-white">
               {{ formattedRemainingAmount }}
             </strong>
-            bis zur Mindestbestellgrenze
+            bis zur {{rule?.textMessage}}
           </template>
           <template v-else>
-            Mindestbestellgrenze erreicht!
+            {{rule?.textMessage}} erreicht!
           </template>
         </p>
       </div>
@@ -44,26 +44,34 @@ const shippingRules = [
     id: 2,
     name: 'B2B',
     minFreeShipping: 100,
+    textMessage: "kostenlosen Versand"
   },
   {
     id: 14,
     name: 'Retail 2',
     minFreeShipping: 100,
+    textMessage: "kostenlosen Versand"
   },
   {
     id: 18,
     name: 'Vertrieb',
     minFreeShipping: 100,
+    textMessage: "Mindestbestellgrenze"
+
   },
   {
     id: 10,
     name: 'Retail',
     minFreeShipping: 280,
+    textMessage: "Mindestbestellgrenze"
+
   },
   {
     id: 13,
     name: 'Mariott',
     minFreeShipping: 200,
+    textMessage: "Mindestbestellgrenze"
+
   }
 ];
 const { data: userData, isAuthorized } = useCustomer();
@@ -73,6 +81,9 @@ const props = defineProps<{
 }>();
 
 const { n } = useI18n();
+
+const classId = userData?.value?.user?.classId;
+const rule = shippingRules.find(rule => rule.id === classId);
 
 const FREE_SHIPPING_THRESHOLD = computed(() => {
   const classId = userData?.value?.user?.classId;
