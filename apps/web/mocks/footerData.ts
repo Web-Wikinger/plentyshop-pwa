@@ -54,10 +54,4 @@ export const categories = [
       },
     ],
   },
-  {
-    key: 'contact',
-    subcategories: [
-
-    ],
-  },
 ];
