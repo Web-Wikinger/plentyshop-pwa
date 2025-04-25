@@ -44,7 +44,7 @@
         </li>
      </ul>
      <!-- Tabs Content -->
-     <div class="tab-content mt-3 mx-[200px]">
+     <div class="tab-content mt-3 lg:mx-[200px]">
         <!-- Second Tab -->
         <div v-if="isAuthenticated && activeTab === 'CreateCustomer'" class="flex justify-center items-center">
            <div class="w-full bg-[#d0033d] text-white p-6 rounded-lg">
