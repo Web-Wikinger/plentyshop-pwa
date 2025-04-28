@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     asyncContext: true,
   },
   appConfig: {
-    titleSuffix: process.env.STORENAME || 'Kellog\'s Shop',
+    titleSuffix: process.env.STORENAME || 'Kellogg\'s Shop',
     fallbackCurrency: 'GBP',
   },
   imports: {
