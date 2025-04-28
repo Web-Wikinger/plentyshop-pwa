@@ -15,7 +15,6 @@
       {{ `${userAddressGetters.getPostCode(address)} ${userAddressGetters.getCity(address)}` }}
     </p>
     <p>{{ countryName }}</p>
-    <p>{{ userAddressGetters.getPhone(address) }} </p>
   </div>
 </template>
 
