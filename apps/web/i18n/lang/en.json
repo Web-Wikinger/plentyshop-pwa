@@ -567,7 +567,8 @@
     "streetNumberLabel": "Number",
     "useAsBillingLabel": "Use as billing address",
     "useAsShippingLabel": "Use as shipping address",
-    "vatIdLabel": "VAT ID"
+    "vatIdLabel": "VAT ID",
+    "phoneNumber": "Phone Number"
   },
   "gallery": {
     "count": "{current} of {total}",

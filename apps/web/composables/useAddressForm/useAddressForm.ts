@@ -70,6 +70,9 @@ export const useAddressForm = (type: AddressType) => {
         then: () => string().required($i18n.t('errorMessages.requiredField')).default(''),
         otherwise: () => string().optional().default(''),
       }),
+      phoneNumber: string()
+      .required($i18n.t('errorMessages.requiredField'))
+      .default(''),
     }),
   );
 

@@ -587,7 +587,8 @@
     "streetNumberLabel": "Nummer",
     "useAsBillingLabel": "Als Rechnungsadresse nutzen",
     "useAsShippingLabel": "Als Lieferadresse nutzen",
-    "vatIdLabel": "USt-IdNr."
+    "vatIdLabel": "USt-IdNr.",
+    "phoneNumber": "Telefonnummer"
   },
   "gallery": {
     "count": "{current} von {total}",
