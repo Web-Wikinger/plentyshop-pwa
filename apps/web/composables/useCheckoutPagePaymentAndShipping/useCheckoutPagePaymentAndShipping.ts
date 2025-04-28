@@ -95,5 +95,6 @@ export const useCheckoutPagePaymentAndShipping = () => {
     handleShippingMethodUpdate,
     handlePaymentMethodUpdate,
     validateShippingTerms,
+    getShippingMethods
   };
 };

@@ -73,8 +73,18 @@ const emit = defineEmits<CheckoutShippingEmits>();
 const { data: cart } = useCart();
 const { t, n } = useI18n();
 const { selectedMethod } = useCartShippingMethods();
-const { shippingMethods } = useCheckoutPagePaymentAndShipping();
+const { shippingMethods, getShippingMethods } = useCheckoutPagePaymentAndShipping();
 const radioModel = ref(shippingProviderGetters.getShippingProfileId(cart.value));
+
+watch(
+  () => cart.value,
+  async (newCart, oldCart) => {
+    if (newCart !== oldCart) {
+      await getShippingMethods();
+    }
+  },
+  { deep: true }
+);
 
 const showShippingPrivacy = computed(
   () =>
