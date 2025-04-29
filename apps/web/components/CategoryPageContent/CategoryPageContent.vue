@@ -45,6 +45,11 @@
                            :show-base-price="productGetters.showPricePerUnit(product)" />
           </NuxtLazyHydrate>
         </section>
+        <div v-else-if="isAuthorized">
+          <section data-testid="category-empty-state" class="flex flex-col items-center md:mt-16">
+            <h1 class="mt-8 font-bold w-[50%] text-center text-[15px] lg:text-[32px]">{{ $t('categoryPage.NoProductsFound') }}</h1>
+          </section>
+        </div>
         <LazyCategoryEmptyState v-else />
         <section v-if="products?.length && !isAuthorized"
           class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-4 my-10 md:mb-5"

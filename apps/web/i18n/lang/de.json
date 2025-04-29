@@ -453,7 +453,8 @@
   "emptyStateText2": "Haben Sie nicht gefunden, was Sie suchen?",
   "categoryPage" : { 
     "textNotlogged": "Sie sind Geschäftkunde und wollen unsere Produkte erwerben?",
-    "buttonRegister": "Jetzt registrieren"
+    "buttonRegister": "Jetzt registrieren",
+    "NoProductsFound": "Producten niet gevonden"
   },
   "emptyWishlist": "Ihre Wunschliste ist leer",
   "error": {
