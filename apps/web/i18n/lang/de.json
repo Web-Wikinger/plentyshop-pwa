@@ -1111,5 +1111,13 @@
       "locationSearchUnifiedCall": "Location Search Unified API Call",
       "locationSearchUnifiedCallError": "Location Search Unified API error"
     }
+  },
+  "bulkAdd": {
+    "title": "Bulk alles hinzufügen für",
+    "addAllToBasket": "Alles in den Warenkorb legen",
+    "adding": "Hinzufügen",
+    "noProducts": "Keine Produkte gefunden",
+    "tryAnotherCategory": "Versuchen Sie es mit einer anderen Kategorie",
+    "addedToBasket": "Erfolgreich zum Warenkorb hinzugefügt"
   }
 }

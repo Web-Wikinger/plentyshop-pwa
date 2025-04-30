@@ -68,6 +68,10 @@ export const useLocalization = createSharedComposable(() => {
     const { $i18n } = useNuxtApp();
     const { locale, defaultLocale, strategy } = $i18n;
 
+    if (parts[1] === 'bulk-add') {
+      parts.splice(1, 1)
+    }
+    
     const shouldRemoveLocale = (strategy: string, locale: string, defaultLocale: string) => {
       if (strategy === 'prefix') {
         return true;

@@ -43,12 +43,6 @@
     </div>
   </footer>
 
-  <component 
-    class="!bg-red-color text-white"
-    :is="getComponent && getComponent('NewsletterSubscribe')" 
-    :text="text"  
-    :belowInput="belowInput"
-  />
 
   <LandingPageUnderFooter />
 
@@ -57,32 +51,17 @@
 <script setup lang="ts">
 import { SfLink, SfListItem } from '@storefront-ui/vue';
 import { categories } from '~/mocks';
-import type { FooterProps } from './types';
 import { watch } from 'vue';
 const route = useRoute();
 const landingPages = ['/hotellerie', '/bars-gastronomie', '/kiosk-getrankehandel'];
 const { data: user, isAuthorized } = useCustomer();
 
-let text = {
-  title: "Jetzt zum Newsletter anmelden und von exklusiven Vorteilen profitieren",
-  htmlDescription: ""
-}
-
-let belowInput = {
-  textHtml: "<span class='font-bold'>WICHTIG:</span> Im Arschluss erhältst du ein E-Mail (Bitte schaue auch unbedingt im SPAM nach) mit einem Link. Um deine Anmeldung zum Newsletter zu bestätigen. Mit der Anmeldung zum Newsletter akzeptierst du die Datenschutzbestimmungen."
-}
 const storename: string = useRuntimeConfig().public.storename;
 
-const companyName: string = `© ${storename} ${new Date().getFullYear()}`;
-
-const { simplifiedFooter = false } = defineProps<FooterProps>();
 
 const localePath = useLocalePath();
 const NuxtLink = resolveComponent('NuxtLink');
 
-const getComponent = (name: string) => {
-  if (name === 'NewsletterSubscribe') return resolveComponent('NewsletterSubscribe');
-};
 
 watch(isAuthorized, async (newVal, oldVal) => {
   try {
