@@ -8,11 +8,33 @@
     <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-[99999]" size="2xl" />
     <KelloggsCategoryHeader :categoryName="categoryName"></KelloggsCategoryHeader> 
 
-    <div class="flex justify-end px-4 mb-4">
-        <CategorySorting />
+    <div class="flex">
+      <div class="flex-1 px-[40px] mt-4  ">
+        <div class="flex items-center space-x-2 flex-1">
+          <button
+            @click="viewMode = 'grid'"
+            :class="viewMode === 'grid' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-600'"
+            aria-label="Grid view"
+          >
+            <!-- replace these with whatever icon component you’re using -->
+            <SfIconGridView class="w-6 h-6" />
+          </button>
+          <button
+            @click="viewMode = 'list'"
+            :class="viewMode === 'list' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-600'"
+            aria-label="List view"
+          >
+            <SfIconMenu class="w-6 h-6" />
+          </button>
+        </div>
+
+      </div>
+      <div class="flex flex-1 justify-end px-4 mb-4">
+          <CategorySorting />
+      </div>
     </div>
     <CategoryPageContent
-      v-if="productsCatalog?.products"
+      v-if="productsCatalog?.products && viewMode === 'grid'"
       :title="categoryGetters.getCategoryName(productsCatalog.category)"
       :total-products="productsCatalog.pagination.totals"
       :products="productsCatalog.products"
@@ -25,12 +47,14 @@
         <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
       </template>
     </CategoryPageContent>
+    <BulkAddProducts v-if="productsCatalog?.products && viewMode === 'list'" />
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import { categoryGetters, categoryTreeGetters, facetGetters } from '@plentymarkets/shop-api';
-import { SfLoaderCircular } from '@storefront-ui/vue';
+import { SfLoaderCircular, SfIconMenu, SfIconGridView } from '@storefront-ui/vue';
+const viewMode = ref<'grid' | 'list'>('grid')
 
 const { isAuthorized } = useCustomer();
 

@@ -32,24 +32,37 @@
       </button>
 
       <!-- Quantity controls (only visible if quantity > 0) -->
-      <div v-else class="kl-quantity-controls">
-        <button class="kl-minus" @click.stop="decreaseQuantity" :disabled="loading">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-minus"
-               fill="none" viewBox="0 0 10 2">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z"
-                  fill="currentColor" />
-          </svg>
-        </button>
-        <span class="kl-quantity">{{ quantity }}</span>
-        <button class="kl-plus" @click.stop="increaseQuantity" :disabled="loading">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-plus"
-               fill="none" viewBox="0 0 10 10">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z"
-                  fill="currentColor" />
-          </svg>
-        </button>
+      <div v-else-if="!loading" class="kl-quantity-controls">
+          <button class="kl-minus" @click.stop="decreaseQuantity" :disabled="loading">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-minus"
+                fill="none" viewBox="0 0 10 2">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z"
+                    fill="currentColor" />
+            </svg>
+          </button>
+          <span class="kl-quantity">{{ quantity }}</span>
+          <button class="kl-plus" @click.stop="increaseQuantity" :disabled="loading">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-plus"
+                fill="none" viewBox="0 0 10 10">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z"
+                    fill="currentColor" />
+            </svg>
+          </button>
       </div>
+      <div v-else-if="loading" class="flex row items-center bg-[#e3e3e3] min-w-90px h-[42px] rounded-[2vw] w-[90px] justify-center items-center">
+        <SfLoaderCircular size="sm" />
+      </div>
+    </div>
+  </div>
+
+  <div
+    v-if="loading"
+    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+  >
+    <!-- you can swap in a spinner component if you have one -->
+    <div class="text-white text-lg">
+      <SfLoaderCircular />
     </div>
   </div>
 </template>
@@ -57,6 +70,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useCart } from '~/composables/useCart';
+import { SfLoaderCircular } from '@storefront-ui/vue';
 
 import _ from 'lodash';
 const { t } = useI18n();
