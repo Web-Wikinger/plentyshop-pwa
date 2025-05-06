@@ -1118,6 +1118,8 @@
     "adding": "Hinzufügen",
     "noProducts": "Keine Produkte gefunden",
     "tryAnotherCategory": "Versuchen Sie es mit einer anderen Kategorie",
-    "addedToBasket": "Erfolgreich zum Warenkorb hinzugefügt"
+    "addedToBasket": "Erfolgreich zum Warenkorb hinzugefügt",
+    "generateUrl": "URL generieren",
+    "CopiedSuccesfully": "URL erfolgreich kopiert"
   }
 }

@@ -7,6 +7,13 @@
               :heading="t('myCart')">
     <div v-if="!cartIsEmpty" class="md:grid md:grid-cols-12 md:gap-x-6" data-testid="cart-page-content">
       <div class="col-span-7 mb-2 md:mb-0">
+        <div class="flex justify-end mb-4">
+          <UiButton
+            @click="onGenerateUrl"
+          >
+            {{ t('bulkAdd.generateUrl') }}
+          </UiButton>
+        </div>
         <div class="hidden lg:grid grid-cols-5 items-center mb-3">
           <div class="col-span-3 g-16">Artikel</div>
           <div class="g-16">Menge</div>
@@ -78,4 +85,29 @@ const goToCheckout = () => (isAuthorized.value ? localePath(paths.checkout) : lo
 
 const icon = 'page';
 setPageMeta(t('cart'), icon);
+
+const onGenerateUrl = () => {
+  if (!cart.value?.items?.length) {
+    console.warn('Cart is empty – nothing to generate');
+    return;
+  }
+
+  // map each item to "id=quantity"
+  const query = cart.value.items
+    .map(item => `${encodeURIComponent(item.variationId)}=${encodeURIComponent(item.quantity)}`)
+    .join('&');
+
+  const url = `?${query}`;
+  
+  // e.g. copy to clipboard
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url)
+      .then(() => alert(t("bulkAdd.CopiedSuccesfully")))
+      .catch(() => console.error('Copy failed'));
+  } else {
+    console.log('Generated URL:', url);
+  }
+  
+  return url;
+};
 </script>
