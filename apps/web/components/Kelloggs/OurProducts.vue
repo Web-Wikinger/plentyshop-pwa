@@ -22,7 +22,7 @@
           </p>
           <NuxtLink
                     to="/snacks/pringles"
-                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white">
+                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white mt-auto">
             Alle ansehen
           </NuxtLink>
         </div>
@@ -43,7 +43,7 @@
           </p>
           <NuxtLink
                     to="/fruehstueck/cerealien"
-                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white">
+                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white mt-auto">
             Alle ansehen
           </NuxtLink>
         </div>
@@ -63,7 +63,7 @@
           </p>
           <NuxtLink
                     to="/fruehstueck/muesli"
-                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white">
+                    class="bg-white rounded-full p-3 mx-4 text-black text-center g-16 mb-4 hover:bg-primary-500 hover:text-white border-2 border-white mt-auto">
             Alle ansehen
           </NuxtLink>
         </div>

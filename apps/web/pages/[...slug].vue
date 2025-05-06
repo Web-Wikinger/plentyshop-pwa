@@ -29,8 +29,9 @@
         </div>
 
       </div>
-      <div class="flex flex-1 justify-end px-4 mb-4">
-          <CategorySorting />
+      <div class="flex flex-col flex-1 items-end justify-end px-4 mb-4">
+        <CategorySorting />
+        <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
       </div>
     </div>
     <CategoryPageContent
