@@ -104,7 +104,7 @@
 
 <script setup lang="ts">
 
-import { categoryGetters, categoryTreeGetters, productGetters } from '@plentymarkets/shop-api';
+import { categoryGetters, categoryTreeGetters, Product, productGetters } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 
 const { isAuthorized } = useCustomer();
@@ -215,10 +215,28 @@ watch(isAuthorized, (newValue: Boolean) => {
 // Quantity and bulk-add
 const quantities = ref<Record<string, number>>({});
 
+
+const getCartItem = (product: Product) => {
+  const { data: cart } = useCart();
+  const variationId = Number(productGetters.getVariationId(product));
+
+  const cartItem = cart.value?.items?.find((item) => item.variationId === variationId);
+
+  return cartItem ?? null;
+}
+
+onMounted(() => {                        // compose your cart helper
+  productsCatalog.value.products.forEach((product) => {
+    const id = String(productGetters.getId(product));           // product key
+    // Pull existing cart qty or default to 0
+    quantities.value[id] = getCartItem(product)?.quantity ?? 0; // :contentReference[oaicite:2]{index=2}
+  });
+});
+
 const selectedProductsCount = computed(() => Object.values(quantities.value).filter(q => q > 0).length);
 const hasProductsToAdd = computed(() => selectedProductsCount.value > 0);
 
-const { addToCart } = useCart();
+const { addToCart, setCartItemQuantity, deleteCartItem } = useCart();
 const { send } = useNotification();
 const bulkAddLoading = ref(false);
 const showSuccessNotification = ref(false);
@@ -228,23 +246,54 @@ async function addSelectedToBasket() {
     send({ message: t('bulkAdd.noProductsSelected'), type: 'negative' });
     return;
   }
+
   bulkAddLoading.value = true;
-  let addedCount = 0;
+  let successCount = 0;
+
+  // grab current cart once
+  const { data: cart } = useCart();
+
   for (const product of productsCatalog.value.products) {
+    const variationId = Number(productGetters.getVariationId(product));
     const id = productGetters.getId(product);
     const qty = quantities.value[id] || 0;
-    if (qty > 0) {
-      if (await addToCart({ productId: Number(productGetters.getVariationId(product)), quantity: qty, basketItemOrderParams: [] })) addedCount++;
+
+    // only process if user has put a qty
+    if (qty !== 0) {
+      // find existing cart item by variationId
+      const existing = cart.value?.items?.find(item => item.variationId === variationId) ?? null;
+
+      let result = false;
+
+      if (existing) {
+        if (qty > 0) {
+          // update quantity
+          result = await setCartItemQuantity({
+            productId: variationId,
+            quantity: qty,
+            cartItemId: existing.id,
+          });
+        } else {
+          // qty === 0 → remove
+          result = await deleteCartItem({ cartItemId: existing.id });
+        }
+      } else if (qty > 0) {
+        // new item
+        result = await addToCart({
+          productId: variationId,
+          quantity: qty,
+          basketItemOrderParams: [],
+        });
+      }
+
+      if (result) successCount++;
     }
   }
+
+  // show notification
   showSuccessNotification.value = true;
   setTimeout(() => (showSuccessNotification.value = false), 5000);
-  if (addedCount > 0) {
-    Object.keys(quantities.value).forEach(k => (quantities.value[k] = 0));
-    send({ message: t('bulkAdd.addedToBasket'), type: 'positive' });
-  } else {
-    send({ message: t('bulkAdd.errorAddingToBasket'), type: 'negative' });
-  }
+
   bulkAddLoading.value = false;
 }
 
