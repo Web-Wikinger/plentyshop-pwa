@@ -48,6 +48,9 @@
       <h2 class="mt-8 typography-headline-3 font-bold">{{ t('emptyCart') }}</h2>
     </div>
   </NuxtLayout>
+  <div v-if="showCopiedAlert" @click="hideCopiedAlert" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-xl shadow-lg cursor-pointer z-50 transition-opacity duration-300">
+    {{ $t('bulkAdd.CopiedSuccesfully') }}
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -85,6 +88,7 @@ const goToCheckout = () => (isAuthorized.value ? localePath(paths.checkout) : lo
 
 const icon = 'page';
 setPageMeta(t('cart'), icon);
+const showCopiedAlert = ref(false);
 
 const onGenerateUrl = () => {
   if (!cart.value?.items?.length) {
@@ -97,17 +101,27 @@ const onGenerateUrl = () => {
     .map(item => `${encodeURIComponent(item.variationId)}=${encodeURIComponent(item.quantity)}`)
     .join('&');
 
-  const url = `?${query}`;
+  const baseUrl = window.location.origin;
+  const url = `${baseUrl}?${query}`;
   
   // e.g. copy to clipboard
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url)
-      .then(() => alert(t("bulkAdd.CopiedSuccesfully")))
+      .then(() => {
+        showCopiedAlert.value = true;
+        setTimeout(() => {
+          showCopiedAlert.value = false;
+        }, 3000); // auto-hide after 3s
+      })
       .catch(() => console.error('Copy failed'));
   } else {
     console.log('Generated URL:', url);
   }
-  
+
   return url;
+};
+
+const hideCopiedAlert = () => {
+  showCopiedAlert.value = false;
 };
 </script>

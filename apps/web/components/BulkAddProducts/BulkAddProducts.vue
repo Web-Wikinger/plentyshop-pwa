@@ -248,7 +248,6 @@ async function addSelectedToBasket() {
   }
 
   bulkAddLoading.value = true;
-  let successCount = 0;
 
   // grab current cart once
   const { data: cart } = useCart();
@@ -258,36 +257,30 @@ async function addSelectedToBasket() {
     const id = productGetters.getId(product);
     const qty = quantities.value[id] || 0;
 
-    // only process if user has put a qty
-    if (qty !== 0) {
-      // find existing cart item by variationId
-      const existing = cart.value?.items?.find(item => item.variationId === variationId) ?? null;
+    // find existing cart item by variationId
+    const existing = cart.value?.items?.find(item => item.variationId === variationId) ?? null;
 
-      let result = false;
-
-      if (existing) {
-        if (qty > 0) {
-          // update quantity
-          result = await setCartItemQuantity({
-            productId: variationId,
-            quantity: qty,
-            cartItemId: existing.id,
-          });
-        } else {
-          // qty === 0 → remove
-          result = await deleteCartItem({ cartItemId: existing.id });
-        }
-      } else if (qty > 0) {
-        // new item
-        result = await addToCart({
+    if (existing) {
+      if (qty > 0) {
+        // update quantity
+        await setCartItemQuantity({
           productId: variationId,
           quantity: qty,
-          basketItemOrderParams: [],
+          cartItemId: existing.id,
         });
+      } else {
+        let cartItem = getCartItem(product)!;
+        await deleteCartItem(cartItem);
       }
-
-      if (result) successCount++;
+    } else if (qty > 0) {
+      // new item
+      await addToCart({
+        productId: variationId,
+        quantity: qty,
+        basketItemOrderParams: [],
+      });
     }
+
   }
 
   // show notification
