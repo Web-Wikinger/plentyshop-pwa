@@ -1,4 +1,16 @@
 <template>
+  <div
+    v-if="notification.show"
+    @click="notification.show = false"
+    :class="[
+      'fixed top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-xl shadow-lg cursor-pointer transition-opacity duration-300 z-50',
+      notification.type === 'success' 
+        ? 'bg-green-500 text-white' 
+        : 'bg-red-500 text-white'
+    ]"
+  >
+    {{ notification.message }}
+  </div>
   <div class="w-full bg-white p-6 rounded-lg">
      <!-- Tabs Navigation -->
      <ul class="flex justify-between border-b mb-4">
@@ -242,7 +254,7 @@ interface Customer {
   email: string
   phone: string
   taxId: string
-  password:string
+  password?:string
 }
 
 interface Errors {
@@ -276,7 +288,6 @@ const customer = reactive<Customer>({
   zipCity: '',
   email: '',
   phone: '',
-  password:"",
   taxId: ''
 })
 
@@ -349,7 +360,27 @@ const validateField = (field: keyof Errors) => {
       break
   }
 }
+// notification state
+const notification = ref<{
+  show: boolean
+  message: string
+  type: 'success' | 'error'
+}>({
+  show: false,
+  message: '',
+  type: 'success',
+})
 
+// helper to show a toast
+function showNotification(message: string, type: 'success' | 'error' = 'success') {
+  notification.value = { show: true, message, type }
+  // auto-hide after 3s
+  setTimeout(() => {
+    notification.value.show = false
+  }, 3000)
+}
+
+// your login function
 const loginVertriebUser = async () => {
   const data = {
     email: email.value,
@@ -360,10 +391,12 @@ const loginVertriebUser = async () => {
   try {
     const response = await axios.post('/rest/salesperson/login', data)
     localStorage.setItem('vertrieb-token', response.data.token)
-    alert('Ceres::Template.loginSuccessful')
-    window.location.reload()
+
+    showNotification('Login erfolgreich!', 'success')
+    setTimeout(() => window.location.reload(), 500)
   } catch (error: any) {
-    alert(error.response?.data?.error || 'Login fehlgeschlagen')
+    const errMsg = error.response?.data?.error || 'Login fehlgeschlagen'
+    showNotification(errMsg, 'error')
   } finally {
     loading.value = false
   }
@@ -371,13 +404,13 @@ const loginVertriebUser = async () => {
 
 const logoutVertriebUser = () => {
   localStorage.removeItem('vertrieb-token')
-  alert('Logout erfolgreich')
+  showNotification('Logout erfolgreich', 'success')
   window.location.reload()
 }
 
 const registerCustomer = async () => {
   if (!isFormValid.value) {
-    alert('Bitte füllen Sie alle Pflichtfelder korrekt aus.')
+    showNotification("Bitte füllen Sie alle Pflichtfelder korrekt aus.", 'error')
     return
   }
   if (!recaptchaRef.value || !CustomerRegistrationForm.value) return;
@@ -498,7 +531,7 @@ const fetchCustomerEntries = async () => {
   try {
     const token = process.client ? localStorage.getItem('vertrieb-token') : null
     if (!token) {
-      alert("Authentication token is missing.")
+      showNotification("Authentication token is missing.", 'error')
       return
     }
 
@@ -508,7 +541,7 @@ const fetchCustomerEntries = async () => {
     
     customerEntries.value = response.data
   } catch (error) {
-    alert("Failed to fetch customer entries")
+    showNotification("Failed to fetch customer entries", 'error')
   } finally {
     loading.value = false
   }
@@ -567,7 +600,7 @@ const redirectToLogin = async (customerId: number) => {
   try {
     const token = process.client ? localStorage.getItem('vertrieb-token') : null
     if (!token) {
-      alert("Authentication token is missing.")
+      showNotification("Authentication token is missing.", 'error')
       return
     }
 
@@ -583,7 +616,7 @@ const redirectToLogin = async (customerId: number) => {
       window.open(response.data.loginUrl, "_blank")
     }
   } catch (error: any) {
-    alert(error.response?.data?.error || "Login redirect failed")
+    showNotification(error.response?.data?.error || "Login redirect failed", 'error')
   } finally {
     loading.value = false
   }
