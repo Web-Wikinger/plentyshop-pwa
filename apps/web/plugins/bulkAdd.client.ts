@@ -1,29 +1,61 @@
+import { Product, productGetters } from "@plentymarkets/shop-api"
+
 export default defineNuxtPlugin(() => {
   const route  = useRoute()
   const router = useRouter()
-  const { addToCart } = useCart()
+  const { data: cart, addToCart, setCartItemQuantity, deleteCartItem } = useCart()
+
+  const isBlocking = useState('cartBlocking', () => false);
 
   onNuxtReady(async () => {                // fires after client init :contentReference[oaicite:1]{index=1}
     const queries = route.query
     let added = 0
     console.log(queries)
     for (const [pid, rawQty] of Object.entries(queries)) {
+      isBlocking.value = true;
       const productId = parseInt(pid, 10)
       const qty       = parseInt(rawQty as string, 10)
-
+    
       if (!isNaN(productId) && qty > 0) {
-        await addToCart({
-          productId,
-          quantity: qty,
-          basketItemOrderParams: []
-        })
+        const existing = cart.value?.items?.find(item => item.variationId === productId) ?? null;
+        const { data: product, fetchProduct } = useProduct(productId.toString());
+        if (existing) {
+          if (qty > 0) {
+            // update quantity
+            await setCartItemQuantity({
+              productId: productId,
+              quantity: qty,
+              cartItemId: existing.id,
+            });
+          } else {
+            let cartItem = getCartItem(product.value)!;
+            await deleteCartItem(cartItem);
+          }
+        } else {
+          // new item
+          await addToCart({
+            productId: productId,
+            quantity: qty,
+            basketItemOrderParams: [],
+          });
+        }
         added++
       }
     }
 
     if (added > 0) {
       // clear query and redirect home
-      router.replace({ path: '/', query: {} })
+      isBlocking.value = false;
+      router.replace({ path: '/cart', query: {} })
     }
   })
+  const getCartItem = (product: Product) => {
+    const { data: cart } = useCart();
+    const variationId = Number(productGetters.getVariationId(product));
+  
+    const cartItem = cart.value?.items?.find((item) => item.variationId === variationId);
+  
+    return cartItem ?? null;
+  }
+  
 })

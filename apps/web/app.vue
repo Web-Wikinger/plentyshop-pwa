@@ -39,10 +39,17 @@
   </div>
   <UiPageModal />
   <UiUnlinkCategoryModal />
+
+  <div v-if="isBlocking" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <SfLoaderCircular />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { Locale } from '#i18n';
+
+const isBlocking = useState('cartBlocking', () => false);
+import { SfLoaderCircular } from '@storefront-ui/vue';
 
 const { $pwa } = useNuxtApp();
 const bodyClass = ref('');
