@@ -352,13 +352,14 @@ const validateField = (field: keyof Errors) => {
           : 'Ungültige E-Mail-Adresse'
         : 'E-Mail ist erforderlich'
       break
-    case 'phone':
-      errors.phone = value
-        ? /^\d{10,}$/.test(value)
-          ? ''
-          : 'Telefonnummer muss mindestens 10 Ziffern enthalten'
-        : 'Telefonnummer ist erforderlich'
-      break
+      case 'phone':
+          const digitsOnly = value.replace(/\s+/g, ''); // Remove all spaces
+          errors.phone = value
+            ? /^\d{10,}$/.test(digitsOnly)
+              ? ''
+              : 'Telefonnummer muss mindestens 10 Ziffern enthalten.'
+            : 'Telefonnummer ist erforderlich';
+          break;
   }
 }
 // notification state
@@ -472,7 +473,7 @@ const registerCustomer = async () => {
                }
 
                  const customerData = {
-                    customerId: response.data.id,
+                    customerId: response.data.data.id,
                     token: salespersonToken,
                     taxId: customer.taxId
                   }
