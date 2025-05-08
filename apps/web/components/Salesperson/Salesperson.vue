@@ -289,6 +289,7 @@ const customer = reactive<Customer>({
   email: '',
   phone: '',
   taxId: ''
+  password : 'kellOggs@2025!'
 })
 
 const errors = reactive<Errors>({
