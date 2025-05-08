@@ -7,13 +7,6 @@
               :heading="t('myCart')">
     <div v-if="!cartIsEmpty" class="md:grid md:grid-cols-12 md:gap-x-6" data-testid="cart-page-content">
       <div class="col-span-7 mb-2 md:mb-0">
-        <div class="flex justify-end mb-4">
-          <UiButton
-            @click="onGenerateUrl"
-          >
-            {{ t('bulkAdd.generateUrl') }}
-          </UiButton>
-        </div>
         <div class="hidden lg:grid grid-cols-5 items-center mb-3">
           <div class="col-span-3 g-16">Artikel</div>
           <div class="g-16">Menge</div>
@@ -23,6 +16,15 @@
           <UiCartProductCard :cart-item="cartItem" :class="{ 'border-t': index === 0 }" />
         </div>
         <Coupon v-if="viewport.isLessThan('lg')" class="mb-2" />
+        <div class="flex flex-col items-end justify-end mb-4">
+          <UiButton
+            @click="onGenerateUrl"
+            class="max-w-[200px]"
+          >
+            {{ t('bulkAdd.generateUrl') }}
+          </UiButton>
+          <span class="max-w-[200px] text-[10px] text-gray-700 text-center mt-2">Beim Speichern des Warenkorbs wird eine URL generiert und automatisch in die Zwischenablage kopiert. Über diesen Link kann der Warenkorb mit den identischen Produkten erneut aufgerufen und befüllt werden</span>
+        </div>
       </div>
       <div class="lg:py-6 lg:px-4 lg:ml-12 relative col-span-5 md:sticky md:top-10 h-fit mt-4 lg:mt-0 lg:px-12"
            :class="{ 'pointer-events-none opacity-50': loading }">
