@@ -7,12 +7,12 @@
       variant="primary"
       @click="addSelectedToBasket"
       :disabled="!hasProductsToAdd || bulkAddLoading"
-      class="flex items-center"
+      class="grid lg:flex lg:items-center"
     >
       <template #prefix>
         <SfIconShoppingCart size="sm" class="mr-2" />
       </template>
-      <span v-if="!bulkAddLoading">{{ $t('bulkAdd.addAllToBasket') }} ({{ selectedProductsCount }})</span>
+      <span v-if="!bulkAddLoading" class="text-[10px] leading-[15px] lg:text-[16px]">{{ $t('bulkAdd.addAllToBasket') }} ({{ selectedProductsCount }})</span>
       <span v-else><SfLoaderCircular size="sm" class="mr-2" />{{ $t('bulkAdd.adding') }}</span>
     </UiButton>
   </div>
@@ -25,7 +25,7 @@
     <SfIconClose class="cursor-pointer" @click="showSuccessNotification = false" />
   </div>
 
-  <div class="px-4 my-6">
+  <div class="px-4 my-6 overflow-auto">
     <table class="w-full table-auto border-collapse bg-white shadow rounded">
       <thead class="bg-red-color text-white">
         <tr>
