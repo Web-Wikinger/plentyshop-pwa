@@ -288,7 +288,7 @@ const customer = reactive<Customer>({
   zipCity: '',
   email: '',
   phone: '',
-  taxId: ''
+  taxId: '',
   password : 'kellOggs@2025!'
 })
 
