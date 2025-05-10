@@ -1,6 +1,6 @@
 <template>
   <div class="relative mt-5 p-4 sm:p-10 text-center" :style="{ backgroundColor: props.text?.bgColor ?? '#f5f5f5' }">
-    <h2 class="typography-headline-4 sm:typography-headline-3 font-bold mb-2">
+    <h2 class="!text-[25px] sm:typography-headline-3 font-bold mb-2">
       {{ props.text?.title ?? t('newsletter.heading') }}
     </h2>
     <p
@@ -8,7 +8,7 @@
       v-html="props.text?.htmlDescription ?? t('newsletter.info')"
     />
 
-    <form class="mx-auto max-w-[550px] pt-2" novalidate @submit.prevent="onSubmit">
+    <form class="mx-auto max-w-[750px] pt-2" novalidate @submit.prevent="onSubmit">
       <div v-if="props.input?.displayNameInput" class="grid grid-cols-1 sm:grid-cols-2">
         <div class="sm:mr-[1rem]">
           <label for="newsletter-first-name">
@@ -51,25 +51,39 @@
 
       <div class="grid grid-cols-1">
         <label for="newsletter-email">
-          <UiFormLabel class="text-start">{{ t('newsletter.email') }}</UiFormLabel>
-          <SfInput
-            v-bind="emailAttributes"
-            id="newsletter-email"
-            v-model="email"
-            :invalid="Boolean(errors['email'])"
-            :placeholder="`${t('newsletter.email')} **`"
-            :wrapper-class="wrapperClass"
-            type="email"
-            name="email"
-            autocomplete="email"
-          />
+          <div class="relative inline-block w-full max-w-md mx-auto">
+            <SfInput
+              v-bind="emailAttributes"
+              id="newsletter-email"
+              v-model="email"
+              :invalid="Boolean(errors['email'])"
+              :placeholder="`${t('newsletter.email')} **`"
+              :wrapper-class="wrapperClass"
+              type="email"
+              name="email"
+              autocomplete="email"
+              class="w-full py-2 pl-4 pr-10 text-gray-600 placeholder-gray-400 focus:outline-none"
+            />
+            <button type="submit" class="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <SfIconArrowForward />
+            </button>
+          </div>
         </label>
-        <div class="h-[2rem]">
+        <div>
           <ErrorMessage as="div" name="email" class="text-negative-700 text-left text-sm pt-[0.2rem]" />
         </div>
       </div>
 
-      <div class="text-base text-neutral-900">
+      <div 
+        class="flex justify-center mt-6"
+        v-if="belowInput"
+      >
+        <p
+          class="typography-text-sm sm:typography-text-base mb-4 text-white text-[10px] leading-[5px] lg:w-[550px]"
+          v-html="props.belowInput?.textHtml"
+        />
+      </div>
+      <div v-else class="text-base text-neutral-900">
         <div class="flex justify-center items-center">
           <SfCheckbox
             v-bind="privacyPolicyAttributes"
@@ -99,7 +113,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col items-center">
+      <div v-if="!belowInput" class="flex flex-col items-center">
         <UiButton type="submit" size="lg" :disabled="loading">
           <SfLoaderCircular v-if="loading" class="flex justify-center items-center" size="base" />
           <template v-else>{{ props.button?.label ?? t('newsletter.subscribe') }}</template>
@@ -118,12 +132,12 @@
       </div>
     </form>
 
-    <div class="text-left typography-text-xs mt-3">** {{ t('contact.form.asterixHint') }}</div>
+    <div v-if="!belowInput" class="text-left typography-text-xs mt-3">** {{ t('contact.form.asterixHint') }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { SfCheckbox, SfInput, SfLink, SfLoaderCircular } from '@storefront-ui/vue';
+import { SfCheckbox, SfInput, SfLink, SfLoaderCircular, SfIconArrowForward } from '@storefront-ui/vue';
 import { useForm, ErrorMessage } from 'vee-validate';
 import { toTypedSchema } from '@vee-validate/yup';
 import { object, string, boolean } from 'yup';
@@ -139,7 +153,7 @@ const props = defineProps<NewsletterSubscribeProps>();
 
 const turnstileSiteKey = runtimeConfig.public?.turnstileSiteKey ?? '';
 const turnstileElement = ref();
-const wrapperClass = 'focus-within:outline focus-within:outline-offset';
+const wrapperClass = 'custom-input-wrapper lg:w-[400px] focus-within:outline focus-within:outline-offset';
 
 const validationSchema = toTypedSchema(
   object({
@@ -195,3 +209,13 @@ const subscribeNewsletter = async () => {
 
 const onSubmit = handleSubmit(() => subscribeNewsletter());
 </script>
+
+<style scoped>
+:deep(.custom-input-wrapper) {
+  @apply rounded-full overflow-hidden mx-auto;
+}
+
+:deep(.custom-input-wrapper input) {
+  @apply rounded-full;
+}
+</style>

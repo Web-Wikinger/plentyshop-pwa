@@ -1,0 +1,22 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="42" height="42">
+	<title>Facebook Icon</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m0 0h42v42h-42z"/>
+		</clipPath>
+	</defs>
+	<style>
+		.s0 { fill: #f60b45 } 
+		.s1 { fill: #000000 } 
+	</style>
+	<g id="Clip-Path: Gruppe_2607" clip-path="url(#cp1)">
+		<g id="Gruppe_2607">
+			<path id="Pfad_1763" class="s0" d=""/>
+			<path id="Pfad_1764" fill-rule="evenodd" class="s1" d="m20.8 0c-5.4 0-10.7 2.1-14.6 6-3.9 3.8-6.1 9-6.2 14.4-0.1 5.5 1.9 10.8 5.7 14.7 3.7 4 8.9 6.3 14.3 6.6q-0.4-0.1-0.8-0.1-0.4 0-0.8-0.1-0.4 0-0.8-0.1-0.5-0.1-0.9-0.1v-15.9h-3.4v-5.7h3.4v-3.4c0-4.6 2-7.3 7.4-7.3h4.5v5.6h-2.8c-2.1 0-2.2 0.8-2.2 2.3l-0.1 2.8h5.2l-0.6 5.7h-4.6v16.1q-0.8 0.1-1.6 0.1c5.4-0.2 10.5-2.6 14.2-6.6 3.8-3.9 5.8-9.2 5.6-14.7-0.1-5.4-2.4-10.6-6.3-14.4-3.9-3.8-9.1-5.9-14.6-5.9z"/>
+			<path id="Pfad_1765" fill-rule="evenodd" class="s0" d="m21.5 41.7h-0.3c0 0 0.3 0 0.3 0z"/>
+			<path id="Pfad_1766" fill-rule="evenodd" class="s0" d="m21.8 41.6l-0.2 0.1z"/>
+			<path id="Pfad_1767" fill-rule="evenodd" class="s0" d="m20.1 41.7h0.2c0 0-0.2 0-0.2 0z"/>
+			<path id="Pfad_1768" fill-rule="evenodd" class="s0" d="m20.4 41.7h0.2z"/>
+		</g>
+	</g>
+</svg>

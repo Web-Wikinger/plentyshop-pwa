@@ -1,6 +1,6 @@
-import type { CartItem, Product } from '@plentymarkets/shop-api';
+import { Product } from "@plentymarkets/shop-api";
 
-export type ProductCardProps = {
+export type ProductProps = {
   product: Product;
   name: string;
   imageUrl: string;
@@ -20,5 +20,4 @@ export type ProductCardProps = {
   showBasePrice?: boolean;
   isFromWishlist?: boolean;
   isFromSlider?: boolean;
-  productId?: Number;
 };
