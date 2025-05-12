@@ -10,7 +10,6 @@ export default defineNuxtPlugin(() => {
   onNuxtReady(async () => {                // fires after client init :contentReference[oaicite:1]{index=1}
     const queries = route.query
     let added = 0
-    console.log(queries)
     for (const [pid, rawQty] of Object.entries(queries)) {
       isBlocking.value = true;
       const productId = parseInt(pid, 10)
@@ -45,9 +44,9 @@ export default defineNuxtPlugin(() => {
 
     if (added > 0) {
       // clear query and redirect home
-      isBlocking.value = false;
       router.replace({ path: '/cart', query: {} })
     }
+    isBlocking.value = false;
   })
   const getCartItem = (product: Product) => {
     const { data: cart } = useCart();
