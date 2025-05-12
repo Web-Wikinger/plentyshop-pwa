@@ -75,5 +75,23 @@ export default {
       description: 'CookieBar.marketing.description',
       cookies: [],
     },
+    {
+      id:          3,
+      name:        'CookieBar.marketing.label',
+      showMore:    false,
+      description: 'CookieBar.marketing.description',
+      cookies: [
+        // ← add this object:
+        {
+          name:          'CookieBar.moduleGoogleAnalytics.googleAnalytics',              // your CookieName
+          Provider:      'CookieBar.moduleGoogleAnalytics.provider',                     // translation key/provider
+          Status:        'CookieBar.moduleGoogleAnalytics.status',                       // translation key/status
+          PrivacyPolicy: 'https://policies.google.com/privacy',
+          Lifespan:      '1 year',                                                       // or 'Session' if you prefer
+          accepted:      false                                                          // default opt-in=false
+        },
+        // ← you can leave other marketing cookies here, or merge with existing array
+      ],
+    }
   ],
 } as CookieGroupFromNuxtConfig;
