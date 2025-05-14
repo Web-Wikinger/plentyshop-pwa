@@ -87,6 +87,14 @@ export default {
           Provider:      'CookieBar.moduleGoogleAnalytics.provider',                     // translation key/provider
           Status:        'CookieBar.moduleGoogleAnalytics.status',                       // translation key/status
           PrivacyPolicy: 'https://policies.google.com/privacy',
+          Lifespan:      '2 Monate (standardmäßig für _ga Cookies)',                                                       // or 'Session' if you prefer
+          accepted:      false                                                          // default opt-in=false
+        },
+        {
+          name:          'CookieBar.moduleSlsnlytcs.salesviewerAnalytics',              // your CookieName
+          Provider:      'CookieBar.moduleSlsnlytcs.provider',                     // translation key/provider
+          Status:        'CookieBar.moduleSlsnlytcs.status',                       // translation key/status
+          PrivacyPolicy: 'https://www.salesviewer.com/en/privacy-policy',
           Lifespan:      '1 year',                                                       // or 'Session' if you prefer
           accepted:      false                                                          // default opt-in=false
         },

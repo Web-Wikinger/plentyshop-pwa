@@ -226,9 +226,10 @@
 <script setup lang="ts">
 import axios from "axios";
 const { send } = useNotification();
-const { login } = useCustomer();
+const { data,login, isAuthorized } = useCustomer();
 const emits = defineEmits(['loggedIn', 'change-view']);
 const { t } = useI18n();
+
 
 
 const recaptchaRef = ref<{
@@ -411,6 +412,15 @@ const logoutVertriebUser = () => {
 }
 
 const registerCustomer = async () => {
+
+  if(isAuthorized){
+     send({
+            message: `Sie sind derzeit als ${data.value?.user?.email} angemeldet. Bitte loggen Sie sich zuerst aus und versuchen Sie es dann erneut.`,
+            type: 'negative',
+          });
+    return 0;
+  }
+
   if (!isFormValid.value) {
     showNotification("Bitte füllen Sie alle Pflichtfelder korrekt aus.", 'error')
     return
@@ -513,7 +523,7 @@ const registerCustomer = async () => {
 
         }else{
             send({
-            message: 'Error during registration',
+            message: response?.data.data?.message || 'Registrierung fehlgeschlagen',
             type: 'negative',
           });
         }

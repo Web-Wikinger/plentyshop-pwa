@@ -9,6 +9,16 @@
     "Privacy Settings": "Datenschutzeinstellungen",
     "Reject All": "Alles ablehnen",
     "Show less": "Weniger anzeigen",
+    "moduleGoogleAnalytics" : {
+      "googleAnalytics" : "GoogleAnalytics",
+      "provider": "Google Ireland Limited",
+      "status" : "Erlaubt die Analyse des Nutzerverhaltens auf der Website, um die Leistung zu messen und zu verbessern."
+    },
+    "moduleSlsnlytcs" : {
+      "salesviewerAnalytics" : "SalesViewer",
+      "provider": "SalesViewer® GmbH",
+      "status" : "Ermöglicht die Analyse des Besucherverhaltens und die Identifikation von Unternehmen, die die Website besuchen – ausschließlich auf Basis geschäftsbezogener Daten. Es werden keine personenbezogenen Daten gespeichert oder ausgewertet."
+    },
     "about": {
       "description": "Wir verwenden Cookies und ähnliche Technologien auf unserer Website und verarbeiten personenbezogene Daten von Besucher:innen unserer Webseite (z.B. IP-Adresse), um z.B. Inhalte zu personalisieren, Medien von Drittanbietern einzubinden oder Zugriffe auf unsere Website zu analysieren. Die Datenverarbeitung erfolgt erst durch gesetzte Cookies. Wir teilen diese Daten mit Dritten, die wir in den Einstellungen benennen. Die Datenverarbeitung kann mit Einwilligung oder aufgrund eines berechtigten Interesses erfolgen. Die Zustimmung kann erteilt oder abgelehnt werden. Es besteht das Recht, nicht einzuwilligen und die Einwilligung zu einem späteren Zeitpunkt zu ändern oder zu widerrufen. Beachten Sie unser {legal} und weitere Hinweise zur Verwendung personenbezogener Daten in unserer {policy}.",
       "label": "Ihre Privatsphäre ist uns wichtig"
