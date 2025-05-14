@@ -33,7 +33,7 @@
       <SfLink :tag="NuxtLink" :to="productPath" class="no-underline g-12 lg:g-16" variant="secondary" data-testid="productcard-name">
         {{ name }}
       </SfLink>
-      <p class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
+      <p v-if="isAuthorized" class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
 
       <!-- <div class="flex items-center gap-1" :class="{ 'mb-2': !productGetters.getShortDescription(product) }">
         <SfRating size="xs" :half-increment="true" :value="rating ?? 0" :max="5" />
@@ -50,12 +50,12 @@
       <LowestPrice :product="product" />
 
       <div class="flex items-center">
-        <div class="flex flex-col-reverse items-start md:flex-row md:items-center">
+        <div v-if="isAuthorized" class="flex flex-col-reverse items-start md:flex-row md:items-center">
           <span class="block font-bold typography-text-sm" data-testid="product-card-vertical-price">
             <!-- <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
               {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
             </span> -->
-            <span class="g-16 lg:g-24">{{ n(price, 'currency') }}</span>
+            <Price :price="priceWithProperties" :crossed-price="crossedPrice" />
             <!-- <span class="g-16 lg:g-24" v-if="showNetPrices">{{ t('asterisk') }} </span> -->
           </span>
           <span v-if="crossedPrice" class="typography-text-sm text-neutral-500 line-through md:ml-3 g-16-m">
@@ -70,7 +70,6 @@
               @added-to-cart="handleAddToCartSuccess"
               :loading="loading" />
         </div>
-
       </div>
     </div>
   </div>
@@ -85,6 +84,8 @@ import { Product } from '@plentymarkets/shop-api';
 import { computed, ref } from 'vue';
 
 const { cartIsEmpty } = useCart();
+const { isAuthorized } = useCustomer();
+const { getPropertiesForCart, getPropertiesPrice } = useProductOrderProperties();
 
 const localePath = useLocalePath();
 const { t, n } = useI18n();
@@ -132,6 +133,16 @@ const getHeight = () => {
   }
   return '';
 };
+
+const priceWithProperties = computed(() => {
+  if (!isAuthorized.value) return 0;
+
+  return (
+    (productGetters.getSpecialOffer(product) ||
+      productGetters.getGraduatedPriceByQuantity(product, 1)?.unitPrice.value ||
+      0) + getPropertiesPrice(product)
+  );
+});
 
 // Handle success of adding to cart (can be used to trigger notifications, etc.)
 const handleAddToCartSuccess = () => {
