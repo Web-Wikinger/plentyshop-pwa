@@ -33,7 +33,7 @@
       <SfLink :tag="NuxtLink" :to="productPath" class="no-underline g-12 lg:g-16" variant="secondary">
         {{ name }}
       </SfLink>
-      <p v-if="product" class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
+      <!-- <p v-if="product" class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p> -->
 
       <!-- <div class="flex items-center gap-1" :class="{ 'mb-2': !productGetters.getShortDescription(product) }">
         <SfRating size="xs" :half-increment="true" :value="rating ?? 0" :max="5" />
@@ -115,7 +115,6 @@ onMounted(() => {
 const { data: categoryTree } = useCategoryTree();
 const price = ref(0)
 const crossedPrice = ref(0)
-const productPath = ""
 if(product)
 {
   const { price, crossedPrice } = useProductPrice(product);
@@ -123,12 +122,10 @@ if(product)
 const { send } = useNotification();
 const loading = ref(false);
 const { showNetPrices } = useCustomer();
-if(product) {
-  const path = computed(() => productGetters.getCategoryUrlPath(product, categoryTree.value));
-  const productSlug = computed(() => productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`);
-  const productPath = computed(() => localePath(`${path.value}/${productSlug.value}`));
+const path = computed(() => productGetters.getCategoryUrlPath(product, categoryTree.value));
+const productSlug = computed(() => productGetters.getSlug(product) + `_${productGetters.getItemId(product)}`);
+const productPath = computed(() => localePath(`${path.value}/${productSlug.value}`));
 
-}
 const getWidth = () => {
   if (imageWidth && imageWidth > 0 && imageUrl.includes(defaults.IMAGE_LINK_SUFIX)) {
     return imageWidth;

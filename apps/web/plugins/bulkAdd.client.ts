@@ -10,8 +10,10 @@ export default defineNuxtPlugin(() => {
   onNuxtReady(async () => {                // fires after client init :contentReference[oaicite:1]{index=1}
     const queries = route.query
     let added = 0
+    const { isAuthorized } = useCustomer();
 
-
+    if(!isAuthorized.value) return;
+  
     // Handle coupon code if present
     const couponCode = typeof queries.coupon === 'string' ? queries.coupon.trim() : ''
     if (couponCode) {
