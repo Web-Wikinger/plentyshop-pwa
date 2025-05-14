@@ -65,10 +65,16 @@
 
         <div class="ml-auto">
           <KelloggsAddToBasket
+              v-if="isAuthorized"
               :product-id="Number(productGetters.getId(product))"
               :available="productGetters.canBeAddedToCartFromCategoryPage(product)"
               @added-to-cart="handleAddToCartSuccess"
               :loading="loading" />
+          <div v-else class="kl-add-to-cart">
+            <NuxtLink to="/login"  class="kl-add-first">
+              <SfIconLogin class="icon icon-plus" />
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -77,7 +83,7 @@
 
 <script setup lang="ts">
 import { productGetters } from '@plentymarkets/shop-api';
-import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter } from '@storefront-ui/vue';
+import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter, SfIconLogin } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 import { defaults } from '~/composables';
 import { Product } from '@plentymarkets/shop-api';
