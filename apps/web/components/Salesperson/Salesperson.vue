@@ -226,7 +226,7 @@
 <script setup lang="ts">
 import axios from "axios";
 const { send } = useNotification();
-const { data,login, isAuthorized } = useCustomer();
+const { data,login, isAuthorized,logout } = useCustomer();
 const emits = defineEmits(['loggedIn', 'change-view']);
 const { t } = useI18n();
 
@@ -412,13 +412,9 @@ const logoutVertriebUser = () => {
 }
 
 const registerCustomer = async () => {
-
-  if(isAuthorized){
-     send({
-            message: `Sie sind derzeit als ${data.value?.user?.email} angemeldet. Bitte loggen Sie sich zuerst aus und versuchen Sie es dann erneut.`,
-            type: 'negative',
-          });
-    return 0;
+  loading.value = true
+  if(data.value?.user?.email){
+     await logout();
   }
 
   if (!isFormValid.value) {
@@ -518,9 +514,6 @@ const registerCustomer = async () => {
                       });
                 }
 
-  
-
-
         }else{
             send({
             message: response?.data.data?.message || 'Registrierung fehlgeschlagen',
@@ -534,6 +527,8 @@ const registerCustomer = async () => {
             type: 'negative',
           });
   }
+
+  loading.value = false
 }
 
 const fetchCustomerEntries = async () => {
