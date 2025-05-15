@@ -33,7 +33,7 @@
       <SfLink :tag="NuxtLink" :to="productPath" class="no-underline g-12 lg:g-16" variant="secondary" data-testid="productcard-name">
         {{ name }}
       </SfLink>
-      <p class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
+      <p v-if="isAuthorized && priceWithProperties" class="g-12-m lg:g-16-m mb-2 mt-1">{{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
 
       <!-- <div class="flex items-center gap-1" :class="{ 'mb-2': !productGetters.getShortDescription(product) }">
         <SfRating size="xs" :half-increment="true" :value="rating ?? 0" :max="5" />
