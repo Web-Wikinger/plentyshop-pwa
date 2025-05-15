@@ -74,13 +74,11 @@ await fetchProduct(productParams);
 
 const { isAuthorized } = useCustomer();
 
-watch(isAuthorized, (newValue: Boolean) => {
+watch(isAuthorized, async (newValue: Boolean) => {
   if (newValue) {
-    fetchProduct(productParams);
-  } else {
-
+    await fetchProduct(productParams);
   }
-});
+}, { immediate: true });
 
 if (Object.keys(product.value).length === 0) {
   throw new Response(null, {
