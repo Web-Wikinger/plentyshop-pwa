@@ -50,12 +50,13 @@
       <LowestPrice :product="product" />
 
       <div class="flex items-center">
-        <div class="flex flex-col-reverse items-start md:flex-row md:items-center">
+        <div v-if="isAuthorized && priceWithProperties" class="flex flex-col-reverse items-start md:flex-row md:items-center">
           <span class="block font-bold typography-text-sm" data-testid="product-card-vertical-price">
             <!-- <span v-if="!productGetters.canBeAddedToCartFromCategoryPage(product)" class="mr-1">
               {{ t('account.ordersAndReturns.orderDetails.priceFrom') }}
             </span> -->
-            <span class="g-16 lg:g-24">{{ n(price, 'currency') }}</span>
+            <Price :price="priceWithProperties" :crossed-price="crossedPrice" />
+
             <!-- <span class="g-16 lg:g-24" v-if="showNetPrices">{{ t('asterisk') }} </span> -->
           </span>
           <span v-if="crossedPrice" class="typography-text-sm text-neutral-500 line-through md:ml-3 g-16-m">
@@ -65,12 +66,17 @@
 
         <div class="ml-auto">
           <KelloggsAddToBasket
+              v-if="isAuthorized && priceWithProperties"
               :product-id="Number(productGetters.getId(product))"
               :available="productGetters.canBeAddedToCartFromCategoryPage(product)"
               @added-to-cart="handleAddToCartSuccess"
               :loading="loading" />
+          <div v-else class="kl-add-to-cart">
+            <NuxtLink to="/login"  class="kl-add-first">
+              <SfIconLogin class="icon icon-plus" />
+            </NuxtLink>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -78,13 +84,15 @@
 
 <script setup lang="ts">
 import { productGetters } from '@plentymarkets/shop-api';
-import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter } from '@storefront-ui/vue';
+import { SfLink, SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter, SfIconLogin } from '@storefront-ui/vue';
 import type { ProductCardProps } from '~/components/ui/ProductCard/types';
 import { defaults } from '~/composables';
 import { Product } from '@plentymarkets/shop-api';
 import { computed, ref } from 'vue';
 
 const { cartIsEmpty } = useCart();
+const { isAuthorized } = useCustomer();
+const { getPropertiesForCart, getPropertiesPrice } = useProductOrderProperties();
 
 const localePath = useLocalePath();
 const { t, n } = useI18n();
@@ -133,6 +141,17 @@ const getHeight = () => {
   return '';
 };
 
+const priceWithProperties = computed(() => {
+  if (!isAuthorized.value) return 0;
+
+  let price = (
+    (productGetters.getSpecialOffer(product) ||
+      productGetters.getGraduatedPriceByQuantity(product, 1)?.unitPrice.value ||
+      0) + getPropertiesPrice(product)
+  );
+  return price > 1000 ? 0 : price
+});
+
 // Handle success of adding to cart (can be used to trigger notifications, etc.)
 const handleAddToCartSuccess = () => {
   loading.value = false;
@@ -155,4 +174,14 @@ const getKgPrice = (product: Product) => {
 }
 
 const NuxtLink = resolveComponent('NuxtLink');
+
+
+watch(isAuthorized, (newValue: Boolean) => {
+  if (newValue) {
+    window.location.reload();
+
+  } else {
+
+  }
+});
 </script>
