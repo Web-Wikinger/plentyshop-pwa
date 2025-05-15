@@ -175,13 +175,4 @@ const getKgPrice = (product: Product) => {
 
 const NuxtLink = resolveComponent('NuxtLink');
 
-
-watch(isAuthorized, (newValue: Boolean) => {
-  if (newValue) {
-    window.location.reload();
-
-  } else {
-
-  }
-});
 </script>

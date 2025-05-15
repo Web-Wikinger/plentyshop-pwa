@@ -78,7 +78,7 @@ watch(isAuthorized, async (newValue: Boolean) => {
   if (newValue) {
     await fetchProduct(productParams);
   }
-}, { immediate: true });
+});
 
 if (Object.keys(product.value).length === 0) {
   throw new Response(null, {

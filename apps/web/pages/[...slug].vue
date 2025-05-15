@@ -153,10 +153,10 @@ useHead({
   ],
 });
 
-watch(isAuthorized, (newValue: Boolean) => {
+watch(isAuthorized, async (newValue: Boolean) => {
   if (newValue) {
     // Fetch or update the productsCatalog when the user is authorized
-    fetchProducts({categoryId: String(categoryGetters.getId(productsCatalog.value.category))});
+    await fetchProducts({categoryId: String(categoryGetters.getId(productsCatalog.value.category))});
   } else {
 
   }
