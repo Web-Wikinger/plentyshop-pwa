@@ -72,7 +72,7 @@
           <!-- <ProductAttributes :product="product" /> -->
           <GraduatedPriceList :product="product" :count="quantitySelectorValue" />
 
-          <div v-if="isAuthorized" class="mt-4">
+          <div v-if="isAuthorized && priceWithProperties" class="mt-4">
             <div class="flex flex-col md:flex-row flex-wrap gap-4">
               <UiQuantitySelector
                                   :min-value="productGetters.getMinimumOrderQuantity(product)"
@@ -287,13 +287,15 @@ const getKgPrice = (product: Product) => {
 }
 
 const priceWithProperties = computed(() => {
-  if (!isAuthorized) return 0;
+  if (!isAuthorized.value) return 0;
 
-  return (
+  let price = (
     (productGetters.getSpecialOffer(product) ||
       productGetters.getGraduatedPriceByQuantity(product, quantitySelectorValue.value)?.unitPrice.value ||
       0) + getPropertiesPrice(product)
   );
+
+  return price > 1000 ? 0 : price;
 });
 
 
