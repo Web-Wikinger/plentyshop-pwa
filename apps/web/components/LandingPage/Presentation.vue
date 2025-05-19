@@ -27,7 +27,7 @@
 
           <NuxtLink v-if="!noButton && !mailTo"
                     :to="buttonLink"
-                    class="mt-[20px] px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start">
+                    class="mt-[20px] px-4 lg:px-6 py-2 border-2 border-red-500 text-red-color font-semibold rounded-[1vw] hover:bg-red-color hover:text-white transition self-start text-sm lg:text-base text-center whitespace-normal min-w-[200px] max-w-full">
                     {{ButtonText}}
           </NuxtLink>
           <a v-if="mailTo"
