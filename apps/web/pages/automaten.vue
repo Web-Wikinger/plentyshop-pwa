@@ -4,7 +4,7 @@
         <div class="relative overflow-hidden lg:max-h-[560px] bg-[#f60c45] lg:px-[20%] lg:py-[7%]">
             <img 
                 v-if="isMobile"
-                src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/interbad-mobile-top.webp"
+                src="/images/Interbad_Mobile_Top.webp"
                 alt="Pringles Vending Machine"
                 class="mb-[-15%] mt-[-10%]"
             />
@@ -45,13 +45,13 @@
             
             <img 
                 v-if="!isMobile"
-                src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/automat.webp"
+                src="/images/Automat.webp"
                 alt="Pringles Vending Machine"
                 class="ml-0  flex-1 w-[313px] lg:absolute left-[-5%] top-[-1%]"
             />
             <img 
                 v-else
-                src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/interbad-mobile-bottom-cropped.webp"
+                src="/images/Interbad_Mobile_Bottom_Cropped.webp"
                 alt="Pringles Vending Machine"
                 class=""
             />
@@ -59,7 +59,7 @@
             <div class="absolute top-[5%] right-[-5%] w-1/2 h-full pointer-events-none">
                 <img 
                     v-if="!isMobile"
-                    src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/interbad-pringles.webp"
+                    src="/images/Interbad_Pringles.webp"
                     alt="Pringles Cans"
                     class="object-contain object-right"
                     style="width: 937px; max-width: 937px; position: absolute; right: -8%; top: -8%;"
@@ -223,7 +223,7 @@
             </div>
         </div>
 
-        <LandingPagePresentation imageSrc="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/pringles-automaten-schwarz-und-rotv2.webp" 
+        <LandingPagePresentation imageSrc="/images/Pringles_Automaten_Black_Red.webp" 
             SubTitle="DEN DREH RAUS" Title="Der Drehautomat für PRINGLES® 40 g" 
             Description="Die Snackinsel für alle und jede Gelegenheit: signalrot oder schwarz als Drehautomat, gefüllt mit 49 Pringles 40g Dosen, oder als Thekenautomat mit 28 40g Dosen, ein kultiger Hingucker und Umsatzbringer ohne wesentlichen Personal- oder Zeitaufwand. Das Handling ist easy: einfach Sorte aussuchen, Geld einwerfen, drehen und snacken."
             ButtonText="Jetzt weitere Pringles Automaten nachbestellen"

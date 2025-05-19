@@ -4,7 +4,7 @@
       <!-- Hot & Spicy -->
       <div class="flex flex-col bg-white rounded-lg">
         <img 
-          src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/7000250000-B2B-Pringles-Hot-und-Spicy-12-kleine-Dosen-fuer-unterwegs--12-x-40g.webp"
+          src="/images/Pringles_Hot_Spicy_12x40g.webp"
           alt="Pringles Hot & Spicy"
           class="w-full h-auto object-contain mb-4"
         />
@@ -15,7 +15,7 @@
       <!-- Original -->
       <div class="flex flex-col bg-white rounded-lg">
         <img 
-          src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/7000271000-R12-Pringles-Original-40g.webp"
+          src="/images/Pringles_Original_40g.webp"
           alt="Pringles Original"
           class="w-full h-auto object-contain mb-4"
         />
@@ -26,7 +26,7 @@
       <!-- Sour Cream & Onion -->
       <div class="flex flex-col bg-white rounded-lg">
         <img 
-          src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/7000279000-B2B-Pringles-Sour-Cream-und-Onion-40g_1.webp"
+          src="/images/Pringles_Sour_Cream_Onion_40g.webp"
           alt="Pringles Sour Cream & Onion"
           class="w-full h-auto object-contain mb-4"
         />
@@ -37,7 +37,7 @@
       <!-- Sweet Paprika -->
       <div class="flex flex-col bg-white rounded-lg">
         <img 
-          src="https://cdn02.plentymarkets.com/y1j7jytyy1rk/frontend/Landingpages/Automaten/7016161000-B2B-Pringles-Sweet-Paprika-12-kleine-Dosen-fuer-unterwegs--12-x-40g.webp"
+          src="/images/Pringles_Sweet_Paprika_12x40g.webp"
           alt="Pringles Sweet Paprika"
           class="w-full h-auto object-contain mb-4"
         />
