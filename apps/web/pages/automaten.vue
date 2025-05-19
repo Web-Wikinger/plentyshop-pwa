@@ -133,7 +133,7 @@
 
 
             <!-- Login Form -->
-            <div class="w-full mx-auto" style="max-width: 298px;">
+            <div v-if="!isAuthorized" class="w-full mx-auto" style="max-width: 298px;">
                 <form @submit.prevent="handleLogin" class="space-y-4">
                     <!-- Email Input -->
                     <div class="relative">
@@ -239,6 +239,8 @@ import {
 } from '@storefront-ui/vue';
 import { useCustomer } from '~/composables/useCustomer';
 import { useI18n } from 'vue-i18n';
+
+const { isAuthorized } = useCustomer();
 
 definePageMeta({
   layout: 'default'

@@ -47,6 +47,7 @@
     </div>
     <div class="flex justify-center">
       <UiButton 
+          v-if="!isAuthorized" 
           :tag="NuxtLink" to="/kelloggs/register"
           class="bg-[#f60c45] font-[800] text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors"
       >
@@ -58,5 +59,7 @@
 
 <script setup lang="ts">
 const NuxtLink = resolveComponent('NuxtLink');
+
+const { isAuthorized } = useCustomer();
 
 </script> 
