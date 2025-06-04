@@ -10,15 +10,15 @@
       <!-- Text Section -->
       <div class="flex-1">
         <p class="text-xs leading-[22px] uppercase text-[17px] text-white">{{topTitle}}</p>
-        <h2 class="font-bold mt-2 text-[33px] leading-[30px] text-white">
-          {{title}}
+        <h2 class="font-bold mt-2 text-[33px] leading-[30px] text-white" v-html="title">
         </h2>
         <p class="text-sm mt-4 text-[20px] leading-[27px] font-regular text-white mb-[37px]" v-html="description">
         </p>
         <NuxtLink v-if="btnText"
                     :to="buttonLink"
-                    class="px-6 py-2 border-2 border-white bg-red-color text-white rounded-[1vw] hover:bg-white hover:text-red-color transition text-[14px] lg:text-[20px] mt-[37px]">
-                    {{btnText}}
+                    class="px-6 py-2 border-2 border-white bg-red-color text-white rounded-[1vw] hover:bg-white hover:text-red-color transition text-[14px] lg:text-[20px] mt-[37px]"
+                    v-html="btnText"
+                    >
           </NuxtLink>
       </div>
 

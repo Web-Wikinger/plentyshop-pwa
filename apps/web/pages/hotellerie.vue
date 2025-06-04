@@ -118,11 +118,14 @@ const pringlesProducts     = ref([] as Product[])
 const cerealienProducts    = ref([] as Product[])
 
 async function loadProducts() {
-  const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
-  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+  if(isAuthorized.value)
+  {
+    const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
+    const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
 
-  pringlesProducts.value  = pringlesRes.products
-  cerealienProducts.value = cerealienRes.products
+    pringlesProducts.value  = pringlesRes.products
+    cerealienProducts.value = cerealienRes.products 
+  }
 }
 
 onMounted(loadProducts)

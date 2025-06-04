@@ -16,8 +16,8 @@
     </div>
     <div class="space-p-4">
       <h3 class="font-[Open_Sans] text-[12px] leading-[17px] text-[#2C2C2C] mt-[12px] ml-[14px]">{{ name }}</h3>
-      <p class="text-[19px] font-bold ml-[14px]">{{ n(price, 'currency') }}</p>
-      <p class="text-[8px] leading-[11px] mt-[1px] ml-[14px]">Grundpreis: {{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
+      <p v-if="isAuthorized" class="text-[19px] font-bold ml-[14px]">{{ n(price, 'currency') }}</p>
+      <p v-if="isAuthorized" class="text-[8px] leading-[11px] mt-[1px] ml-[14px]">Grundpreis: {{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
       <p class="text-[8px] leading-[11px] mt-[5px] mb-[9px] ml-[14px] text-[#2c2c2c]">*Preis eks. MwSt. und zzgl. Versand</p>
       <div class="mt-2 text-sm border-t border-b border-gray-300">
         <div class="flex justify-between border-b border-gray-300">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-between">
+      <div v-if="isAuthorized" class="flex items-center justify-between">
         <select 
           v-model="quantity" 
           class="w-3/5 h-[45px] bg-gray-200 border border-gray-300 text-sm px-2"
@@ -81,6 +81,8 @@ import { defaults } from '~/composables';
 import { Product } from '@plentymarkets/shop-api';
 import { computed, ref } from 'vue';
 import { SfLoaderCircular } from '@storefront-ui/vue';
+const { isAuthorized } = useCustomer();
+
 
 import _ from 'lodash';
 

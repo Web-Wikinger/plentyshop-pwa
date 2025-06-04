@@ -3,8 +3,7 @@
     <div class="lg:w-[540px] lg:flex-1">
       <p class="text-[17px] leading-[22px] uppercase text-white">{{topTitle}}</p>
       <h2 class="text-[33px] leading-[44px] font-bold mt-2">{{title}}</h2>
-      <p class="mt-4 text-[20px] leading-[27px] text-white">
-        {{description}}
+      <p class="mt-4 text-[20px] leading-[27px] text-white" v-html="description">
       </p>
     </div>
     <div class="lg:flex-1">

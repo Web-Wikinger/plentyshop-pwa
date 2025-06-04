@@ -2,7 +2,7 @@
   <div class="bg-gray-100 py-10 px-5">
     <div class="lg:mx-[250px] text-center">
       <h3 class="text-[17px] uppercase text-[#2C2C2C]">Passender Snack</h3>
-      <h2 class="text-[25px] leading-[33px] font-bold mt-1">
+      <h2 class="text-[25px] leading-[33px] font-bold mt-1 mb-5">
         Die Rolle der Textur und des Geschmacks in der Snack/Getränke-Paarung
       </h2>
       <p class="mt-2 text-[20px] leading-[27px]">
@@ -48,9 +48,12 @@ const { isAuthorized } = useCustomer();
 const cerealienProducts    = ref([] as Product[])
 
 async function loadProducts() {
-  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
-
-  cerealienProducts.value = cerealienRes.products
+  if(isAuthorized.value)
+  {
+    const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+    cerealienProducts.value = cerealienRes.products  
+  }
+  
 }
 
 onMounted(loadProducts)
