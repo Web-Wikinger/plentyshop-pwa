@@ -11,7 +11,7 @@
     <LandingPagePresentation imageSrc="/images/image-1.jpeg" 
         SubTitle="Genussvoll in den Tag starten" Title="Das Hotelfrühstück mit <br>
                 Kellogg’s<span class='text-lg align-super'>®</span> Produkten aufwerten" 
-        Description="Vom Tagesstart sind KELLOGG’S<span class='text-lg align-super'>®</span> Cerealien gar nicht wegzudenken. Auch auf dem Frühstücksbuffet haben sie ihren festen Platz und können bei der richtigen Präsentation dem ganzen Buffet mehr Wertigkeit geben und die Wirtschaftlichkeit verbessern*. Zudem zählen Kellogg’s<span class='text-lg align-super'>®</span> Cerealien zu den beliebtesten Frühstücksprodukten überhaupt.**"
+        Description="Vom Tagesstart sind KELLOGG’S<span class='text-sm align-super'>®</span> Cerealien gar nicht wegzudenken. Auch auf dem Frühstücksbuffet haben sie ihren festen Platz und können bei der richtigen Präsentation dem ganzen Buffet mehr Wertigkeit geben und die Wirtschaftlichkeit verbessern*. Zudem zählen Kellogg’s<span class='text-sm align-super'>®</span> Cerealien zu den beliebtesten Frühstücksprodukten überhaupt.**"
         Additional="*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für <br>
                 Betriebswirtschaft und Agrarstruktur, Dezember 2021<br>
                 **Quelle: VuMa 2023" 
@@ -21,8 +21,8 @@
         />
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/composing_tagung.png" 
         SubTitle="Mehr Schwung" 
-        Title="Im Tagungsraum mit Kellogg’s<span class='text-lg align-super'>®</span> Produkten für eine gute Basis sorgen" 
-        Description="KELLOGG’s<span class='text-lg align-super'>®</span> Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s<span class='text-lg align-super'>®</span> Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
+        Title="Im Tagungsraum mit Kellogg’s<span class='text-sm align-super'>®</span> Produkten für eine gute Basis sorgen" 
+        Description="KELLOGG’s<span class='text-sm align-super'>®</span> Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s<span class='text-lg align-super'>®</span> Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
         Additional="" 
         ButtonText="Zu den Präsentationsmöglichkeiten"
         buttonLink="#Dispenser"
@@ -67,8 +67,8 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
     
         
     <LandingPagePresentation header="Platzierungsvorschlag und Best Practice-Hilfen für die Hotellerie" imageSrc="/images/Pringles-Logo_mit-Chips.png" 
-      SubTitle="Cup des Tages" Title="Eye Catcher für jedes Buffet" 
-      Description="Wenn der Platz für eine Breakfast Corner nicht reicht oder nur eine Bowl-Idee, z. B. für die Meeting-Pause angeboten werden kann, empfiehlt sich der Cup des Tages Aufsteller mit einer tollen Bowl-Idee. Insgesamt stehen 6 alternative Varianten im Set zur Verfügung. "
+      SubTitle="Cup des Tages" Title="PRINGLES<span class='text-lg align-super'>®</span> Geschmack, von dem man einfach nicht genug bekommt" 
+      Description="Die weltweit führende und beliebteste Stapelchips Marke in den 4 angesagtesten Geschmacksrichtungen. Alle lieben PRINGLES<span class='text-sm align-super'>®</span>, weil sie großartig schmecken, Spaß machen und das, ohne Fettfinger zu kriegen."
       noButton/>
 
     <LandingPageMinHeightDiv 
@@ -94,7 +94,7 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
                   und snacken. Ideal für attraktive Zusatzumsätze ohne
                   wesentlichen Personal- bzw. Zeitaufwand."
       ButtonText="Jetzt bestellen!"
-      buttonLink="https://kelloggs-shop.de/pages/pringles-pos"
+      buttonLink="https://snackinginsel.de/"
       />
 
 

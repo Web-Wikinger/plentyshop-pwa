@@ -1,14 +1,14 @@
 <template>
   <div :class="[bgColor, 'w-full pb-[62px]']"> 
     <div class="container ">
-      <div class="align-items justify-center pb-[20px]">
+      <div class="align-items justify-center mt-6">
         <h2 
           v-if="header"
           class="lg:text-[40px] text-[30px] font-bold justify-content lg:px-[300px] break-all"
         >{{ header }}</h2>
       </div>
       <div
-        class='presentation-sizes lg:flex lg:flex-row  items-center my-8 rounded-[1vw] shadow-none w-full lg:min-h-[480px] justify-between gap-4'
+        class='presentation-sizes lg:flex lg:flex-row  items-center mb-8 rounded-[1vw] shadow-none w-full lg:min-h-[480px] justify-between gap-4'
       >
         <div v-if="imageLeft" class="lg:flex items-center justify-center lg:max-w-[550px] h-auto">
           <img :src="imageSrc" alt="Frühstücksbuffet" class="rounded-[1vw] w-full h-full " />
