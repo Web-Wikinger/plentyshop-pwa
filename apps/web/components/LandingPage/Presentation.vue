@@ -1,5 +1,5 @@
 <template>
-  <div :class="[bgColor, 'w-full py-[62px]']"> 
+  <div :class="[bgColor, 'w-full pb-[62px]']"> 
     <div class="container ">
       <div class="align-items justify-center pb-[20px]">
         <h2 

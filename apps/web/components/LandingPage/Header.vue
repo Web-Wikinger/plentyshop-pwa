@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:header-sizes justify-between flex flex-col  lg:h-[355px] text-center bg-white p-8 shadow-none mx-auto lg:my-[100px] lg:max-w-[940px]">
+  <div class="lg:header-sizes justify-between flex flex-col  lg:h-[355px] text-center bg-white p-8 shadow-none mx-auto lg:mt-[100px] lg:max-w-[940px]">
     <div>
       <h2 class="text-lg font-semibold text-gray-800 text-[23px]">
         {{title}}
