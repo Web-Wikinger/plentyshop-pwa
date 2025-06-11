@@ -59,7 +59,7 @@
       title="Hygienischer Kippdeckel und visueller Mehrwert"
       top-title="Foodserver-Klassiker"
       description="Praxis bewährt, ansprechend und formschön
-präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foodserver aus hochwertigem Acryl. Für bis zu 750 g Cerealien oder Müsli. Der praktische Kippdeckel sorgt für den hygienesicheren Verschluss nach jeder Portionierung."
+präsentiert sich der Kellogg’s<span class='text-[10px] align-super'>®</span> Foodserver aus hochwertigem Acryl. Für bis zu 750 g Cerealien oder Müsli. Der praktische Kippdeckel sorgt für den hygienesicheren Verschluss nach jeder Portionierung."
       imageSrc="/images/image-01.png" />
 
     <LandingPageDispenser id="Dispenser" />
