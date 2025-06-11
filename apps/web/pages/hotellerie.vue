@@ -11,7 +11,7 @@
     <LandingPagePresentation imageSrc="/images/image-1.jpeg" 
         SubTitle="Genussvoll in den Tag starten" Title="Das Hotelfrühstück mit <br>
                 Kellogg’s<span class='text-lg align-super'>®</span> Produkten aufwerten" 
-        Description="Vom Tagesstart sind KELLOGG’S<span class='text-sm align-super'>®</span> Cerealien gar nicht wegzudenken. Auch auf dem Frühstücksbuffet haben sie ihren festen Platz und können bei der richtigen Präsentation dem ganzen Buffet mehr Wertigkeit geben und die Wirtschaftlichkeit verbessern*. Zudem zählen Kellogg’s<span class='text-sm align-super'>®</span> Cerealien zu den beliebtesten Frühstücksprodukten überhaupt.**"
+        Description="Vom Tagesstart sind KELLOGG’S<span class='text-[10px] align-super'>®</span> Cerealien gar nicht wegzudenken. Auch auf dem Frühstücksbuffet haben sie ihren festen Platz und können bei der richtigen Präsentation dem ganzen Buffet mehr Wertigkeit geben und die Wirtschaftlichkeit verbessern*. Zudem zählen Kellogg’s<span class='text-[10px] align-super'>®</span> Cerealien zu den beliebtesten Frühstücksprodukten überhaupt.**"
         Additional="*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für <br>
                 Betriebswirtschaft und Agrarstruktur, Dezember 2021<br>
                 **Quelle: VuMa 2023" 
@@ -21,8 +21,8 @@
         />
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/composing_tagung.png" 
         SubTitle="Mehr Schwung" 
-        Title="Im Tagungsraum mit Kellogg’s<span class='text-sm align-super'>®</span> Produkten für eine gute Basis sorgen" 
-        Description="KELLOGG’s<span class='text-sm align-super'>®</span> Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s<span class='text-lg align-super'>®</span> Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
+        Title="Im Tagungsraum mit Kellogg’s<span class='text-[10px] align-super'>®</span> Produkten für eine gute Basis sorgen" 
+        Description="KELLOGG’s<span class='text-[10px] align-super'>®</span> Produkte sind nicht nur auf dem Frühstücksbuffet beliebt, sie genießen auch als Basis für konstruktive Diskussionen in der Tagungspause hohe Attraktivität. Mit praktischen Platzierungstools, wie dem Dispenser, können KELLOGG’s<span class='text-[10px] align-super'>®</span> Cerealien als Snack für die Pause zwischendurch gereicht werden und passen sich ideal den verschiedensten Einrichtungsstilen an." 
         Additional="" 
         ButtonText="Zu den Präsentationsmöglichkeiten"
         buttonLink="#Dispenser"
@@ -37,9 +37,9 @@
     />
       
     <LandingPageComparison 
-      title="Je mehr KELLOGG‘s<span class='text-lg align-super'>®</span> gegessen wird, desto weniger Belag"
+      title="Je mehr KELLOGG‘s<span class='text-[14px] align-super'>®</span> gegessen wird, desto weniger Belag"
       subtitle="Große Geschmacksvielfalt - Gute Laune inklusive"
-      description="Das Kellogg’s<span class='text-lg align-super'>®</span> Sortiment umfasst unterschiedlichste knusprige Cereals und Müslis. Mit einer Auswahl davon haben Ihre Gäste eine gute Basis für leckere Bowls, die sie mit Zutaten von Ihrem Buffet ergänzen können und Sie profitieren - <strong>bei einer Platzierung im ersten Buffetdrittel </strong>- durch einen günstigeren Wareneinsatz als z.B. bei Wurst und Käse.*"
+      description="Das Kellogg’s<span class='text-[10px] align-super'>®</span> Sortiment umfasst unterschiedlichste knusprige Cereals und Müslis. Mit einer Auswahl davon haben Ihre Gäste eine gute Basis für leckere Bowls, die sie mit Zutaten von Ihrem Buffet ergänzen können und Sie profitieren - <strong>bei einer Platzierung im ersten Buffetdrittel </strong>- durch einen günstigeren Wareneinsatz als z.B. bei Wurst und Käse.*"
       imageText="Beispiel Platzierung auf Ihrem Buffet:"
     />    
 
@@ -68,13 +68,13 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
         
     <LandingPagePresentation header="Platzierungsvorschlag und Best Practice-Hilfen für die Hotellerie" imageSrc="/images/Pringles-Logo_mit-Chips.png" 
       SubTitle="Cup des Tages" Title="PRINGLES<span class='text-lg align-super'>®</span> Geschmack, von dem man einfach nicht genug bekommt" 
-      Description="Die weltweit führende und beliebteste Stapelchips Marke in den 4 angesagtesten Geschmacksrichtungen. Alle lieben PRINGLES<span class='text-sm align-super'>®</span>, weil sie großartig schmecken, Spaß machen und das, ohne Fettfinger zu kriegen."
+      Description="Die weltweit führende und beliebteste Stapelchips Marke in den 4 angesagtesten Geschmacksrichtungen. Alle lieben PRINGLES<span class='text-[10px] align-super'>®</span>, weil sie großartig schmecken, Spaß machen und das, ohne Fettfinger zu kriegen."
       noButton/>
 
     <LandingPageMinHeightDiv 
       topTitle="Small Cans"
       title="Praktisch und aromaversiegelt in der 40 g Dose"
-      description="Gönn deinen Gästen und Kunden mit Pringles<span class='text-lg align-super'>®</span> eine Auszeit von der Norm. Ein Snack-Vergnügen, das nicht nur den Gaumen anregt, sondern auch den Geist kitzelt: in der Pause,  zwischendurch, als Meetingfood, an der Bar oder auf dem Zimmer."
+      description="Gönn deinen Gästen und Kunden mit Pringles<span class='text-[10px] align-super'>®</span> eine Auszeit von der Norm. Ein Snack-Vergnügen, das nicht nur den Gaumen anregt, sondern auch den Geist kitzelt: in der Pause,  zwischendurch, als Meetingfood, an der Bar oder auf dem Zimmer."
       imageSrc="/images/3D Pringles 40g Composing.png" imageLeft />
     
 
@@ -84,12 +84,12 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
     />
 
     <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/composing_pringles.png" 
-      SubTitle="Drehautomat für Pringles<span class='text-lg align-super'>®</span>" Title="Die impulsstarke und mobile Snackinsel" 
+      SubTitle="Drehautomat für Pringles<span class='text-[10px] align-super'>®</span>" Title="Die impulsstarke und mobile Snackinsel" 
       Description="Überall wo Gäste freie Zeit genießen oder warten,
-                  ist der neue Drehautomat für PRINGLES<span class='text-lg align-super'>®</span> die beliebte
+                  ist der neue Drehautomat für PRINGLES<span class='text-[10px] align-super'>®</span> die beliebte
                   Snackinsel, die jeder gerne anläuft: z. B. in der Lobby, im 
                   Restaurant, im Outdoor-Bereich. Der signalrote
-                  Automat lässt sich mit 49 x 40 g PRINGLES<span class='text-lg align-super'>®</span> Dosen füllen. 
+                  Automat lässt sich mit 49 x 40 g PRINGLES<span class='text-[10px] align-super'>®</span> Dosen füllen. 
                   Einfach Sorte aussuchen, Geld einwerfen, drehen
                   und snacken. Ideal für attraktive Zusatzumsätze ohne
                   wesentlichen Personal- bzw. Zeitaufwand."
@@ -101,7 +101,7 @@ präsentiert sich der Kellogg’s<span class='text-lg align-super'>®</span> Foo
 
     <LandingPagePresentation imageLeft imageSrc="/images/composing_mini-bar.png" 
       SubTitle="Pop in der After Hour" Title="PRINGLES<span class='text-lg align-super'>®</span> 40 g Dosen sind der ideale Snack für die Mini Bar" 
-      Description="Der beliebte Snack eignet sich hervorragend für die Mini Bar. Durch ihre starke Markenstrahlkraft suggerieren PRINGLES<span class='text-lg align-super'>®</span> Gästen besondere Hochwertigkeit und Service. Außerdem sind die Dosen relativ klein, passen in nahezu jede Mini Bar und sind bei mehr Platz sogar ausgezeichnet stapelbar."
+      Description="Der beliebte Snack eignet sich hervorragend für die Mini Bar. Durch ihre starke Markenstrahlkraft suggerieren PRINGLES<span class='text-[10px] align-super'>®</span> Gästen besondere Hochwertigkeit und Service. Außerdem sind die Dosen relativ klein, passen in nahezu jede Mini Bar und sind bei mehr Platz sogar ausgezeichnet stapelbar."
       ButtonText="Jetzt bestellen!"
       buttonLink="/snacks/pringles/"
       />

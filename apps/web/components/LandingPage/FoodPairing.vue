@@ -6,7 +6,7 @@
         Food Pairing mit Cerealien
       </h2>
       <p class="mt-2 text-[20px] leading-[27px]">
-        Auch Getränkemärkte profitieren gleich doppelt davon, Cerealien anzubieten: Zum einen stärken Sie Ihr Profil als regionaler Nahversorger, zum anderen positionieren Sie sich als Experte für Food Pairing. Was genau bedeutet das? Die Kombination von Snacks und Getränken hängt stark von Geschmack und Textur ab. So kann beispielsweise ein süßer Snack wie KELLOGG’S<span class='text-sm align-super'>®</span> Smacks den Geschmack einer herzhaften Spirituose ergänzen, ausgleichen und sogar hervorheben. Machen Sie Ihre Kunden doch einmal gezielt auf diese spannenden Geschmackskombinationen aufmerksam!
+        Auch Getränkemärkte profitieren gleich doppelt davon, Cerealien anzubieten: Zum einen stärken Sie Ihr Profil als regionaler Nahversorger, zum anderen positionieren Sie sich als Experte für Food Pairing. Was genau bedeutet das? Die Kombination von Snacks und Getränken hängt stark von Geschmack und Textur ab. So kann beispielsweise ein süßer Snack wie KELLOGG’S<span class='text-[10px] align-super'>®</span> Smacks den Geschmack einer herzhaften Spirituose ergänzen, ausgleichen und sogar hervorheben. Machen Sie Ihre Kunden doch einmal gezielt auf diese spannenden Geschmackskombinationen aufmerksam!
       </p>
     </div>
     <LandingPageProductDisplay

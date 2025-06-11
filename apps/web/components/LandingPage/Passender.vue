@@ -16,7 +16,7 @@
       <div class="bg-red-color text-center rounded-[30px] lg:w-[440px] lg:h-[440px] p-6 rounded-lg flex flex-col items-center">
         <img height="125" width="125" class="py-[57px]" src="/images/Icon_salzig.svg">
         <p class="text-white text-[18px] ">Wenn der Drink <span class="font-bold">SALZIG ODER WÜRZIG</span> ist,
-          empfiehlt sich ein Snack, der den Geschmack ausgleicht, wie zum Beispiel KELLOGG’S® Smacks oder Frosties zum Knuspern.
+          empfiehlt sich ein Snack, der den Geschmack ausgleicht, wie zum Beispiel KELLOGG’S<span class='text-[10px] align-super'>®</span> Smacks oder Frosties zum Knuspern.
           Diese lassen sich zu einem Drink beispielsweise in einem Extra-Glas reichen.
         </p>
       </div>
@@ -25,7 +25,7 @@
       <div class="bg-red-color text-center rounded-[30px] lg:w-[440px] lg:h-[440px] p-6 rounded-lg flex flex-col items-center">
         <img height="155" width="155" class="pt-[34px] pb-[50px]" src="/images/Icon_suess.svg">
         <p class="text-white text-[18px] ">Wenn der Drink <span class="font-bold">SÜß ODER FRUCHTIG</span> ist,
-          bietet sich ein Snack an, der einen kontrastierenden Geschmack hat, also ein herzhafter Snack, wie PRINGLES® Original oder PRINGLES® Hot & Spicy. Hierfür bieten sich vor allem die 40 g Dosen an.
+          bietet sich ein Snack an, der einen kontrastierenden Geschmack hat, also ein herzhafter Snack, wie PRINGLES<span class='text-[10px] align-super'>®</span> Original oder PRINGLES<span class='text-[10px] align-super'>®</span> Hot & Spicy. Hierfür bieten sich vor allem die 40 g Dosen an.
         </p>
       </div>
     </div>

@@ -13,7 +13,7 @@
         Nur ein Starter Kit pro Businesspartner bestellbar. Nur solange der Vorrat reicht. Keine Barauszahlung möglich.
       </p>
       <p class="mt-4 text-white lg:text-[8px] opacity-80 px-10 mr-[100px]">Kellogg’s Shop von Web Wikinger Commerce GmbH<br>
-        © 2025 Kellanova | TM, ®, © 2025 KELLOGG Europe Trading Limited. All rights reserved.</p>
+        © 2025 Kellanova | TM, <span class='text-[10px] align-super'>®</span>, © 2025 KELLOGG Europe Trading Limited. All rights reserved.</p>
     </div>
     
     <!-- Middle Section -->

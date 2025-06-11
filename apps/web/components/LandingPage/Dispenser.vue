@@ -13,7 +13,7 @@
       </div>
       <h2 class="text-xl font-bold text-white mt-6">Cereal Dispenser – Abwechslung und Auswahl für Ihr Buffet</h2>
       <p class="mt-[16px] text-white lg:mx-[260px]">
-        Hochwertige Station für Ihr KELLOGG’S<span class='text-sm align-super'>®</span> Angebot auf dem Frühstücksbuffet und/oder der Tagungspause. 
+        Hochwertige Station für Ihr KELLOGG’S<span class='text-[10px] align-super'>®</span> Angebot auf dem Frühstücksbuffet und/oder der Tagungspause. 
         Aus Edelstahl gefertigt und platzsparend designt. Verfügbar als 3er oder 4er Dispenser. Beide Varianten 
         lassen sich perfekt mit der Breakfast Corner kombinieren.
       </p>

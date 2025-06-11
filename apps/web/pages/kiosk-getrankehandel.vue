@@ -3,7 +3,7 @@
     <LandingPageHeader 
       title="Platzierungsvorschlag und Best Practice-Tipps für Getränkemärkte und Kiosks"
       subtitle="PRINGLES<span class='text-lg align-super'>®</span> sind die perfekte Ergänzung für Ihr Kerngeschäft"
-      description="Was passt besser zusammen als ein kühles Getränk und ein salziger Snack? PRINGLES<span class='text-lg align-super'>®</span> sind starker Umsatztreiber für Kiosk- und Getränkemarktbesitzer. Snack-Käufe sind oft impulsiv – besonders als Belohnung am Abend. Sie sind eng mit dem Konsum von kalten Getränken wie Bier und Softdrinks verknüpft, was sie ideal für Cross-Selling, also den gemeinsamen Verkauf mit Ihrem Kerngeschäft, macht. Strategisch platziert, steigern PRINGLES<span class='text-lg align-super'>®</span> spürbar den Umsatz.<br><br><br>*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für Betriebswirtschaft und Agrarstruktur, Dezember 2021	"
+      description="Was passt besser zusammen als ein kühles Getränk und ein salziger Snack? PRINGLES<span class='text-[10px] align-super'>®</span> sind starker Umsatztreiber für Kiosk- und Getränkemarktbesitzer. Snack-Käufe sind oft impulsiv – besonders als Belohnung am Abend. Sie sind eng mit dem Konsum von kalten Getränken wie Bier und Softdrinks verknüpft, was sie ideal für Cross-Selling, also den gemeinsamen Verkauf mit Ihrem Kerngeschäft, macht. Strategisch platziert, steigern PRINGLES<span class='text-[10px] align-super'>®</span> spürbar den Umsatz.<br><br><br>*Quelle: Bayerische Landesanstalt für Landwirtschaft, Institut für Betriebswirtschaft und Agrarstruktur, Dezember 2021	"
       noButton
       buttonLink="/snacks/pringles/"
     />
@@ -11,9 +11,9 @@
     <LandingPageMinHeightDiv 
       topTitle="Für den großen und kleinen Snack-Moment"
       title="PRINGLES<span class='text-lg align-super'>®</span> sind in verschiedenen Größen verfügbar"
-      description="PRINGLES<span class='text-sm align-super'>®</span> sind in zwei verschiedenen Gebinden verfügbar: In der praktischen 40 g-Dose als To-go-Snack und der klassischen 165 g-Dose zum Teilen. Die 40 g Dose gibt es in den schnelldrehenden Sorten Original, Sour Cream & Onion, Paprika sowie Hot & Spicy. Die klassischen 165 g-Dosen sind derweil in über 10 Flavours bestellbar und überzeugen Ihre Kunden mit immer wieder neuen Limited Editions."
+      description="PRINGLES<span class='text-[10px] align-super'>®</span> sind in zwei verschiedenen Gebinden verfügbar: In der praktischen 40 g-Dose als To-go-Snack und der klassischen 165 g-Dose zum Teilen. Die 40 g Dose gibt es in den schnelldrehenden Sorten Original, Sour Cream & Onion, Paprika sowie Hot & Spicy. Die klassischen 165 g-Dosen sind derweil in über 10 Flavours bestellbar und überzeugen Ihre Kunden mit immer wieder neuen Limited Editions."
       imageSrc="/images/pringles-lp3.png"
-      btnText="Zum PRINGLES<span class='text-lg align-super'>®</span> Sortiment"
+      btnText="Zum PRINGLES<span class='text-[13px] align-super'>®</span> Sortiment"
       buttonLink="/snacks/pringles/"
       imageLeft 
     />
@@ -22,7 +22,7 @@
     <LandingPageInfoBlock 
       topTitle="Die ideale Platzierung"
       title="Maximale Sichtbarkeit für mehr Impulskäufe"
-      description="Platzieren Sie PRINGLES<span class='text-sm align-super'>®</span> dort, wo Kaufentscheidungen spontan fallen: in der Kassenzone. Gerade im Wartebereich, der sogenannten „Quengelzone“, sorgen die weltweit führenden und beliebtesten Stapelchips für maximale Aufmerksamkeit und verführen Kunden zum Zugreifen."
+      description="Platzieren Sie PRINGLES<span class='text-[10px] align-super'>®</span> dort, wo Kaufentscheidungen spontan fallen: in der Kassenzone. Gerade im Wartebereich, der sogenannten „Quengelzone“, sorgen die weltweit führenden und beliebtesten Stapelchips für maximale Aufmerksamkeit und verführen Kunden zum Zugreifen."
       imageSrc="/images/Quengelzone-Grafik_2.png"
       imageTitle="Beispiel Platzierung Kassenzone"
       class="my-[143px] " 
@@ -31,7 +31,7 @@
     
     <LandingPagePresentation imageSrc="/images/Pringles List.png" :bgColor="'bg-gray-100'"
         SubTitle="Blickfänge schaffen" Title="PRINGLES<span class='text-lg align-super'>®</span> Displays als Verkaufsbooster" 
-        Description="Nutzen Sie aufmerksamkeitsstarke Displays, um PRINGLES<span class='text-sm align-super'>®</span> optimal zu präsentieren. Diese sind sowohl für die 165 g-Dosen als auch die 40 g-Dosen verfügbar. In engen Räumlichkeiten passt beispielsweise die kompakte Banane für die 40 g-Dosen perfekt auf den Kassentresen, während das stabile Papp-Regal bei ausreichend Platz die 165 g-Dosen ideal in Szene setzt. Schreiben Sie uns bei Interesse an Display-Möglichkeiten!"
+        Description="Nutzen Sie aufmerksamkeitsstarke Displays, um PRINGLES<span class='text-[10px] align-super'>®</span> optimal zu präsentieren. Diese sind sowohl für die 165 g-Dosen als auch die 40 g-Dosen verfügbar. In engen Räumlichkeiten passt beispielsweise die kompakte Banane für die 40 g-Dosen perfekt auf den Kassentresen, während das stabile Papp-Regal bei ausreichend Platz die 165 g-Dosen ideal in Szene setzt. Schreiben Sie uns bei Interesse an Display-Möglichkeiten!"
         ButtonText="Mehr Infos"
         :mailTo=true
         buttonLink="mailto:Foodservice.DACH@kellanova.com"
@@ -43,13 +43,13 @@
 
     <LandingPagePresentation imageLeft imageSrc="/images/PringlesWobbler.png" 
       SubTitle="PRINGLES<span class='text-xs align-super'>®</span> Regalstopper und Wobbler" Title="Macht auch im Regal eine gute Figur" 
-      Description="Auch in regulären Kopfregalen sorgt PRINGLES<span class='text-sm align-super'>®</span> für Aufmerksamkeit: Die attraktiven 40 g-Dosen sind platzsparend stapelbar und sortenübergreifend designgetreu. Zusätzlich können Sie verkaufsfördernde Werbemittel bei uns anfragen, wie beispielsweise einen Regalstopper oder Wobbler. "
+      Description="Auch in regulären Kopfregalen sorgt PRINGLES<span class='text-[10px] align-super'>®</span> für Aufmerksamkeit: Die attraktiven 40 g-Dosen sind platzsparend stapelbar und sortenübergreifend designgetreu. Zusätzlich können Sie verkaufsfördernde Werbemittel bei uns anfragen, wie beispielsweise einen Regalstopper oder Wobbler. "
       noButton/>
   
 
     <LandingPagePresentation :bgColor="'bg-gray-100'" imageSrc="/images/automatHalterung.png" 
         SubTitle="Den Dreh raus" Title="Der Drehautomat für Pringles<span class='text-lg align-super'>®</span> bringt Zusatzumsätze" 
-        Description="Signalrot oder schwarz, gefüllt mit 49 Pringles<span class='text-sm align-super'>®</span> 40 g Dosen, ist der Drehautomat für Pringles<span class='text-sm align-super'>®</span> ein Umsatzbringer ohne zusätzlichen Personalaufwand. Das Handling ist easy: Einfach Sorte aussuchen, Geld einwerfen, drehen und snacken. Der Automat ist vielseitig einsetzbar, als Hingucker auf dem Standfuß, diebstahlsicher an der Wand oder als Miniautomat direkt auf dem Tresen platziert."
+        Description="Signalrot oder schwarz, gefüllt mit 49 Pringles<span class='text-[10px] align-super'>®</span> 40 g Dosen, ist der Drehautomat für Pringles<span class='text-[10px] align-super'>®</span> ein Umsatzbringer ohne zusätzlichen Personalaufwand. Das Handling ist easy: Einfach Sorte aussuchen, Geld einwerfen, drehen und snacken. Der Automat ist vielseitig einsetzbar, als Hingucker auf dem Standfuß, diebstahlsicher an der Wand oder als Miniautomat direkt auf dem Tresen platziert."
         ButtonText="Mehr Infos zum Automaten"
         buttonLink="https://snackinginsel.de/"
     />
@@ -60,7 +60,7 @@
       description="Ob Büdchen, Trinkhalle, Späti oder Kiosk – Sie sind aus der Nahversorgung nicht mehr wegzudenken.
           Längst bieten sie weit mehr als nur Snacks und Getränke für unterwegs, sondern decken zunehmend
           auch den täglichen Bedarf. Dazu gehört natürlich ein passendes Frühstücksangebot. Wie wäre es mit
-          den bewährten Klassikern, den KELLOGG’S<span class='text-sm align-super'>®</span> Cerealien? Nutzen Sie die internationale Strahlkraft der Marke
+          den bewährten Klassikern, den KELLOGG’S<span class='text-[15px] align-super'>®</span> Cerealien? Nutzen Sie die internationale Strahlkraft der Marke
           – mit langen MHDs, geringen Abnahmemengen und attraktiven Sorten."
       imageSrc="/images/icon_cerealien.svg"
       class="mt-[143px]" 
