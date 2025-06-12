@@ -14,7 +14,9 @@
              aria-labelledby="pringles-title"
              aria-describedby="pringles-description">
           <div class="kl-img-wrapper">
-            <img src="/images/kelloggs/img-pringles@2x.png" alt="Pringles">
+            <NuxtLink to="/snacks/pringles">
+              <img src="/images/kelloggs/img-pringles@2x.png" alt="Pringles">
+            </NuxtLink>
           </div>
           <p id="pringles-title" class="text-white kl-card-title">Pringles</p>
           <p id="pringles-description" class="text-white kl-card-description">
@@ -35,7 +37,9 @@
              aria-labelledby="cereal-title"
              aria-describedby="cereal-description">
           <div class="kl-img-wrapper">
-            <img src="/images/kelloggs/img-cerealien@2x.png" alt="Cerealien">
+            <NuxtLink to="/fruehstueck/cerealien">
+              <img src="/images/kelloggs/img-cerealien@2x.png" alt="Cerealien">
+            </NuxtLink>
           </div>
           <p id="cereal-title" class="text-white kl-card-title">Cerealien</p>
           <p id="cereal-description" class="text-white kl-card-description">
@@ -55,7 +59,9 @@
              aria-labelledby="muesli-title"
              aria-describedby="muesli-description">
           <div class="kl-img-wrapper">
-            <img src="/images/kelloggs/img-new-muesli@2x.jpg" alt="Müsli">
+            <NuxtLink to="/fruehstueck/muesli">
+              <img src="/images/kelloggs/img-new-muesli@2x.jpg" alt="Müsli">
+            </NuxtLink>
           </div>
           <p id="muesli-title" class="kl-card-title">Müsli</p>
           <p id="muesli-description" class="kl-card-description">
