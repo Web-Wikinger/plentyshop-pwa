@@ -30,16 +30,16 @@ export default defineNuxtPlugin(() => {
   }
 
 
-  if (consent.value) {
+  // if (consent.value) {
 
-    injectScript()
-  }
+  injectScript()
+  // }
 
-  watch(consent, (granted) => {
-    if (granted) {
-      injectScript()
-    }
-  }, { immediate: true })
+  // watch(consent, (granted) => {
+  //   if (granted) {
+  //     injectScript()
+  //   }
+  // }, { immediate: true })
 })
 
 

@@ -73,32 +73,23 @@ export default {
       name: 'CookieBar.marketing.label',
       showMore: false,
       description: 'CookieBar.marketing.description',
-      cookies: [],
-    },
-    {
-      id:          3,
-      name:        'CookieBar.marketing.label',
-      showMore:    false,
-      description: 'CookieBar.marketing.description',
       cookies: [
-        // ← add this object:
         {
-          name:          'CookieBar.moduleGoogleAnalytics.googleAnalytics',              // your CookieName
-          Provider:      'CookieBar.moduleGoogleAnalytics.provider',                     // translation key/provider
-          Status:        'CookieBar.moduleGoogleAnalytics.status',                       // translation key/status
+          name: 'CookieBar.moduleGoogleTagManager.googleTagManager',
+          Provider: 'CookieBar.moduleGoogleTagManager.provider',
+          Status: 'CookieBar.moduleGoogleTagManager.status',
           PrivacyPolicy: 'https://policies.google.com/privacy',
-          Lifespan:      '2 Monate (standardmäßig für _ga Cookies)',                                                       // or 'Session' if you prefer
-          accepted:      false                                                          // default opt-in=false
+          Lifespan: '2 years',
+          accepted: false
         },
-        {
-          name:          'CookieBar.moduleSlsnlytcs.salesviewerAnalytics',              // your CookieName
-          Provider:      'CookieBar.moduleSlsnlytcs.provider',                     // translation key/provider
-          Status:        'CookieBar.moduleSlsnlytcs.status',                       // translation key/status
-          PrivacyPolicy: 'https://www.salesviewer.com/en/privacy-policy',
-          Lifespan:      '1 year',                                                       // or 'Session' if you prefer
-          accepted:      false                                                          // default opt-in=false
-        },
-        // ← you can leave other marketing cookies here, or merge with existing array
+        // {
+        //   name: 'CookieBar.moduleSlsnlytcs.salesviewerAnalytics',
+        //   Provider: 'CookieBar.moduleSlsnlytcs.provider',
+        //   Status: 'CookieBar.moduleSlsnlytcs.status',
+        //   PrivacyPolicy: 'https://www.salesviewer.com/en/privacy-policy',
+        //   Lifespan: '1 year',
+        //   accepted: false
+        // }
       ],
     }
   ],
