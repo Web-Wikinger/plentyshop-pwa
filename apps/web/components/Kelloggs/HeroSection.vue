@@ -4,18 +4,42 @@
       <h1 class="kl-hero-section__title lg:max-w-[800px]">
         Ihr Partner für Frühstücks und Snackmomente
       </h1>
-      <p class="kl-hero-section__description">Bestelle das komplette Kellogg’s und Pringles Sortiment jederzeit und von überall!</p>
+      <p class="kl-hero-section__description">Bestelle das komplette Kellogg's und Pringles Sortiment jederzeit und von überall!</p>
       <a href="#our-products" class="kl-button">Produkte entdecken</a>
     </div>
 
-    <video autoplay muted loop id="kl-hero-section__video">
-      <source src="/images/kelloggs/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548"
-              type="video/mp4">
+    <video
+      ref="videoRef"
+      autoplay
+      muted
+      loop
+      id="kl-hero-section__video"
+      playsinline
+      style="background: #000;"
+    >
+      <source src="/images/kelloggs/KelloggsChaotischesFruuehstuueck_klein.mp4?v=170548333371075359361724073548" type="video/mp4">
     </video>
   </section>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+
+const videoRef = ref(null);
+
+onMounted(() => {
+  if (videoRef.value) {
+    const src = videoRef.value.querySelector('source');
+    if (src) {
+      const currentSrc = src.getAttribute('src');
+      src.setAttribute('src', '');
+      void videoRef.value.offsetWidth;
+      src.setAttribute('src', currentSrc);
+    }
+    videoRef.value.load();
+    videoRef.value.play().catch(() => {});
+  }
+});
 </script>
 
 <style scoped>
