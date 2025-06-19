@@ -16,15 +16,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-
-onMounted(() => {
-  const video = document.getElementById('kl-hero-section__video');
-  if (video) {
-    video.load();
-    video.play().catch(() => {});
-  }
-});
 </script>
 
 <style scoped>
