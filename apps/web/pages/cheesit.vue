@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto">
-    <img src="/images/cheesit/cheesit_landingpage.png" >
+    <img src="/images/cheesit/cheesitlandingpage.png" >
 
     <LandingPagePresentation imageSrc="/images/cheesit/1.png" 
         Title="Snackregal auffrischen? Diese Käsecracker sorgen für Bewegung." 
@@ -25,7 +25,7 @@
       noButton/>
 
 
-    <img src="/images/cheesit/cheesit_landingpage2.png" >
+    <img src="/images/cheesit/cheesitlandingpage2.png" >
 
 
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/cheesit/4.png" 
