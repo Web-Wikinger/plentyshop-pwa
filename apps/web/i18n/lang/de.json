@@ -251,7 +251,8 @@
       "thankYou": "Danke, wenn ein Konto mit {0} registriert ist, sollten Sie den Link zum Zurücksetzen des Passworts in Ihrem Posteingang erhalten.",
       "info2": "Geben Sie Ihre E-Mail-Adresse, ein neues Passwort und Ihre Postleitzahl ein. Ihr Passwort wird aktualisiert, wenn die Angaben korrekt sind.",
       "newPassword": "Neues Passwort",
-      "processing": "Ihre Anfrage wird bearbeitet!"
+      "processing": "Ihre Anfrage wird bearbeitet!",
+      "resetPassword": "Setzen Sie Ihr Passwort zurück"
     },
     "setNewPassword": {
       "button": "Neues Passwort festlegen",
