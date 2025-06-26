@@ -9,15 +9,20 @@
     "Privacy Settings": "Datenschutzeinstellungen",
     "Reject All": "Alles ablehnen",
     "Show less": "Weniger anzeigen",
-    "moduleGoogleAnalytics" : {
-      "googleAnalytics" : "GoogleAnalytics",
+    "moduleGoogleAnalytics": {
+      "googleAnalytics": "GoogleAnalytics",
       "provider": "Google Ireland Limited",
-      "status" : "Erlaubt die Analyse des Nutzerverhaltens auf der Website, um die Leistung zu messen und zu verbessern."
+      "status": "Erlaubt die Analyse des Nutzerverhaltens auf der Website, um die Leistung zu messen und zu verbessern."
     },
-    "moduleSlsnlytcs" : {
-      "salesviewerAnalytics" : "SalesViewer",
+    "moduleGoogleTagManager": {
+      "googleTagManager": "Google Tag Manager",
+      "provider": "Google Ireland Limited",
+      "status": "Ermöglicht die Analyse des Nutzerverhaltens auf der Website zur Messung und Verbesserung der Leistung durch Google Tag Manager."
+    },
+    "moduleSlsnlytcs": {
+      "salesviewerAnalytics": "SalesViewer",
       "provider": "SalesViewer® GmbH",
-      "status" : "Ermöglicht die Analyse des Besucherverhaltens und die Identifikation von Unternehmen, die die Website besuchen – ausschließlich auf Basis geschäftsbezogener Daten. Es werden keine personenbezogenen Daten gespeichert oder ausgewertet."
+      "status": "Ermöglicht die Analyse des Besucherverhaltens und die Identifikation von Unternehmen, die die Website besuchen – ausschließlich auf Basis geschäftsbezogener Daten. Es werden keine personenbezogenen Daten gespeichert oder ausgewertet."
     },
     "about": {
       "description": "Wir verwenden Cookies und ähnliche Technologien auf unserer Website und verarbeiten personenbezogene Daten von Besucher:innen unserer Webseite (z.B. IP-Adresse), um z.B. Inhalte zu personalisieren, Medien von Drittanbietern einzubinden oder Zugriffe auf unsere Website zu analysieren. Die Datenverarbeitung erfolgt erst durch gesetzte Cookies. Wir teilen diese Daten mit Dritten, die wir in den Einstellungen benennen. Die Datenverarbeitung kann mit Einwilligung oder aufgrund eines berechtigten Interesses erfolgen. Die Zustimmung kann erteilt oder abgelehnt werden. Es besteht das Recht, nicht einzuwilligen und die Einwilligung zu einem späteren Zeitpunkt zu ändern oder zu widerrufen. Beachten Sie unser {legal} und weitere Hinweise zur Verwendung personenbezogener Daten in unserer {policy}.",
@@ -243,7 +248,10 @@
       "emailSent": "E-Mail verschickt",
       "heading": "Passwort zurücksetzen",
       "info": "Geben Sie die E-Mail-Adresse ein, die Sie bei der Anmeldung verwendet haben. Wir senden Ihnen einen Link zum Zurücksetzen des Passworts. Mit dem Link können Sie ein neues Passwort für Ihr Konto festlegen.",
-      "thankYou": "Danke, wenn ein Konto mit {0} registriert ist, sollten Sie den Link zum Zurücksetzen des Passworts in Ihrem Posteingang erhalten."
+      "thankYou": "Danke, wenn ein Konto mit {0} registriert ist, sollten Sie den Link zum Zurücksetzen des Passworts in Ihrem Posteingang erhalten.",
+      "info2": "Geben Sie Ihre E-Mail-Adresse, ein neues Passwort und Ihre Postleitzahl ein. Ihr Passwort wird aktualisiert, wenn die Angaben korrekt sind.",
+      "newPassword": "Neues Passwort",
+      "processing": "Ihre Anfrage wird bearbeitet!"
     },
     "setNewPassword": {
       "button": "Neues Passwort festlegen",
@@ -344,7 +352,7 @@
     "content": {
       "label": "Inhalt",
       "subcategories": {
-        "kelloggsHistory": "Die Kellogg’s Geschichte",
+        "kelloggsHistory": "Die Kellogg's Geschichte",
         "betterDays": "Better Days - Versprechen",
         "pringles": "Pringles",
         "breakfast": "Frühstück"
@@ -461,7 +469,7 @@
   "emptyStateAltText": "Bild, das beschreibt, dass keine Artikel gefunden wurden",
   "emptyStateText": "Wir haben keine Artikel mehr in dieser Kategorie.",
   "emptyStateText2": "Haben Sie nicht gefunden, was Sie suchen?",
-  "categoryPage" : { 
+  "categoryPage": {
     "textNotlogged": "Sie sind Geschäftkunde und wollen unsere Produkte erwerben?",
     "buttonRegister": "Jetzt registrieren",
     "NoProductsFound": "Keine Produkte gefunden"
@@ -559,7 +567,7 @@
       "categories": {
         "success": "Kategorien erfolgreich gespeichert.",
         "error": "Fehler beim Speichern der Kategorien.",
-        "deleteError": "Die Seite {pageName} (Kategorie-ID: {id}) konnte nicht gelöscht werden. {errorMessage}" ,
+        "deleteError": "Die Seite {pageName} (Kategorie-ID: {id}) konnte nicht gelöscht werden. {errorMessage}",
         "deleteSuccess": "Die Seite {pageName} (Kategorie-ID: {id}) wurde gelöscht."
       }
     },

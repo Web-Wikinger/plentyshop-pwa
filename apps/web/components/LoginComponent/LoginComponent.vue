@@ -25,6 +25,11 @@
           {{ t('auth.login.createAccountLinkLabel') }}
         </NuxtLink>
       </div>
+      <div v-if="!isSoftLogin" class="text-center">
+        <NuxtLink to="/password-reset" class="text-primary hover:underline" @click="closeModal">
+          {{ t('auth.resetPassword.resetPassword') }}
+        </NuxtLink>
+      </div>
     </form>
   </div>
 </template>
