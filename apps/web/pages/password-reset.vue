@@ -61,6 +61,7 @@ const resetPassword = async () => {
       email: customerEmail.value,
       password: customerPassword.value,
       PLZ: customerPLZ.value,
+      classId: 2
     });
     requestSent.value = true;
   } catch (error) {
