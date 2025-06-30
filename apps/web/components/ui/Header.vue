@@ -1,4 +1,5 @@
 <template>
+  <InventoryInfo />
   <TopHeader v-if="!isAuthorized" />
   <MegaMenu :categories="categoryTree">
     <template v-if="viewport.isGreaterOrEquals('md')">
@@ -133,6 +134,7 @@ import {
 } from '@storefront-ui/vue';
 import LanguageSelector from '~/components/LanguageSelector/LanguageSelector.vue';
 import { paths } from '~/utils/paths';
+import InventoryInfo from '../InventoryInfo/InventoryInfo.vue';
 
 const isLogin = ref(true);
 const { data: cart } = useCart();
