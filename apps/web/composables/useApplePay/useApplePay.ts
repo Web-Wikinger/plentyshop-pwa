@@ -1,5 +1,9 @@
-import { cartGetters, orderGetters } from '@plentymarkets/shop-api';
-import type { ApplepayType, ConfigResponse } from '~/components/PayPal/types';
+import { cartGetters } from '@plentymarkets/shop-api';
+import type { ApplepayType, ConfigResponse, PayPalAddToCartCallback } from '~/components/PayPal/types';
+
+type ButtonClickedEmits = {
+  (event: 'button-clicked', callback: PayPalAddToCartCallback): Promise<void>;
+};
 
 const loadExternalScript = async () => {
   return new Promise((resolve, reject) => {
@@ -57,20 +61,19 @@ export const useApplePay = () => {
       requiredBillingContactFields: ['postalAddress'],
       total: {
         type: 'final',
-        label: useRuntimeConfig().public.storename ?? 'plentyshop PWA',
+        label: useRuntimeConfig().public.storename ?? 'PlentyONE Shop',
         amount: cartGetters.getTotals(cart.value).total.toString(),
       },
     } as ApplePayJS.ApplePayPaymentRequest;
   };
 
-  const processPayment = () => {
+  const processPayment = (emits: ButtonClickedEmits) => {
     const { processingOrder } = useProcessingOrder();
-    const { createOrder } = useMakeOrder();
-    const { createCreditCardTransaction, captureOrder, executeOrder } = usePayPal();
-    const { data: cart, clearCartItems } = useCart();
+    const { createTransaction, captureOrder, createPlentyOrder, createPlentyPaymentFromPayPalOrder } = usePayPal();
+    const { clearCartItems } = useCart();
     const localePath = useLocalePath();
-    const { shippingPrivacyAgreement } = useAdditionalInformation();
     const { $i18n } = useNuxtApp();
+    const { emit } = usePlentyEvent();
 
     try {
       const paymentRequest = createPaymentRequest();
@@ -78,10 +81,17 @@ export const useApplePay = () => {
 
       paymentSession.onvalidatemerchant = async (event: ApplePayJS.ApplePayValidateMerchantEvent) => {
         try {
-          const validationData = await state.value.script.validateMerchant({
-            validationUrl: event.validationURL,
+          await emits('button-clicked', async (successfully) => {
+            if (!successfully) {
+              paymentSession.abort();
+              return;
+            }
+
+            const validationData = await state.value.script.validateMerchant({
+              validationUrl: event.validationURL,
+            });
+            paymentSession.completeMerchantValidation(validationData.merchantSession);
           });
-          paymentSession.completeMerchantValidation(validationData.merchantSession);
         } catch {
           paymentSession.abort();
         }
@@ -89,17 +99,18 @@ export const useApplePay = () => {
 
       paymentSession.onpaymentauthorized = async (event: ApplePayJS.ApplePayPaymentAuthorizedEvent) => {
         try {
-          const transaction = await createCreditCardTransaction();
+          const transaction = await createTransaction({
+            type: 'basket',
+          });
           if (!transaction || !transaction.id) {
+            paymentSession.completePayment(ApplePaySession.STATUS_FAILURE);
             showErrorNotification($i18n.t('storefrontError.order.createFailed'));
             return;
           }
 
-          const order = await createOrder({
-            paymentId: cart.value.methodOfPaymentId,
-            additionalInformation: { shippingPrivacyHintAccepted: shippingPrivacyAgreement.value },
-          });
+          const order = await createPlentyOrder();
           if (!order || !order.order || !order.order.id) {
+            paymentSession.completePayment(ApplePaySession.STATUS_FAILURE);
             showErrorNotification($i18n.t('storefrontError.order.createFailed'));
             return;
           }
@@ -111,25 +122,20 @@ export const useApplePay = () => {
               billingContact: event.payment.billingContact,
             });
           } catch (error) {
+            paymentSession.completePayment(ApplePaySession.STATUS_FAILURE);
             showErrorNotification(error?.toString() ?? $i18n.t('errorMessages.paymentFailed'));
             return;
           }
 
-          await captureOrder({
-            paypalOrderId: transaction.id,
-            paypalPayerId: transaction.payPalPayerId,
-          });
-
-          await executeOrder({
-            mode: 'PAYPAL_APPLE_PAY',
-            plentyOrderId: Number.parseInt(orderGetters.getId(order)),
-            paypalTransactionId: transaction.id,
-          });
+          await captureOrder(transaction.id);
+          await createPlentyPaymentFromPayPalOrder(transaction.id, order.order.id);
 
           processingOrder.value = true;
           paymentSession.completePayment(ApplePaySession.STATUS_SUCCESS);
+          emit('module:clearCart', null);
           clearCartItems();
 
+          emit('frontend:orderCreated', order);
           navigateTo(localePath(paths.confirmation + '/' + order.order.id + '/' + order.order.accessKey));
         } catch (error: unknown) {
           showErrorNotification(error?.toString() ?? $i18n.t('errorMessages.paymentFailed'));
@@ -143,7 +149,7 @@ export const useApplePay = () => {
 
       paymentSession.begin();
     } catch {
-      /* error */
+      showErrorNotification($i18n.t('storefrontError.unknownError'));
     }
   };
 

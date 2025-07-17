@@ -11,7 +11,7 @@
         <div class="flex justify-between items-center mb-6">
           <span class="font-bold md:text-lg">
             {{
-              $t('numberOfProducts', {
+              t('numberOfProducts', {
                 count: products?.length ?? 0,
                 total: totalProducts,
               })
@@ -21,7 +21,7 @@
             <template #prefix>
               <SfIconTune />
             </template>
-            {{ $t('listSettings') }}
+            {{ t('listSettings') }}
           </UiButton>
         </div>
         <section
@@ -41,15 +41,11 @@
               :rating="productGetters.getAverageRating(product, 'half')"
               :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
               :image-alt="
-                'alt-' + productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
+                productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
                 productGetters.getName(product) ||
                 ''
               "
-              :image-title="
-                productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
-                productGetters.getName(product) ||
-                ''
-              "
+              :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) || ''"
               :image-height="productGetters.getImageHeight(product) || 600"
               :image-width="productGetters.getImageWidth(product) || 600"
               :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
@@ -63,9 +59,9 @@
         </section>
         <LazyCategoryEmptyState v-else />
         <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
-          <span>{{ $t('asterisk') }}</span>
-          <span v-if="showNetPrices">{{ $t('itemExclVAT') }}</span>
-          <span v-else>{{ $t('itemInclVAT') }}</span>
+          <span>{{ t('asterisk') }}</span>
+          <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
+          <span v-else>{{ t('itemInclVAT') }}</span>
           <i18n-t keypath="excludedShipping" scope="global">
             <template #shipping>
               <SfLink
@@ -73,7 +69,7 @@
                 target="_blank"
                 class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
               >
-                {{ $t('delivery') }}
+                {{ t('delivery') }}
               </SfLink>
             </template>
           </i18n-t>
@@ -99,6 +95,7 @@ import { paths } from '~/utils/paths';
 
 const { title, totalProducts, itemsPerPage = 24, products = [] } = defineProps<CategoryPageContentProps>();
 
+const { t } = useI18n();
 const localePath = useLocalePath();
 const { getFacetsFromURL } = useCategoryFilter();
 const { addModernImageExtension } = useModernImage();

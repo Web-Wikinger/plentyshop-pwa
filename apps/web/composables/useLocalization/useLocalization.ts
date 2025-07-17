@@ -1,22 +1,12 @@
-import { createSharedComposable } from '@vueuse/core';
 import type { CategoryTreeItem } from '@plentymarkets/shop-api';
 import { categoryTreeGetters } from '@plentymarkets/shop-api';
-import { useDisclosure } from '@storefront-ui/vue';
-
-const setVsfLocale = (locale: string) => {
-  const { $i18n } = useNuxtApp();
-  const { setLocaleCookie } = $i18n;
-  const DAYS = 100;
-  const localeExpireDate = new Date();
-  localeExpireDate.setDate(new Date().getDate() + DAYS);
-  const vsfLocale = useCookie('vsf-locale', { expires: localeExpireDate });
-
-  setLocaleCookie(locale);
-  vsfLocale.value = locale;
-};
+import type { Locale } from '#i18n';
+import { createSharedComposable } from '@vueuse/core';
 
 export const useLocalization = createSharedComposable(() => {
-  const { isOpen: isOpen, toggle } = useDisclosure();
+  const isOpen = ref(false);
+  const toggle = () => (isOpen.value = !isOpen.value);
+
   /**
    * @description Function for wrapping the category language path.
    *
@@ -94,28 +84,46 @@ export const useLocalization = createSharedComposable(() => {
   };
 
   /**
+   * @description Function for creating a path with a specific locale. (useLocaleRoute or useLocalePath)
+   * @param path  e.g. '/login'
+   * @param locale to be added to the path
+   * @returns localized path with the locale prefix if necessary
+   * @example createLocalePath('/login', 'de');
+   */
+  const createLocalePath = (path: string, locale: string) => {
+    const { locales } = useNuxtApp().$i18n;
+    const localeCodes = locales.value.map((_locale) => _locale.code.toString());
+    const localeSupported = localeCodes.includes(locale);
+    const localeRoute = useLocaleRoute();
+    const localePath = useLocalePath();
+
+    if (localeSupported) {
+      return localeRoute(path, locale as Locale);
+    }
+    return localePath(path);
+  };
+
+  /**
    * @description Function for switching app locale.
    * @param language
    *
    * @param hideMenu
    * @example switchLocale('en')
    */
-  const switchLocale = async (language: string, hideMenu = true) => {
+  const switchLocale = async (language: Locale, hideMenu = true) => {
     const { getCart } = useCart();
     const switchLocalePath = useSwitchLocalePath();
     const route = useRoute();
 
-    setVsfLocale(language);
     if (hideMenu) {
       toggle();
     }
-    await getCart().then(
-      async () =>
-        await navigateTo({
-          path: switchLocalePath(language),
-          query: route.query,
-        }),
-    );
+
+    await navigateTo({
+      path: switchLocalePath(language),
+      query: route.query,
+    });
+    await getCart();
   };
 
   return {
@@ -126,6 +134,6 @@ export const useLocalization = createSharedComposable(() => {
     isOpen,
     toggle,
     switchLocale,
-    setVsfLocale,
+    createLocalePath,
   };
 });

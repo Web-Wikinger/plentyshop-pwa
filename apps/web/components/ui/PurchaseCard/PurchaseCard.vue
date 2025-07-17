@@ -71,9 +71,8 @@
             v-if="productGetters.getShortDescription(product).length > 0"
             class="mb-4 font-normal typography-text-sm whitespace-pre-line break-words"
             data-testid="product-description"
-          >
-            {{ productGetters.getShortDescription(product) }}
-          </div>
+            v-html="productGetters.getShortDescription(product)"
+          />
 
           <ProductAttributes :product="product" />
           <BundleOrderItems v-if="product.bundleComponents" :product="product" />
@@ -124,7 +123,7 @@
                     target="_blank"
                     class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
                   >
-                    {{ $t('delivery') }}
+                    {{ t('delivery') }}
                   </SfLink>
                 </template>
               </i18n-t>
@@ -227,7 +226,7 @@ const handleAddToCart = async (quickCheckout = true) => {
   });
 
   if (addedToCart) {
-    quickCheckout === true
+    quickCheckout
       ? openQuickCheckout(product, quantitySelectorValue.value)
       : send({ message: t('addedToCart'), type: 'positive' });
   }

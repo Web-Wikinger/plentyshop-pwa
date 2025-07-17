@@ -1,21 +1,14 @@
 <template>
-  <div class="sticky top-0 bg-white z-[1] md:z-[10] lg:z-[160] mb-3 h-[52px]" data-testid="edit-mode-toolbar">
+  <div
+    class="mb-3 font-editor"
+    :class="['sticky top-0 bg-white h-[52px] shadow-[0px_15px_20px_-15px_#111]', drawerZIndexClass]"
+    data-testid="edit-mode-toolbar"
+  >
     <div class="relative flex items-center pr-5">
       <UiBrandLogo />
-
-      <UiButton
-        type="button"
-        class="relative ml-4"
-        variant="tertiary"
-        aria-label="Open configuration drawer"
-        square
-        @click="toggleSettingsDrawer"
-      >
-        <SfIconTune />
-      </UiButton>
-
-      <div class="absolute left-1/2 transform -translate-x-1/2">
+      <div class="absolute left-1/2 transform -translate-x-1/2 flex space-x-2">
         <UiLanguageEditor />
+        <UiPageSelector />
       </div>
       <div class="ml-auto flex space-x-2">
         <button
@@ -61,47 +54,35 @@
 </template>
 
 <script setup lang="ts">
-import { SfLoaderCircular, SfIconBase, SfIconVisibility, SfIconTune } from '@storefront-ui/vue';
+import { SfLoaderCircular, SfIconBase, SfIconVisibility } from '@storefront-ui/vue';
 import { editPath } from 'assets/icons/paths/edit';
 import { savePath } from '~/assets/icons/paths/save';
-const runtimeConfig = useRuntimeConfig();
+import { deepEqual } from '~/utils/jsonHelper';
 const { isEditing, isEditingEnabled, disableActions } = useEditor();
+const { isDrawerOpen } = useDrawerState();
 
-const { loading } = useHomepage();
-const {
-  drawerView,
-  openDrawerWithView,
-  closeDrawer,
-  settingsIsDirty,
-  saveSettings,
-  loading: settingsLoading,
-} = useSiteConfiguration();
-const { updatePageTemplate } = useUpdatePageTemplate();
+const { data, loading, cleanData } = useCategoryTemplate();
+const { closeDrawer, settingsIsDirty, loading: settingsLoading } = useSiteConfiguration();
 
-const homepageCategoryId = runtimeConfig.public.homepageCategoryId;
+const { save } = useToolbar();
 
-const isLocalTemplate = computed(() => typeof homepageCategoryId !== 'number');
-
-const isTouched = computed(() => settingsIsDirty.value || (!isLocalTemplate.value && isEditingEnabled.value));
-
-const save = () => {
-  if (!isLocalTemplate.value && isEditingEnabled.value) {
-    updatePageTemplate();
-  }
-
-  if (settingsIsDirty.value) {
-    saveSettings();
-  }
-};
-
-const toggleSettingsDrawer = () => {
-  drawerView.value === 'settings' ? closeDrawer() : openDrawerWithView('settings');
-};
+const isTouched = computed(() => settingsIsDirty.value || isEditingEnabled.value);
 
 const toggleEdit = () => {
   disableActions.value = !disableActions.value;
+  closeDrawer();
   if (isEditing.value) {
     isEditing.value = false;
   }
 };
+
+const drawerZIndexClass = computed(() => (isDrawerOpen.value ? 'lg:z-20 md:z-10' : 'md:z-20'));
+
+watch(
+  () => data.value,
+  async () => {
+    isEditingEnabled.value = !deepEqual(cleanData.value, data.value);
+  },
+  { deep: true },
+);
 </script>

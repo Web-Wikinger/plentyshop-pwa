@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col md:flex-row h-full flex relative scroll-smooth md:gap-4 relative" data-testid="gallery">
+  <div class="flex-col md:flex-row h-full flex scroll-smooth md:gap-4 relative" data-testid="gallery">
     <div
       class="after:block after:pt-[100%] flex-1 relative overflow-hidden w-full max-h-[600px]"
       data-testid="gallery-images"
@@ -30,19 +30,20 @@
         ref="thumbsReference"
         wrapper-class="hidden md:inline-flex"
         direction="vertical"
-        class="flex-row w-full items-center md:flex-col md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-2 overflow-auto scrollbar-hidden"
+        class="flex-row w-full items-center md:flex-col md:h-full md:px-0 md:scroll-pl-4 snap-y snap-mandatory flex gap-0.5 md:gap-0.5 overflow-auto scrollbar-hidden"
         :active-index="activeIndex"
         :prev-disabled="activeIndex === 0"
         :next-disabled="activeIndex === images.length - 1"
       >
-        <template #previousButton>
+        <template #previousButton="defaultProps">
           <UiButton
+            v-bind="defaultProps"
             variant="secondary"
             size="sm"
             square
             class="absolute !rounded-full bg-white z-10 top-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
             :class="{ hidden: firstVisibleThumbnailIntersected }"
-            :aria-label="$t('gallery.prev')"
+            :aria-label="t('gallery.prev')"
           >
             <template #prefix>
               <SfIconChevronLeft />
@@ -53,17 +54,17 @@
         <button
           v-for="(image, index) in images"
           :key="`imagebutton-${index}-thumbnail`"
-          :ref="(el) => assignReference(el, index)"
+          :ref="(el: Element | ComponentPublicInstance | null) => assignReference(el, index)"
           type="button"
           :aria-current="activeIndex === index"
-          :aria-label="$t('gallery.thumb', index)"
-          class="w-20 h-[88px] relative shrink-0 pb-1 border-b-4 snap-start cursor-pointer transition-colors flex-grow-0"
-          :class="[activeIndex === index ? 'border-primary-500' : 'border-transparent']"
-          @mouseover="onChangeIndex(index)"
+          :aria-label="t('gallery.thumb', index)"
+          class="w-20 relative shrink-0 pb-1 snap-start cursor-pointer transition-colors flex-grow-0"
+          @click="onChangeIndex(index)"
           @focus="onChangeIndex(index)"
         >
           <NuxtImg
-            :alt="productImageGetters.getImageAlternate(image)"
+            :alt="productImageGetters.getImageAlternate(image) || productImageGetters.getCleanImageName(image) || ''"
+            :title="productImageGetters.getImageName(image) ? productImageGetters.getImageName(image) : null"
             class="object-contain"
             :width="productImageGetters.getImageWidth(image) ?? 80"
             :height="productImageGetters.getImageHeight(image) ?? 80"
@@ -73,14 +74,15 @@
           />
         </button>
 
-        <template #nextButton>
+        <template #nextButton="defaultProps">
           <UiButton
+            v-bind="defaultProps"
             variant="secondary"
             size="sm"
             square
             class="absolute !rounded-full bg-white z-10 bottom-4 rotate-90 disabled:!hidden !ring-neutral-500 !text-neutral-500"
             :class="{ hidden: lastVisibleThumbnailIntersected }"
-            :aria-label="$t('gallery.next')"
+            :aria-label="t('gallery.next')"
           >
             <template #prefix>
               <SfIconChevronRight />
@@ -94,7 +96,7 @@
           :key="productImageGetters.getImageUrl(image)"
           type="button"
           :aria-current="activeIndex === index"
-          :aria-label="$t('gallery.thumb', index + 1)"
+          :aria-label="t('gallery.thumb', index + 1)"
           class="relative shrink-0 pb-1 border-b-4 cursor-pointer transition-colors flex-grow"
           :class="[activeIndex === index ? 'border-primary-500' : 'border-neutral-200']"
           @click="onChangeIndex(index)"
@@ -113,6 +115,7 @@ import type { ImagesData } from '@plentymarkets/shop-api';
 
 const props = defineProps<{ images: ImagesData[] }>();
 
+const { t } = useI18n();
 const { isPending, start, stop } = useTimeoutFn(() => {}, 50);
 
 const thumbsReference = ref<HTMLElement>();

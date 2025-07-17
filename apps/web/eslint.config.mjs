@@ -1,5 +1,7 @@
 import withNuxt from './.nuxt/eslint.config.mjs';
 import { architecture, ecma } from "@vue-storefront/eslint-config";
+import pluginVueA11y from "eslint-plugin-vuejs-accessibility";
+import { noI18nGlobals } from './eslint-rules/no-i18n-globals.js';
 
 export default withNuxt(
   {
@@ -18,7 +20,15 @@ export default withNuxt(
   ecma({
     withImport: false,
   }),
+  ...pluginVueA11y.configs["flat/recommended"],
   {
+    plugins: {
+      'custom-rules': {
+        rules: {
+          'no-i18n-globals': noI18nGlobals
+        }
+      }
+    },
     /**
      * Rules from other plugins
      * Consider reintroducing in the future
@@ -42,6 +52,14 @@ export default withNuxt(
       'vue/no-multiple-template-root': ['off'],
       'vue/no-v-html': ['off'],
       'vue/html-self-closing': ['error', { html: { void: 'always' } }],
+      'vuejs-accessibility/click-events-have-key-events': 'off',
+      'vuejs-accessibility/form-control-has-label': 'off',
+      'vuejs-accessibility/label-has-for': 'off',
+      'vuejs-accessibility/mouse-events-have-key-events': 'off',
+      'vuejs-accessibility/no-autofocus': 'off',
+      'vuejs-accessibility/no-redundant-roles': 'off',
+      'vuejs-accessibility/no-static-element-interactions': 'off',
+      'custom-rules/no-i18n-globals': 'error',
     }
   },
 );

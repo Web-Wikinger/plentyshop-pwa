@@ -1,6 +1,13 @@
 <template>
   <header>
-    <UiButton type="button" square variant="tertiary" class="absolute right-2 top-2" @click="$emit('confirmCancel')">
+    <UiButton
+      :aria-label="t('closeDialog')"
+      type="button"
+      square
+      variant="tertiary"
+      class="absolute right-2 top-2"
+      @click="$emit('confirmCancel')"
+    >
       <SfIconClose />
     </UiButton>
     <h3 id="address-modal-title" class="text-neutral-900 text-lg md:text-2xl font-bold mb-6">
@@ -53,65 +60,43 @@ import { cartGetters, orderGetters } from '@plentymarkets/shop-api';
 import { SfIconClose, SfLoaderCircular } from '@storefront-ui/vue';
 import type { CardFieldsOnApproveData } from '@paypal/paypal-js';
 
-const { shippingPrivacyAgreement } = useAdditionalInformation();
 const { data: cart, clearCartItems } = useCart();
 const { send } = useNotification();
-const { getScript, createCreditCardTransaction, captureOrder, executeOrder } = usePayPal();
-const { createOrder } = useMakeOrder();
+const { getScript, createTransaction, captureOrder, createPlentyPaymentFromPayPalOrder, createPlentyOrder } =
+  usePayPal();
 const loading = ref(false);
 const emit = defineEmits(['confirmPayment', 'confirmCancel']);
 const localePath = useLocalePath();
 const { t } = useI18n();
 const currency = computed(() => cartGetters.getCurrency(cart.value) || (useAppConfig().fallbackCurrency as string));
 const paypal = await getScript(currency.value);
+const { emit: emitPlentyEvent } = usePlentyEvent();
 
 const confirmCancel = () => {
   emit('confirmCancel');
 };
 
 onMounted(() => {
-  let paypalOrderId: string = '';
-  let paypalPayerId: string = '';
-
   if (paypal && paypal.CardFields) {
     const cardFields = paypal.CardFields({
       async createOrder() {
         loading.value = true;
-        const data = await createCreditCardTransaction();
-        paypalOrderId = data?.id ?? '';
-        paypalPayerId = data?.payPalPayerId ?? '';
-        return paypalOrderId ?? '';
+        const data = await createTransaction({
+          type: 'basket',
+        });
+        return data?.id ?? '';
       },
       async onApprove(data: CardFieldsOnApproveData) {
-        const capture = await captureOrder({
-          paypalOrderId: data.orderID,
-          paypalPayerId: paypalPayerId,
-        });
-        if (capture?.error) {
-          send({
-            type: 'negative',
-            message: capture.error,
-          });
-          loading.value = false;
-          return;
-        }
-        const order = await createOrder({
-          paymentId: cart.value.methodOfPaymentId,
-          additionalInformation: { shippingPrivacyHintAccepted: shippingPrivacyAgreement.value },
-        });
-
-        if (order) {
-          await executeOrder({
-            mode: 'PAYPAL_UNBRANDED_CARD',
-            plentyOrderId: Number.parseInt(orderGetters.getId(order)),
-            paypalTransactionId: data.orderID,
-          });
-        }
-
+        const order = await createPlentyOrder();
         if (order?.order?.id) {
+          await captureOrder(data.orderID);
+          await createPlentyPaymentFromPayPalOrder(data.orderID, order.order.id);
+
+          emitPlentyEvent('module:clearCart', null);
           useProcessingOrder().processingOrder.value = true;
           clearCartItems();
 
+          emitPlentyEvent('frontend:orderCreated', order);
           navigateTo(
             localePath(`${paths.confirmation}/${orderGetters.getId(order)}/${orderGetters.getAccessKey(order)}`),
           );

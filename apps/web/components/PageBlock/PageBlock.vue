@@ -1,112 +1,157 @@
 <template>
-  <UiBlockPlaceholder v-if="displayTopPlaceholder(index)" />
-  <div
-    :class="[
-      'relative group',
-      {
-        'mb-s': blockSize === 's',
-        'mb-m': blockSize === 'm',
-        'mb-l': blockSize === 'l',
-        'mb-xl': blockSize === 'xl',
-      },
-      {
-        'max-w-screen-3xl mx-auto md:px-6 lg:px-10 mt-3': block.name !== 'UiCarousel',
-      },
-      {
-        'outline outline-4 outline-[#538AEA]':
-          isPreview && disableActions && isClicked && isTablet && clickedBlockIndex === index,
-      },
-      { 'hover:outline hover:outline-4 hover:outline-[#538AEA]': isPreview && disableActions && !isTablet },
-    ]"
-    data-testid="block-wrapper"
-    @click="tabletEdit(index)"
-  >
-    <button
-      v-if="disableActions && isPreview"
-      class="z-[0] md:z-[1] lg:z-[10] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-[18px] p-[6px] bg-[#538aea] text-white opacity-0 hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
-      :class="[{ 'opacity-100': isClicked && clickedBlockIndex === index }]"
-      data-testid="top-add-block"
-      aria-label="top add block"
-      @click.stop="addNewBlock(index, -1)"
-    >
-      <SfIconAdd class="cursor-pointer" />
-    </button>
-    <UiBlockActions
-      v-if="disableActions && blockHasData && blockHasData(block) && isPreview"
+  <div v-if="block.meta && (block.name !== 'Footer' || runtimeConfig.public.isDev)" :key="block.meta.uuid">
+    <UiBlockPlaceholder v-if="displayTopPlaceholder(block.meta.uuid)" />
+    <div
+      :id="`block-${index}`"
       :class="[
-        'opacity-0',
+        'relative block-wrapper',
         {
-          'hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100': !isTablet,
-          'opacity-100': isTablet && isClicked && clickedBlockIndex === index,
+          'mb-s': blockSize === 's' && isRootNonFooter,
+          'mb-m': blockSize === 'm' && isRootNonFooter,
+          'mb-l': blockSize === 'l' && isRootNonFooter,
+          'mb-xl': blockSize === 'xl' && isRootNonFooter,
+        },
+        {
+          'outline outline-4 outline-[#538AEA]': showOutline && !isDragging,
+        },
+        {
+          'hover:outline hover:outline-4 hover:outline-[#538AEA]':
+            $isPreview && disableActions && !isTablet && root && !isDragging,
         },
       ]"
-      :index="index"
-      :blocks="block"
-      :is-last-block="isLastBlock(index)"
-      @edit="handleEdit"
-      @delete="deleteBlock"
-      @change-position="changeBlockPosition"
-    />
-    <component :is="getComponent && getComponent(block.name)" v-bind="block.options" />
-    <button
-      v-if="disableActions && isPreview"
-      class="z-[0] md:z-[1] lg:z-[10] absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rounded-[18px] p-[6px] bg-[#538aea] text-white opacity-0 group-hover:opacity-100 group-focus:opacity-100"
-      :class="[{ 'opacity-100': isClicked && clickedBlockIndex === index }]"
-      data-testid="bottom-add-block"
-      aria-label="bottom add block"
-      @click.stop="addNewBlock(index, 1)"
     >
-      <SfIconAdd class="cursor-pointer" />
-    </button>
+      <button
+        v-if="disableActions && $isPreview && root && !isDragging"
+        class="add-block-button no-drag transition-opacity duration-200 z-[0] md:z-[1] lg:z-[10] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-[18px] p-[6px] bg-[#538aea] text-white opacity-0 hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+        :class="[{ 'opacity-100': isClicked && clickedBlockIndex === index }]"
+        data-testid="top-add-block"
+        aria-label="top add block"
+        @click.stop="addNewBlock(block, 'top')"
+      >
+        <SfIconAdd class="cursor-pointer" />
+      </button>
+      <UiBlockActions
+        v-if="disableActions && blockHasData && blockHasData(block) && $isPreview && root && !isDragging"
+        :key="`${block.meta.uuid}`"
+        :class="[
+          'opacity-0 block-actions',
+          {
+            'hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100': !isTablet,
+            'opacity-100': isTablet && isClicked && clickedBlockIndex === index,
+          },
+        ]"
+        :index="index"
+        :block="block"
+        @change-position="changeBlockPosition"
+      />
+
+      <component :is="getBlockComponent" v-bind="contentProps" :index="index">
+        <template v-if="block.type === 'structure'" #content="slotProps">
+          <PageBlock
+            :index="index"
+            :block="slotProps.contentBlock"
+            :root="false"
+            :is-preview="$isPreview"
+            :disable-actions="disableActions"
+            :is-clicked="isClicked"
+            :clicked-block-index="clickedBlockIndex"
+            :is-tablet="isTablet"
+            :block-has-data="blockHasData"
+            :change-block-position="changeBlockPosition"
+            v-bind="slotProps"
+          />
+        </template>
+      </component>
+
+      <button
+        v-if="disableActions && $isPreview && root && !isDragging && props.block.name !== 'Footer'"
+        :key="isDragging ? 'dragging' : 'not-dragging'"
+        class="add-block-button no-drag z-[0] md:z-[1] lg:z-[10] absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rounded-[18px] p-[6px] bg-[#538aea] text-white opacity-0 group-hover:opacity-100 group-focus:opacity-100"
+        :class="[{ 'opacity-100': isClicked && clickedBlockIndex === index }]"
+        data-testid="bottom-add-block"
+        aria-label="bottom add block"
+        @click.stop="addNewBlock(block, 'bottom')"
+      >
+        <SfIconAdd class="cursor-pointer" />
+      </button>
+    </div>
+    <UiBlockPlaceholder v-if="displayBottomPlaceholder(block.meta.uuid)" />
   </div>
-  <UiBlockPlaceholder v-if="displayBottomPlaceholder(index)" />
 </template>
 
 <script lang="ts" setup>
+import type { Block } from '@plentymarkets/shop-api';
 import { SfIconAdd } from '@storefront-ui/vue';
+
+const runtimeConfig = useRuntimeConfig();
+
+const { $isPreview } = useNuxtApp();
 
 interface Props {
   index: number;
   block: Block;
-  isPreview: boolean;
   disableActions: boolean;
+  root: boolean;
   isClicked: boolean;
   clickedBlockIndex: number | null;
   isTablet: boolean;
   blockHasData?: (block: Block) => boolean;
-  getComponent?: (name: string) => unknown;
-  tabletEdit: (index: number) => void;
-  addNewBlock: (index: number, position: number) => void;
   changeBlockPosition: (index: number, position: number) => void;
-  isLastBlock: (index: number) => boolean;
-  handleEdit: (index: number) => void;
-  deleteBlock: (index: number) => void;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const { blockSize, drawerOpen, drawerView } = useSiteConfiguration();
-const { visiblePlaceholder } = useBlockManager();
+const { drawerOpen, drawerView, openDrawerWithView } = useSiteConfiguration();
+const { getSetting: getBlockSize } = useSiteSettings('blockSize');
+const { visiblePlaceholder, togglePlaceholder, isDragging } = useBlockManager();
+const attrs = useAttrs();
 
-const displayTopPlaceholder = (index: number): boolean => {
+const blockSize = computed(() => getBlockSize());
+
+const getBlockComponent = computed(() => {
+  if (!props.block.name) return null;
+
+  return defineAsyncComponent({
+    loader: getBlockLoader(props.block.name),
+  });
+});
+
+const contentProps = computed(() => {
+  return props.root ? { ...props.block } : { ...props.block, ...attrs };
+});
+
+const showOutline = computed(() => {
+  return (
+    $isPreview && props.disableActions && props.isClicked && props.isTablet && props.clickedBlockIndex === props.index
+  );
+});
+
+const displayTopPlaceholder = (uuid: string): boolean => {
   const visiblePlaceholderState = visiblePlaceholder.value;
 
   return (
     visiblePlaceholderState.position === 'top' &&
-    visiblePlaceholderState.index === index &&
+    visiblePlaceholderState.uuid === uuid &&
     drawerOpen.value &&
-    drawerView.value === 'blocks'
+    drawerView.value === 'blocksList'
   );
 };
 
-const displayBottomPlaceholder = (index: number): boolean => {
+const displayBottomPlaceholder = (uuid: string): boolean => {
   const visiblePlaceholderState = visiblePlaceholder.value;
 
   return (
     visiblePlaceholderState.position === 'bottom' &&
-    visiblePlaceholderState.index === index &&
+    visiblePlaceholderState.uuid === uuid &&
     drawerOpen.value &&
-    drawerView.value === 'blocks'
+    drawerView.value === 'blocksList'
   );
 };
+
+const addNewBlock = (block: Block, position: 'top' | 'bottom') => {
+  togglePlaceholder(block.meta.uuid, position);
+  openDrawerWithView('blocksList');
+};
+
+const isRootNonFooter = computed(() => props.root && props.block.name !== 'Footer');
 </script>

@@ -1,11 +1,6 @@
 <template>
   <NarrowContainer class="mb-20 px-4 md:px-0" data-testid="wishlist-layout">
-    <HeaderWithLink
-      v-if="withHeader && title"
-      :heading="title"
-      :label-desktop="$t('back')"
-      :label-mobile="$t('back')"
-    />
+    <HeaderWithLink v-if="withHeader && title" :heading="title" :label-desktop="t('back')" :label-mobile="t('back')" />
 
     <div
       v-if="products.length > 0"
@@ -30,11 +25,7 @@
               productGetters.getName(product) ||
               ''
             "
-            :image-title="
-              productImageGetters.getImageName(productImageGetters.getFirstImage(product)) ||
-              productGetters.getName(product) ||
-              ''
-            "
+            :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) || ''"
             :image-height="productGetters.getImageHeight(product) || 600"
             :image-width="productGetters.getImageWidth(product) || 600"
             :slug="productGetters.getSlug(product) + `-${productGetters.getId(product)}`"
@@ -60,13 +51,13 @@
     >
       <SfLoaderCircular v-if="loading" class="absolute z-[99999]" size="2xl" />
       <h2 data-testid="empty-wishlist-text" class="typography-headline-3 font-bold">
-        {{ $t('emptyWishlist') }}
+        {{ t('emptyWishlist') }}
       </h2>
     </div>
     <div v-if="products.length > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
-      <span>{{ $t('asterisk') }}</span>
-      <span v-if="showNetPrices">{{ $t('itemExclVAT') }}</span>
-      <span v-else>{{ $t('itemInclVAT') }}</span>
+      <span>{{ t('asterisk') }}</span>
+      <span v-if="showNetPrices">{{ t('itemExclVAT') }}</span>
+      <span v-else>{{ t('itemInclVAT') }}</span>
       <i18n-t keypath="excludedShipping" scope="global">
         <template #shipping>
           <SfLink
@@ -74,7 +65,7 @@
             target="_blank"
             class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
           >
-            {{ $t('delivery') }}
+            {{ t('delivery') }}
           </SfLink>
         </template>
       </i18n-t>
@@ -92,7 +83,7 @@ const { showNetPrices } = useCustomer();
 const localePath = useLocalePath();
 
 const { withHeader = true } = defineProps<WishlistPageContentProps>();
-
+const { t } = useI18n();
 const { addModernImageExtension, getImageForViewport } = useModernImage();
 const { fetchWishlist, data: products, loading } = useWishlist();
 

@@ -14,7 +14,7 @@
       <div class="absolute right-2 top-2 flex items-center">
         <span v-if="hasTimer" class="mr-2 text-gray-400">{{ timer }}s</span>
         <UiButton
-          :aria-label="$t('closeDialog')"
+          :aria-label="t('closeDialog')"
           data-testid="quick-checkout-close"
           square
           variant="tertiary"
@@ -28,8 +28,13 @@
     <div class="lg:grid lg:grid-cols-2 lg:gap-4">
       <div class="lg:border-r-2 flex flex-col items-center p-8">
         <NuxtImg
-          :src="addModernImageExtension(productGetters.getMiddleImage(product))"
-          :alt="t('imageOfSth', { name: productGetters.getName(product) })"
+          :src="addModernImageExtension(productGetters.getMiddleImage(props.product))"
+          :alt="imageAlt"
+          :title="
+            productImageGetters.getImageName(productImageGetters.getFirstImage(props.product))
+              ? productImageGetters.getImageName(productImageGetters.getFirstImage(props.product))
+              : null
+          "
           width="240"
           height="240"
           loading="lazy"
@@ -37,7 +42,7 @@
         />
         <div class="flex mb-1">
           <h1 class="font-bold typography-headline-4" data-testid="product-name">
-            {{ productGetters.getName(product) }}
+            {{ productGetters.getName(props.product) }}
           </h1>
         </div>
         <div class="mb-3">
@@ -46,11 +51,13 @@
           </span>
         </div>
 
-        <ProductPrice :product="product" />
+        <ProductPrice :product="props.product" />
 
-        <div class="mb-4 font-normal typography-text-sm" data-testid="product-description">
-          {{ productGetters.getShortDescription(product) }}
-        </div>
+        <div
+          class="mb-4 font-normal typography-text-sm"
+          data-testid="product-description"
+          v-html="productGetters.getShortDescription(props.product)"
+        />
 
         <div class="mt-4 typography-text-xs flex gap-1">
           <span>{{ t('asterisk') }}</span>
@@ -63,7 +70,7 @@
                 target="_blank"
                 class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
               >
-                {{ $t('delivery') }}
+                {{ t('delivery') }}
               </SfLink>
             </template>
           </i18n-t>
@@ -76,7 +83,10 @@
           <p class="font-medium text-base">{{ t('quickCheckout.cartContains', cartItemsCount) }}</p>
           <div class="grid grid-cols-2">
             <p class="text-base">{{ t('quickCheckout.subTotal') }}:</p>
-            <p data-testid="subtotal" class="font-medium text-right">{{ n(totals.subTotal, 'currency') }}</p>
+            <p v-if="showNetPrices" data-testid="subtotal" class="font-medium text-right">
+              {{ format(cartGetters.getItemSumNet(cart)) }}
+            </p>
+            <p v-else data-testid="subtotal" class="font-medium text-right">{{ format(totals.subTotal) }}</p>
           </div>
         </div>
 
@@ -94,7 +104,7 @@
           data-testid="quick-checkout-checkout-button"
           size="lg"
           class="w-full mb-4 md:mb-0"
-          @click="goToPage(paths.checkout)"
+          @click="goToCheckout()"
         >
           {{ t('goToCheckout') }}
         </UiButton>
@@ -110,13 +120,14 @@
 import { SfIconClose, SfLink } from '@storefront-ui/vue';
 import type { QuickCheckoutProps } from './types';
 import type { Product } from '@plentymarkets/shop-api';
-import { cartGetters, productGetters } from '@plentymarkets/shop-api';
+import { cartGetters, productGetters, productImageGetters } from '@plentymarkets/shop-api';
 import ProductPrice from '~/components/ProductPrice/ProductPrice.vue';
 import { paths } from '~/utils/paths';
 
-defineProps<QuickCheckoutProps>();
+const props = defineProps<QuickCheckoutProps>();
 
-const { t, n } = useI18n();
+const { t } = useI18n();
+const { format } = usePriceFormatter();
 
 const { showNetPrices } = useCustomer();
 
@@ -126,6 +137,7 @@ const { isAvailable: isPaypalAvailable, loadConfig } = usePayPal();
 const { addModernImageExtension } = useModernImage();
 const { isOpen, timer, startTimer, endTimer, closeQuickCheckout, hasTimer, quantity } = useQuickCheckout();
 const cartItemsCount = computed(() => cart.value?.items?.reduce((price, { quantity }) => price + quantity, 0) ?? 0);
+const { isAuthorized } = useCustomer();
 
 onMounted(() => {
   startTimer();
@@ -143,6 +155,13 @@ const totals = computed(() => {
     vats: totalsData.totalVats,
   };
 });
+
+const imageAlt = computed(() => {
+  const image = props.product?.images?.all[0];
+  return image ? productImageGetters.getImageAlternate(image) : '';
+});
+
+const goToCheckout = () => (isAuthorized.value ? goToPage(paths.checkout) : goToPage(paths.guestLogin));
 
 const goToPage = (path: string) => {
   closeQuickCheckout();

@@ -1,13 +1,34 @@
 <template>
-  <UiToolbar v-if="isPreview" :style="`font-family: ${config.font}`" />
-  <div class="w-100 relative" :class="{ 'lg:flex': drawerOpen }">
-    <SiteConfigurationDrawer
-      v-if="drawerOpen"
-      class="sm:absolute lg:relative mr-3 bg-white"
-      :style="`font-family: ${config.font}`"
+  <component :is="Toolbar" v-if="$isPreview" />
+  <div
+    class="w-100 relative md:flex"
+    :class="{
+      'lg:flex-row-reverse': placement !== 'left',
+      'md:max-lg:w-[calc(100%-54px)]': disableActions && drawerOpen && $isPreview,
+      'md:max-lg:w-[calc(100%-66px)]': disableActions && !drawerOpen && $isPreview,
+    }"
+  >
+    <component
+      :is="SettingsToolbar"
+      v-if="$isPreview && disableActions"
+      :class="{
+        'order-first': placement === 'left',
+        'order-last': placement === 'right',
+        'mr-3': !drawerOpen || placement === 'right',
+      }"
     />
 
-    <div class="w-100 bg-white" :class="{ 'lg:w-3/4': drawerOpen }">
+    <component
+      :is="SiteConfigurationDrawer"
+      v-if="drawerOpen"
+      class="absolute lg:relative bg-white font-editor"
+      :class="{ 'mr-3': placement === 'left', 'ml-3': placement === 'right' }"
+    />
+
+    <div
+      class="bg-white w-full relative"
+      :class="{ 'lg:w-3/4': drawerOpen, 'lg:w-[calc(100%-66px)]': $isPreview && !drawerOpen && disableActions }"
+    >
       <Body class="font-body bg-editor-body-bg" :class="bodyClass" :style="currentFont" />
       <UiNotifications />
       <VitePwaManifest v-if="$pwa?.isPWAInstalled" />
@@ -17,46 +38,37 @@
       </NuxtLayout>
     </div>
   </div>
+  <component :is="PageModal" v-if="$isPreview" />
+  <component :is="UnlinkCategoryModal" v-if="$isPreview" />
 </template>
 
 <script setup lang="ts">
-const { $pwa } = useNuxtApp();
+const { $pwa, $isPreview } = useNuxtApp();
 const bodyClass = ref('');
-const { getCategoryTree } = useCategoryTree();
-const { setInitialDataSSR } = useInitialSetup();
-const { setVsfLocale } = useLocalization();
 const route = useRoute();
-const { locale } = useI18n();
+const { disableActions } = useEditor();
+const { drawerOpen, currentFont, placement } = useSiteConfiguration();
 const { setStaticPageMeta } = useCanonical();
+const { setInitialDataSSR } = useInitialSetup();
 
-const { currentFont } = useSiteConfiguration();
-
-const isPreview = ref(false);
-const config = useRuntimeConfig().public;
-const showConfigurationDrawer = config.showConfigurationDrawer;
-
-const { drawerOpen } = useSiteConfiguration();
-
-onMounted(() => {
-  const pwaCookie = useCookie('pwa');
-  isPreview.value = !!pwaCookie.value || (showConfigurationDrawer as boolean);
+await callOnce(async () => {
+  await setInitialDataSSR();
 });
-
-await setInitialDataSSR();
-setVsfLocale(locale.value);
 
 if (route?.meta.pageType === 'static') setStaticPageMeta();
 usePageTitle();
 
-onNuxtReady(async () => {
+onMounted(() => {
   bodyClass.value = 'hydrated'; // Need this class for cypress testing
 });
 
-watch(
-  () => locale.value,
-  async (locale: string) => {
-    setVsfLocale(locale);
-    await getCategoryTree();
-  },
+const Toolbar = defineAsyncComponent(() => import('~/components/ui/Toolbar/Toolbar.vue'));
+const SettingsToolbar = defineAsyncComponent(() => import('~/components/SettingsToolbar/SettingsToolbar.vue'));
+const SiteConfigurationDrawer = defineAsyncComponent(
+  () => import('~/components/SiteConfigurationDrawer/SiteConfigurationDrawer.vue'),
+);
+const PageModal = defineAsyncComponent(() => import('~/components/ui/PageModal/PageModal.vue'));
+const UnlinkCategoryModal = defineAsyncComponent(
+  () => import('~/components/ui/UnlinkCategoryModal/UnlinkCategoryModal.vue'),
 );
 </script>

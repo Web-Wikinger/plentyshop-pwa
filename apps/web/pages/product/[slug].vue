@@ -31,7 +31,7 @@
       </div>
       <section class="mx-4 mt-28 mb-20">
         <NuxtLazyHydrate when-visible>
-          <ProductRecommendedProducts :category-id="productGetters.getCategoryIds(product)[0]" />
+          <RecommendedProducts :category-id="productGetters.getCategoryIds(product)[0]" />
         </NuxtLazyHydrate>
       </section>
     </NarrowContainer>
@@ -46,13 +46,17 @@ import { SfIconChevronRight } from '@storefront-ui/vue';
 import type { Product } from '@plentymarkets/shop-api';
 import { productGetters, reviewGetters, categoryTreeGetters } from '@plentymarkets/shop-api';
 
+const route = useRoute();
+
 definePageMeta({
   layout: false,
   path: '/:slug*_:itemId',
+  validate: async (route) => {
+    return validateProductParams(route.params);
+  },
 });
 
 const { t } = useI18n();
-const route = useRoute();
 const { setCurrentProduct } = useProducts();
 const { setProductMetaData, setProductRobotsMetaData, setProductCanonicalMetaData } = useStructuredData();
 const { buildProductLanguagePath } = useLocalization();
@@ -63,14 +67,24 @@ const { data: productReviews, fetchProductReviews } = useProductReviews(Number(p
 const { data: categoryTree } = useCategoryTree();
 const { open, openDrawer } = useProductLegalDetailsDrawer();
 
+const { setPageMeta } = usePageMeta();
+
+const productName = computed(() => productGetters.getName(product.value));
+const icon = 'sell';
+setPageMeta(productName.value, icon);
+
 const countsProductReviews = computed(() => reviewGetters.getReviewCounts(productReviews.value));
 
-await fetchProduct(productParams);
+await fetchProduct(productParams).then(() => {
+  usePlentyEvent().emit('frontend:productLoaded', {
+    product: product.value,
+  });
+});
 
 if (Object.keys(product.value).length === 0) {
-  throw new Response(null, {
-    status: 404,
-    statusText: 'Not found',
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Product not found',
   });
 }
 setCurrentProduct(product.value || ({} as Product));
@@ -105,6 +119,7 @@ watch(
 watch(
   () => categoryTree.value,
   (categoriesTree) => {
+    setProductCanonicalMetaData(product.value);
     const productCategoryId = productGetters.getParentCategoryId(product.value);
     if (categoriesTree.length > 0 && productCategoryId) {
       const categoryTree = categoriesTree.find(
@@ -114,8 +129,17 @@ watch(
         setProductMetaData(product.value, categoryTree);
         setProductRobotsMetaData(product.value);
       }
-      setProductCanonicalMetaData(product.value);
     }
+  },
+  { immediate: true },
+);
+
+watch(
+  () => route.params,
+  () => {
+    const productName = computed(() => productGetters.getName(product.value));
+    const icon = 'sell';
+    setPageMeta(productName.value, icon);
   },
   { immediate: true },
 );
