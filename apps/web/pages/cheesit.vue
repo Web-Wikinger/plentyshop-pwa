@@ -1,27 +1,40 @@
 <template>
   <div class="mx-auto">
-    <img src="/images/cheesit/cheesitlandingpage.png" >
+    <LandingPageHeader 
+      title="Käsecracker"
+      subtitle="Vom Kultprodukt zum Sortiments-Booster"
+      description="<p>Cheez-It ist in den USA längst ein Klassiker: Die ikonischen Käse-Snacks auf Weizenbasis sind dort in Millionen Haushalten zu finden – als knuspriger Begleiter für unterwegs, auf der Couch oder im Büro.</p>
+                  <p>In den USA jahrzehntelang als Käsecracker bekannt, gehört Cheez-It mittlerweile zu den bekanntesten Marken im Segment gebackener Käse-Snacks. Mit einem Marktanteil von rund 67 % im US-Segment für Convenience-Cracker (Stand: 2023) führt Cheez-It dort die Kategorie an – ein Beleg für die Markenstärke und breite Verbraucherakzeptanz. *</p>
+                  <p>Jetzt kommt der knusprig gebackene Snack endlich auch nach Deutschland – und sorgt für frischen Schwung im Snackregal.</p>"
+
+    />
+    <img class="mt-6" src="/images/cheesit/cheesitlandingpage.png" >
 
     <LandingPagePresentation imageSrc="/images/cheesit/1.png" 
-        Title="Snackregal auffrischen? Diese Käsecracker sorgen für Bewegung." 
-        Description="<p>Ob an der Kasse, im Kiosk oder im To-go-Regal – überall dort, wo schnelle Entscheidungen gefragt sind, braucht es Snacks mit Zugkraft.</p>
-                    <p>Genau hier setzen unsere neuen Käsecracker für Wiederverkäufer an: würzig im Geschmack, aufmerksamkeitsstark im Design und direkt verzehrfertig.</p>
-                    <p>Über unseren B2B Shop wirst Du sie unkompliziert bestellen können – ideal, um Dein Sortiment gezielt zu erweitern und neue Kaufanreize auf kleinstem Raum zu schaffen. Perfekt für Verkaufsflächen mit Fokus auf schnelle Drehung.</p>"
+        Title="Jetzt neu: Cheez-It Snacks für den Handel"
+        Description="<p>Mit dem Deutschland-Launch zieht die beliebte US-Snackmarke in deine Regale ein. Cheez-It Snap’d überzeugt mit intensivem Cheddar-Geschmack, knuspriger Textur und sofortiger Verzehrbereitschaft – ideal für alle, die auf der Suche nach einem Impulsprodukt mit Wiedererkennungswert sind.</p>
+                    <p>Was in den USA als Käsecracker mit Kultstatus begann, sorgt jetzt als knusprig gebackener Käse-Snack für Aufmerksamkeit – ohne Kühlaufwand, aber mit maximaler Wirkung auf kleiner Fläche.</p>" 
         noButton
         />
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/cheesit/2.png" 
-        Title="Mehr Schwung im Regal – mit Snacks, die verkaufen" 
-        Description="<p>Gerade im Snackgeschäft zählt Schnelligkeit. Wer früh auf neue Produkte wie diese Snacks setzt, sichert sich nicht nur einen Platz im Regal, sondern auch im Kopf der Kundschaft.<br>Denn: Abwechslung belebt das Geschäft – und sorgt am POS für frische Impulse.</p>
-                    <p>Wenn Du Dein Käsecracker Sortiment clever ergänzen willst, zeigen wir Dir in unserem Online Shop für Snacks, wie Du mit neuen Produkten im Handel gezielt Impulskäufe steigern kannst. Jetzt ist der richtige Zeitpunkt, den Sortimentsvorsprung zu sichern.</p>" 
+        Title="Cheez-It Snap’d – Auffällig im Design, praktisch im Einsatz" 
+        Description="<p>Cheez-It ist mehr als nur ein Snack – es ist eine Marke mit Geschichte und Charakter. Das auffällige Packungsdesign, der ikonische US-Look und der intensive Cheddar-Geschmack machen Cheez-It Snap’d zum echten Hingucker im Regal. Und das Beste:</p>
+                    <p>✔ Kein Kühlaufwand</p>
+                    <p>✔ Sofort snackbereit für unterwegs</p>
+                    <p>✔ Ideal für Shops mit hoher Kundenfrequenz</p>
+                    <p>✔ Bekannt aus den USA</p>" 
         noButton
         
         />
     
         
     <LandingPagePresentation imageSrc="/images/cheesit/3.png" 
-      Title="Trend-Snacks mit Profil: Cheez-It & Co." 
-      Description="<p>Der Mix aus kräftigem Geschmack, hohem Wiedererkennungswert und unkomplizierter Handhabung macht sie besonders attraktiv für alle, die auf Snackprodukte mit Bewegung im Verkaufsalltag setzen.</p>
-                    <p>Ob als Ergänzung im Käse Snacks Sortiment oder als Trendprodukt für frequenzstarke Bereiche: Käsecracker im Großhandel bieten eine starke Lösung für zeitgemäße Verkaufsstrategien.</p>"
+      Title="Sortiment clever erweitern – jetzt bestellen" 
+      Description="<p>Du willst dein Angebot auffrischen, neue Zielgruppen erreichen oder mehr Vielfalt in den Impulsbereich bringen? Dann ist Cheez-It Snap’d eine spannende Ergänzung. Über unseren B2B-Shop kannst du die Käse-Snacks ganz unkompliziert ordern – mit klarem Produktprofil und attraktiver Regalwirkung.</p>
+                    <p>Ideal für:</p>
+                    <p>✔ Impulsbereiche mit schneller Drehung</p>
+                    <p>✔ trendaffine Kundschaft</p>
+                    <p>✔ mobile Verkaufsflächen und To-go-Zonen</p>"
       noButton/>
 
 
@@ -29,21 +42,13 @@
 
 
     <LandingPagePresentation imageLeft :bgColor="'bg-gray-100'" imageSrc="/images/cheesit/4.png" 
-      Title="Maximale Wirkung auf kleiner Fläche" 
-      Description="<p>Käsecracker überzeugen nicht nur durch Geschmack, sondern auch durch ihre praktische Handhabung im Verkaufsalltag. Sie benötigen keine Kühlung und lassen sich somit flexibel lagern – ideal für Shops mit begrenztem Platzangebot.</p>
-                  <p>Ihr in den USA bereits vertrauter, beliebte Marke sorgt für stabile Abverkäufe, ganz ohne zusätzlichen Erklärungsaufwand. Dank ihres auffälligen Designs eignen sie sich perfekt für aufmerksamkeitsstarke Platzierungen an der Kasse oder im To-go-Regal.<br>Und auch wirtschaftlich rechnen sie sich: Attraktive Handelspreise ermöglichen Wiederverkäufern solide Margen bei gleichzeitig geringem Risiko.</p>"
+      Title="Jetzt Sortiment stärken – mit Cheez-It Snap’d im Online Shop" 
+      Description="<p>Ob für den Impulsbereich, das Snackregal oder mobile Verkaufsflächen – Cheez-It Snap’d passt in moderne Sortimente. Der knusprig gebackene Käse-Snack ist unkompliziert in der Handhabung, lange haltbar und sorgt dank auffälligem Design für schnelle Kaufimpulse – auch auf kleiner Fläche.</p>
+                  <p>Du willst direkt loslegen? Dann melde dich jetzt für unseren B2B-Newsletter an und erfahre sofort, sobald Cheez-It Snap’d verfügbar ist.</p>"
       noButton
       />
-
-
-
-    <LandingPagePresentation imageSrc="/images/cheesit/5.png" 
-      SubTitle="Pop in der After Hour" Title="Jetzt Sortiment stärken – mit Käsecrackern im Großhandel" 
-      Description="<p>Ob für den Impulsbereich, das Snackregal oder mobile Verkaufspunkte – Käsecracker sind eine vielseitige, umsatzstarke Ergänzung. Dank ihrer einfachen Handhabung, zuverlässigen Nachfrage und attraktiven Konditionen im Käsecracker Handel bieten sie genau das, was moderne Verkaufsstellen brauchen.</p>
-                    <p>Jetzt direkt im B2B Shop bestellen, das Sortiment gezielt ausbauen. Sichere Dir jetzt den Vorsprung am POS.</p>"
-      noButton
-      />
-
+    
+    <span class="block text-center my-8">*Quelle: <a href="https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost">https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost</a></span>
   </div>
 </template>
 <script lang="ts" setup>
