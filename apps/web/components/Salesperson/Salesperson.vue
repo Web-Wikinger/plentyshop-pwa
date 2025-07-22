@@ -158,7 +158,7 @@
                        class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md text-black" />
                  </div>
                  <!-- Submit Button -->
-                 <button type="submit" class="w-full py-2 bg-black text-white font-bold rounded-md">
+                 <button type="submit" class="block mx-auto w-auto px-4 py-2 bg-white text-black font-bold rounded-md">
                  Passwort aktualisieren
                  </button>
               </form>
@@ -167,7 +167,6 @@
         <!-- Customer Entries Tab -->
         <div v-else-if="isAuthenticated && activeTab === 'customerEntries'">
            <div class="container-fluid">
-              <h3 class="mb-3 text-center font-weight-bold">Kundenzugang</h3>
               <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-lg shadow-sm">
   <thead class="bg-gray-100">
     <tr>
@@ -215,11 +214,7 @@
         </div>
      </div>
      <!-- Loading Overlay -->
-     <div v-if="loading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]">
-        <div class="spinner-border text-primary" role="status">
-           <span class="sr-only">Loading...</span>
-        </div>
-     </div>
+     <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-[99999] bg-black bg-opacity-80" size="2xl" />
   </div>
 </template>
 
@@ -229,7 +224,8 @@ const { send } = useNotification();
 const { data,login, isAuthorized,logout } = useCustomer();
 const emits = defineEmits(['loggedIn', 'change-view']);
 const { t } = useI18n();
-
+import { SfLoaderCircular } from '@storefront-ui/vue';
+import { navigateTo } from 'nuxt/app';
 
 
 const recaptchaRef = ref<{
@@ -392,11 +388,13 @@ const loginVertriebUser = async () => {
 
   loading.value = true
   try {
-    const response = await axios.post('/rest/salesperson/login', data)
+    const response = await axios.post('https://b2b.kelloggs-shop.de/rest/salesperson/login', data)
     localStorage.setItem('vertrieb-token', response.data.token)
 
     showNotification('Login erfolgreich!', 'success')
-    setTimeout(() => window.location.reload(), 500)
+    setTimeout(() => {
+      navigateTo('/');
+    }, 5000)
   } catch (error: any) {
     const errMsg = error.response?.data?.error || 'Login fehlgeschlagen'
     showNotification(errMsg, 'error')
@@ -455,6 +453,17 @@ const registerCustomer = async () => {
                 name1: customer.firmName, 
                 isPrimary: 1,
               },
+              deliveryAddress: {
+                countryId: 1,
+                telephone: customer.phone,
+                address1: customer.street,
+                address2: customer.housenumber,
+                postalCode: customer.zipCity || "", 
+                town: customer.city,
+                contactPerson: customer.contactPerson,
+                name1: customer.firmName, 
+                isPrimary: 1,
+              },
               recaptcha: recaptchaToken
           };
 
@@ -500,6 +509,8 @@ const registerCustomer = async () => {
                       });
                       emits('loggedIn', false);
                     }
+
+                    
                   } else {
                     send({
                       message: 'Error during creating the relation',
