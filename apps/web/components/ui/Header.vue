@@ -1,5 +1,4 @@
 <template>
-  <InventoryInfo />
   <TopHeader v-if="!isAuthorized" />
   <MegaMenu :categories="categoryTree">
     <template v-if="viewport.isGreaterOrEquals('md')">
