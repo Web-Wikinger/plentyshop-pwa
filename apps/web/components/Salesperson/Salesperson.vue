@@ -179,7 +179,7 @@
     <tr v-for="entry in customerEntries" :key="entry.id">
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.id }}</td>
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.customer_id }}</td>
-      <td class="px-4 py-2 text-sm text-gray-900">-</td>
+      <td class="px-4 py-2 text-sm text-gray-900">{{ entry.company_name ? entry.company_name : "-" }}</td>
       <!-- <td class="px-4 py-2">
         <button
           class="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-200"

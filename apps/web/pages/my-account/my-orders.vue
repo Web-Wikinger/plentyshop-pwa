@@ -179,7 +179,7 @@ onMounted(() => setMaxVisiblePages(isDesktop.value));
 
 const { fetchCustomerOrders, data, loading } = useCustomerOrders();
 const generateOrderDetailsLink = (order: Order) => {
-  return `${paths.confirmation}/${orderGetters.getId(order)}/${orderGetters.getAccessKey(order)}`;
+  return `${paths.confirmation}/${orderGetters.getId(order)}`;
 };
 
 const generateNewReturnLink = (order: Order) => {
