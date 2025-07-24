@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+
 import { ref } from 'vue';
 import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
 
@@ -26,5 +27,5 @@ import type { ProductListProps } from '~/components/LandingPage/Product/types.ts
 
 const {products} = defineProps<ProductListProps>();
 
-
+console.log('products', products);
 </script>

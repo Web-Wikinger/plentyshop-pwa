@@ -16,7 +16,7 @@
     </div>
     <div class="space-p-4">
       <h3 class="font-[Open_Sans] text-[12px] leading-[17px] text-[#2C2C2C] mt-[12px] ml-[14px]">{{ name }}</h3>
-      <p v-if="isAuthorized" class="text-[19px] font-bold ml-[14px]">{{ n(price, 'currency') }}</p>
+      <p v-if="isAuthorized" class="text-[19px] font-bold ml-[14px]">{{ n(priceWithProperties, 'currency') }}</p>
       <p v-if="isAuthorized" class="text-[8px] leading-[11px] mt-[1px] ml-[14px]">Grundpreis: {{ getWeight(product) }}g ({{ n(getKgPrice(product), 'currency') }}/kg )</p>
       <p class="text-[8px] leading-[11px] mt-[5px] mb-[9px] ml-[14px] text-[#2c2c2c]">*Preis eks. MwSt. und zzgl. Versand</p>
       <div class="mt-2 text-sm border-t border-b border-gray-300">
@@ -112,6 +112,7 @@ const { cartIsEmpty } = useCart();
 const localePath = useLocalePath();
 const { t, n } = useI18n();
 const { addToCart, setCartItemQuantity, deleteCartItem } = useCart();
+const { getPropertiesForCart, getPropertiesPrice } = useProductOrderProperties();
 
 
 const { data: categoryTree } = useCategoryTree();
@@ -134,6 +135,17 @@ const getHeight = () => {
   }
   return '';
 };
+
+const priceWithProperties = computed(() => {
+  if (!isAuthorized.value) return 0;
+
+  let price = (
+    (productGetters.getSpecialOffer(product) ||
+      productGetters.getGraduatedPriceByQuantity(product, 1)?.unitPrice.value ||
+      0) + getPropertiesPrice(product)
+  );
+  return price > 1000 ? 0 : price
+});
 
 // Handle success of adding to cart (can be used to trigger notifications, etc.)
 const handleAddToCartSuccess = () => {

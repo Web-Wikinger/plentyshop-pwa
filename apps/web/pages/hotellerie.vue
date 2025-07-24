@@ -113,26 +113,28 @@ const { data: productsCatalog, loading, fetchProducts } = useProducts();
 const { isAuthorized } = useCustomer();
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import { Product } from "@plentymarkets/shop-api";
+import { useAsyncData } from 'nuxt/app';
 
-const pringlesProducts     = ref([] as Product[])
-const cerealienProducts    = ref([] as Product[])
+const pringlesProducts = ref([] as Product[]);
+const cerealienProducts = ref([] as Product[]);
 
-async function loadProducts() {
-  if(isAuthorized.value)
-  {
-    const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
-    const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+const { data: pringlesData } = await useAsyncData('pringlesProducts', () => fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 }))
+const { data: cerealienData } = await useAsyncData('cerealienProducts', () => fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 }))
 
-    pringlesProducts.value  = pringlesRes.products
-    cerealienProducts.value = cerealienRes.products 
-  }
+// Set initial values from SSR/CSR fetch
+if (pringlesData.value?.products) pringlesProducts.value = pringlesData.value.products;
+if (cerealienData.value?.products) cerealienProducts.value = cerealienData.value.products;
+
+async function reloadProducts() {
+  const pringlesRes  = await fetchProducts({ categoryUrlPath: 'snacks/pringles', page: 1, itemsPerPage: 4 })
+  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+  pringlesProducts.value  = pringlesRes.products
+  cerealienProducts.value = cerealienRes.products 
 }
-
-onMounted(loadProducts)
 
 watch(isAuthorized, (newVal) => {
   if (newVal) {
-    loadProducts()
+    reloadProducts()
   }
 })
 

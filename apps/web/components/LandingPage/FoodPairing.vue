@@ -20,27 +20,24 @@
 
 <script setup lang="ts">
 import { Product } from "@plentymarkets/shop-api";
+import { useAsyncData } from 'nuxt/app';
 
 const { fetchProducts } = useProducts();
 const { isAuthorized } = useCustomer();
 
-const cerealienProducts    = ref([] as Product[])
+const cerealienProducts = ref<Product[]>([]);
+const { data: cerealienData } = await useAsyncData('cerealienProducts', () => fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 }))
+if (cerealienData.value?.products) cerealienProducts.value = cerealienData.value.products;
 
-async function loadProducts() {
-  if(isAuthorized.value)
-  {
-    const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
-
-    cerealienProducts.value = cerealienRes.products 
-  }
+async function reloadProducts() {
+  const cerealienRes = await fetchProducts({ categoryUrlPath: 'fruehstueck/cerealien', page: 1, itemsPerPage: 4 })
+  cerealienProducts.value = cerealienRes.products 
 }
 
 
-onMounted(loadProducts)
-
 watch(isAuthorized, (newVal) => {
   if (newVal) {
-    loadProducts()
+    reloadProducts()
   }
 })
 
