@@ -8,7 +8,7 @@
                   Jetzt kommt der knusprig gebackene Snack endlich auch nach Deutschland – und sorgt für frischen Schwung im Snackregal."
       :noMarginTop="true"
     />
-    <img class="mt-6 lg:max-w-[940px] mx-auto" src="/images/cheesit/cheesitlandingpage.png" >
+    <img class="mt-6" src="/images/cheesit/cheesitlandingpage.png" >
 
     <LandingPagePresentation imageSrc="/images/cheesit/1.png" 
         Title="Jetzt neu: Cheez-It Snacks für den Handel"
