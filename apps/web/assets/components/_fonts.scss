@@ -91,6 +91,17 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Block Berthold Regular';
+  src: url('/fonts/Block Berthold Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.block-berthold {
+  font-family: 'Block Berthold Regular', sans-serif !important;
+}
 
 
 @layer utilities {
