@@ -1,14 +1,14 @@
 <template>
   <div class="mx-auto">
     <LandingPageHeader 
-      title="Käsecracker"
+      title=""
       subtitle="Vom Kultprodukt zum Sortiments-Booster"
       description="Cheez-It ist in den USA längst ein Klassiker: Die ikonischen Käse-Snacks auf Weizenbasis sind dort in Millionen Haushalten zu finden – als knuspriger Begleiter für unterwegs, auf der Couch oder im Büro.<br>
                   In den USA jahrzehntelang als Käsecracker bekannt, gehört Cheez-It mittlerweile zu den bekanntesten Marken im Segment gebackener Käse-Snacks. Mit einem Marktanteil von rund 67 % im US-Segment für Convenience-Cracker (Stand: 2023) führt Cheez-It dort die Kategorie an – ein Beleg für die Markenstärke und breite Verbraucherakzeptanz. *<br>
                   Jetzt kommt der knusprig gebackene Snack endlich auch nach Deutschland – und sorgt für frischen Schwung im Snackregal."
-
+      :noMarginTop="true"
     />
-    <img class="mt-6" src="/images/cheesit/cheesitlandingpage.png" >
+    <img class="mt-6 lg:max-w-[940px] mx-auto" src="/images/cheesit/cheesitlandingpage.png" >
 
     <LandingPagePresentation imageSrc="/images/cheesit/1.png" 
         Title="Jetzt neu: Cheez-It Snacks für den Handel"
@@ -48,7 +48,7 @@
       noButton
       />
     
-    <span class="block text-center my-8">*Quelle: <a href="https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost">https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost</a></span>
+    <span class="block text-center my-8 text-xs">*Quelle: <a href="https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost">https://www.foodbusinessnews.net/articles/19371-cracker-category-seeks-a-boost</a></span>
   </div>
 </template>
 <script lang="ts" setup>

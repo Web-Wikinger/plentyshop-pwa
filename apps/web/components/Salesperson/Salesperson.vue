@@ -13,8 +13,8 @@
   </div>
   <div class="w-full bg-white p-6 rounded-lg">
      <!-- Tabs Navigation -->
-     <ul class="flex justify-between border-b mb-4">
-        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'CreateCustomer' }">
+     <ul class="flex border-b mb-4">
+        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3 mx-4" :class=" { 'border-t border-x !bg-[#d0033d] text-white': activeTab === 'CreateCustomer' }">
            <a 
               class="cursor-pointer px-4 py-2" 
               :class="{ 'border-blue-500 font-semibold': activeTab === 'CreateCustomer' }" 
@@ -23,7 +23,7 @@
            Neukunden anlegen
            </a>
         </li>
-        <li v-if="!isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'login' }">
+        <li v-if="!isAuthenticated" class="bg-gray-100 px-6 py-3 mx-4" :class=" { 'border-t border-x !bg-[#d0033d] text-white': activeTab === 'login' }">
            <a 
               class="text-lg font-semibold text-gray-700" 
               @click="activeTab = 'login'"
@@ -31,7 +31,7 @@
            Einloggen
            </a>
         </li>
-        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'customerEntries' }">
+        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3 mx-4" :class=" { 'border-t border-x !bg-[#d0033d] text-white': activeTab === 'customerEntries' }">
            <a 
               class="cursor-pointer px-4 py-2" 
               :class="{ 'border-blue-500 font-semibold': activeTab === 'customerEntries' }" 
@@ -40,7 +40,7 @@
            Kundenzugang
            </a>
         </li>
-        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3" :class=" { 'border-t border-x': activeTab === 'changePassword' }">
+        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3 mx-4" :class=" { 'border-t border-x !bg-[#d0033d] text-white': activeTab === 'changePassword' }">
            <a 
               class="cursor-pointer px-4 py-2" 
               :class="{ 'border-blue-500 font-semibold': activeTab === 'changePassword' }" 
@@ -49,7 +49,7 @@
            Passwort ändern
            </a>
         </li>
-        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3">
+        <li v-if="isAuthenticated" class="bg-gray-100 px-6 py-3 mx-4">
            <a class="cursor-pointer px-4 py-2 text-red-500" @click.prevent="logoutVertriebUser">
            Logout
            </a>
@@ -172,6 +172,7 @@
     <tr>
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">ID</th>
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kunden ID</th>
+      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kundenname</th>
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kundenkonto Login</th>
     </tr>
   </thead>
@@ -179,13 +180,14 @@
     <tr v-for="entry in customerEntries" :key="entry.id">
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.id }}</td>
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.customer_id }}</td>
+      <td class="px-4 py-2 text-sm text-gray-900">-</td>
       <td class="px-4 py-2">
-        <button
+        <!-- <button
           class="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-200"
           @click="redirectToLogin(entry.customer_id)"
         >
           Login
-        </button>
+        </button> -->
       </td>
     </tr>
   </tbody>
@@ -388,7 +390,7 @@ const loginVertriebUser = async () => {
 
   loading.value = true
   try {
-    const response = await axios.post('https://b2b.kelloggs-shop.de/rest/salesperson/login', data)
+    const response = await axios.post('/rest/salesperson/login', data)
     localStorage.setItem('vertrieb-token', response.data.token)
 
     showNotification('Login erfolgreich!', 'success')
