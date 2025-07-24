@@ -173,7 +173,6 @@
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">ID</th>
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kunden ID</th>
       <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kundenname</th>
-      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Kundenkonto Login</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y divide-gray-200">
@@ -181,14 +180,14 @@
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.id }}</td>
       <td class="px-4 py-2 text-sm text-gray-900">{{ entry.customer_id }}</td>
       <td class="px-4 py-2 text-sm text-gray-900">-</td>
-      <td class="px-4 py-2">
-        <!-- <button
+      <!-- <td class="px-4 py-2">
+        <button
           class="px-3 py-1 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded transition duration-200"
           @click="redirectToLogin(entry.customer_id)"
         >
           Login
-        </button> -->
-      </td>
+        </button>
+      </td> -->
     </tr>
   </tbody>
 </table>
