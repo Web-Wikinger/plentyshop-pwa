@@ -394,9 +394,6 @@ const loginVertriebUser = async () => {
     localStorage.setItem('vertrieb-token', response.data.token)
 
     showNotification('Login erfolgreich!', 'success')
-    setTimeout(() => {
-      navigateTo('/');
-    }, 5000)
   } catch (error: any) {
     const errMsg = error.response?.data?.error || 'Login fehlgeschlagen'
     showNotification(errMsg, 'error')
@@ -510,6 +507,9 @@ const registerCustomer = async () => {
                         type: 'positive',
                       });
                       emits('loggedIn', false);
+                      setTimeout(() => {
+                        navigateTo('/');
+                      }, 5000)
                     }
 
                     
